@@ -1,0 +1,547 @@
+/* =========================== */
+/* 🌟 About.css - Page À Propos */
+/* =========================== */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #0A192F, #001F3F);
+    color: white;
+    animation: bgMove 8s infinite alternate ease-in-out;
+    overflow-x: hidden;
+}
+
+/* 🌊 Animation du background */
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* =========================== */
+/* 🌍 NAVBAR */
+/* =========================== */
+.navbar .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-right: 50px; /* espace fixe compensant le bouton thème */
+	padding-bottom : 20px
+}
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 25, 47, 0.95);
+    padding: 15px 70px 15px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out, background 0.3s;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    padding: 0 10%;
+}
+
+.nav-links li {
+    flex: none;
+    min-width: 120px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 14px 24px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out, color 0.3s, transform 0.2s;
+    display: inline-block;
+}
+
+.nav-links li a:hover {
+    background: rgba(255, 127, 17, 0.2);
+    color: #ff7f11;
+    transform: scale(1.1);
+}
+
+.nav-links li a.active {
+    background: #ff7f11;
+    color: #0A192F;
+    border-radius: 8px;
+    font-weight: bold;
+    padding: 14px 24px;
+    box-shadow: 0px 4px 15px rgba(255, 127, 17, 0.5);
+}
+
+.logo {
+    width: 100px; /* Taille correcte */
+    height: auto;
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    z-index: 1100;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(255, 127, 17, 0.7));
+}
+
+/* Variation mode clair élégante */
+.light-mode .logo:hover {
+    filter: drop-shadow(0 0 10px rgba(124, 14, 133, 0.7));
+}
+
+
+/* =========================== */
+/* 🏆 SECTION INTRODUCTION */
+/* =========================== */
+.about-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 150px;
+	padding: 50px 20px;
+}
+
+.profile-photo {
+    display: block;
+    width: 210px;
+    height: 210px;
+    border-radius: 50%;
+    border: 4px solid #FF7F11;
+    box-shadow: 0px 0px 20px rgba(255, 127, 17, 0.7);
+    transition: transform 0.4s ease-in-out;
+    object-fit: cover; /* Assure un bon affichage */
+	margin-top: 70px; /* Descend la photo */
+}
+
+.profile-photo:hover {
+    transform: scale(1.1);
+}
+
+.intro-text h1 {
+    font-size: 2.5rem;
+    margin-top: 15px;
+    font-weight: 700;
+}
+
+.quote {
+    font-size: 1.7rem;
+    font-style: italic;
+    color: #FF7F11;
+    margin-top: 70px;
+    max-width: 600px;
+	font-weight: bold; /* Rend le texte plus marqué */
+	text-align: center;
+    line-height: 1.6;
+}
+
+/* =========================== */
+/* 🎓 TIMELINE (PARCOURS SCOLAIRE) */
+/* =========================== */
+#timeline {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+#timeline h2 {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+}
+
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.timeline-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    margin-bottom: 30px;
+    text-align: left;
+    position: relative;
+    box-shadow: 0px 4px 15px rgba(255, 127, 17, 0.3);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.timeline-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(255, 127, 17, 0.6);
+    background: rgba(255, 127, 17, 0.2);
+}
+
+.timeline-date {
+    font-size: 1.2rem;
+    color: #FF7F11;
+    font-weight: bold;
+}
+
+.timeline-item h3 {
+    font-size: 1.5rem;
+    margin-top: 5px;
+
+}
+
+.timeline-item p {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* =========================== */
+/* 💡 SECTION PERSONNALITÉ & PASSIONS */
+/* =========================== */
+#personnalite {
+    text-align: center;
+    padding: 80px 20px;
+	
+}
+
+#personnalite h2 {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+}
+
+.passion-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.passion-item {
+    background: #FF7F11;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.passion-item i,
+.personnalite-item i {
+    margin-right: 8px; /* Espace entre l'icône et le texte */
+    font-size: 1.2rem; /* Ajuste la taille des icônes */
+    vertical-align: middle; /* Centre l'icône verticalement */
+}
+
+
+.passion-item:hover {
+    background: rgba(255, 127, 17, 0.7);
+    transform: scale(1.1);
+}
+
+/* =========================== */
+/* 🚀 SECTION EXPÉRIENCES */
+/* =========================== */
+#experiences {
+    text-align: center;
+    padding: 80px 20px;
+
+}
+
+#experiences h2 {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+
+}
+
+.experience-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.experience-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0px 0px 15px rgba(255, 127, 17, 0.6); /* Lueur orange */
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.experience-item:hover {
+    transform: translateY(-10px);
+	
+}
+
+/* =========================== */
+/* 📌 NAVIGATION INTERNE */
+/* =========================== */
+.internal-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px 0;
+    position: fixed;	
+    width: 100%;
+    text-align: center;
+    z-index: 1000;
+}
+
+.internal-nav a {
+    background: rgba(255, 127, 17, 0.3);
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.internal-nav a:hover {
+    background: rgba(255, 127, 17, 0.7);
+    transform: scale(1.1);
+}
+
+/* =========================== */
+/* 📱 RESPONSIVE (À faire plus tard) */
+/* =========================== */
+@media screen and (max-width: 768px) {
+    .profile-photo {
+        width: 140px;
+        height: 140px;
+    }
+    .intro-text h1 {
+        font-size: 2rem;
+    }
+    .quote {
+        font-size: 1rem;
+    }
+}
+
+
+/* === BOUTON CHANGEMENT DE MODE === */
+/* Bouton thème (jour/nuit) très esthétique */
+#theme-toggle {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    color: #ff7f11;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.8rem;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+
+#theme-toggle:hover {
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0px 0px 30px rgba(255,127,17,0.6);
+    transform: scale(1.15);
+}
+
+#theme-toggle:hover::before {
+    transform: scale(3);
+    opacity: 0;
+}
+
+/* =========================== */
+/* 🎨 MODE JOUR (Light Mode) */
+/* =========================== */
+.light-mode {
+    background: linear-gradient(135deg, #FAF3FF, #F8F8F8);
+    color: #1E1E1E;
+    transition: all 0.5s ease-in-out;
+}
+
+/* 🌍 Navbar en mode jour */
+.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding-bottom: 7px !important; /* Descendre plus bas */
+}
+
+.light-mode .nav-links li a {
+    color: #1E1E1E;
+}
+
+.light-mode .nav-links li a:hover {
+    background: rgba(124, 14, 133, 0.2);
+    color: #7C0E85;
+}
+
+.light-mode .nav-links li a.active {
+    background: #7C0E85;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(124, 14, 133, 0.5);
+}
+
+/* 🟣 Timelines en mode jour */
+.light-mode .timeline-item {
+    background: rgba(124, 14, 133, 0.2);
+    color: #1E1E1E;
+    border-left: 4px solid #7C0E85;
+    box-shadow: 0px 4px 10px rgba(124, 14, 133, 0.3);
+}
+
+.light-mode .timeline-item:hover {
+    background: rgba(124, 14, 133, 0.5);
+    box-shadow: 0px 8px 20px rgba(124, 14, 133, 0.6);
+}
+
+.light-mode .timeline-date {
+    color: #7C0E85;
+    font-weight: bold;
+}
+
+/* 🟣 Photo de profil en mode jour */
+.light-mode .profile-photo {
+    border: 4px solid #7C0E85;
+    box-shadow: 0px 0px 20px rgba(124, 14, 133, 0.7);
+}
+
+/* 🟣 Citation en mode jour */
+.light-mode .quote {
+    color: #7C0E85;
+}
+
+/* 📌 Personnalité & Expériences */
+.light-mode .passion-item {
+    background: rgba(124, 14, 133, 0.3);
+    color: white;
+}
+
+.light-mode .passion-item:hover {
+    background: rgba(124, 14, 133, 0.6);
+}
+
+.light-mode .experience-item {
+    background: rgba(124, 14, 133, 0.2);
+    color: #1E1E1E;
+    border-left: 4px solid #7C0E85;
+    box-shadow: 0px 4px 10px rgba(124, 14, 133, 0.3); /* Correction du contour */
+}
+
+.light-mode .experience-item:hover {
+    background: rgba(124, 14, 133, 0.5)!important;
+    box-shadow: 0px 8px 20px rgba(124, 14, 133, 0.6) !important;
+}
+
+.light-mode .experience-item h3 {
+    color: #7C0E85;
+}
+
+.light-mode .personnalite-item {
+    background: rgba(124, 14, 133, 0.3);
+    color: white;
+}
+
+.light-mode .personnalite-item:hover {
+    background: rgba(124, 14, 133, 0.6);
+}
+
+
+.personnalite-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.personnalite-item {
+    background: #FF7F11;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.personnalite-item:hover {
+    background: rgba(255, 127, 17, 0.7);
+    transform: scale(1.1);
+}
+
+
+
+/* 🟡 Bouton Thème Mode Jour */
+.light-mode #theme-toggle {
+    background: rgba(255, 255, 255, 0.9);
+    color: #7C0E85;
+}
+
+.light-mode #theme-toggle:hover {
+    box-shadow: 0px 0px 30px rgba(124, 14, 133, 0.6);
+}
+
+/* 🌍 Navbar et autres icônes en mode jour */
+.light-mode .logo {
+    content: url("logo_jour.png"); /* Change le logo en mode jour */
+}
+
+/* 🌟 Éléments interactifs en mode jour */
+.light-mode .internal-nav a {
+    background: rgba(124, 14, 133, 0.3);
+}
+
+.light-mode .internal-nav a:hover {
+    background: rgba(124, 14, 133, 0.7);
+}
+
+
+/* 🌞 Mode Jour - Texte en noir */
+.light-mode .passion-item,
+.light-mode .experience-item,
+.light-mode .internal-nav a {
+    color: black !important;
+}
