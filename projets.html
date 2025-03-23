@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Projets</title>
+    <link id="favicon" rel="icon" type="image/png" href="favicon_nuit.png">
+    <link rel="stylesheet" href="projets.css">
+
+    <!-- Import des librairies GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <img id="logo" src="logo_nuit.png" alt="Logo Portfolio" class="logo">
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="about.html"><i class="fas fa-user"></i> À propos</a></li>
+                <li><a href="projets.html" class="active"><i class="fas fa-folder-open"></i> Projets</a></li>
+                <li><a href="skills.html"><i class="fas fa-tools"></i> Compétences</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <button id="theme-toggle" class="icon"></button>
+    
+    <header>
+        <h1 id="page-title">
+            <span class="word un">U<span>n</span></span> 
+            <span class="word zoom">zoom</span> 
+            <span class="word surmes">s<span>u</span>r <span>m</span>es</span> 
+            <span class="word projets" id="projets-word">projets</span>
+        </h1>
+    </header>
+    
+    <!-- Section Projets Universitaires -->
+    <section class="projects-section">
+        <!-- Titre avec icône -->
+        <h2 class="section-title"><i class="fas fa-book-open"></i> Projets Universitaires</h2>
+        
+        <!-- Motif de séparation -->
+        <div class="section-divider"></div>
+        
+        <!-- Bouton Trier -->
+        <div class="filter-container">
+            <button id="filter-btn"><i class="fas fa-sort"></i> Trier</button>
+            <div id="filter-options" class="hidden">
+                <button class="filter-option" data-sort="date-asc"><i class="fas fa-calendar-alt"></i> Du plus au moins ancient</button>
+                <button class="filter-option" data-sort="date-desc"><i class="fas fa-calendar-alt"></i> Du plus au moins récent</button>
+                <button class="filter-option" data-sort="time-asc"><i class="fas fa-hourglass-half"></i> Temps investi croissant</button>
+                <button class="filter-option" data-sort="time-desc"><i class="fas fa-hourglass-end"></i> Temps investi décroissant</button>
+            </div>
+        </div>
+        
+        
+<!-- Grille des Projets Universitaires -->
+<div class="projects-grid">
+    <div class="project-card" data-date="20250108" data-time="10">
+        <div class="project-header">
+            <span class="project-date">
+                <i class="fas fa-calendar-alt"></i> Début 8 janvier 2025
+            </span>
+        </div>
+        <img src="projet1.png" alt="Projet 1">
+        <h3>Création d'une synthèse de doc via shpinx</h3>
+        <div class="project-info">
+            <span class="difficulty easy">
+                <i class="fas fa-star"></i> Facile
+            </span>
+            <span class="duration">
+                <i class="fas fa-clock"></i> 10h
+            </span>
+        </div>
+        <button class="project-btn" data-project="1">En savoir plus</button>
+    </div>
+    
+    <div class="project-card" data-date="20241216" data-time="33">
+        <div class="project-header">
+            <span class="project-date">
+                <i class="fas fa-calendar-alt"></i> 16 décembre 2024
+            </span>
+        </div>
+        <img src="projet2.png" alt="Projet 2">
+        <h3>Création d'un reporting EXCEL VBA</h3>
+        <div class="project-info">
+            <span class="difficulty medium">
+                <i class="fas fa-star"></i> Moyen
+            </span>
+            <span class="duration">
+                <i class="fas fa-clock"></i> 33h
+            </span>
+        </div>
+        <button class="project-btn" data-project="2">En savoir plus</button>
+    </div>
+    
+    <div class="project-card" data-date="20241121" data-time="4">
+        <div class="project-header">
+            <span class="project-date">
+                <i class="fas fa-calendar-alt"></i> Début le 21 novembre 2024
+            </span>
+        </div>
+        <img src="projet3.png" alt="Projet 3">
+        <h3>Gestion de fichiers PYTHON</h3>
+        <div class="project-info">
+            <span class="difficulty hard">
+                <i class="fas fa-star"></i> Difficile
+            </span>
+            <span class="duration">
+                <i class="fas fa-clock"></i> 4h
+            </span>
+        </div>
+        <button class="project-btn" data-project="3">En savoir plus</button>
+    </div>
+    
+    <div class="project-card" data-date="20250205" data-time="40">
+        <div class="project-header">
+            <span class="project-date">
+                <i class="fas fa-calendar-alt"></i> Début le 5 février 2025
+            </span>
+        </div>
+        <img src="projet4.jpg" alt="Projet 4">
+        <h3>Conception et implémentation d'une base de données</h3>
+        <div class="project-info">
+            <span class="difficulty hard">
+                <i class="fas fa-star"></i> Difficile
+            </span>
+            <span class="duration">
+                <i class="fas fa-clock"></i> 40h
+            </span>
+        </div>
+        <button class="project-btn" data-project="4">En savoir plus</button>
+    </div>
+</div>
+    </section>
+
+
+<!-- Section Projet Personnel -->
+<section class="personal-project-section">
+    <!-- Titre avec icône -->
+    <h2 class="section-title">
+        <i class="fas fa-rocket"></i> Projet Personnel
+    </h2>
+
+    <!-- Motif de séparation -->
+    <div class="section-divider"></div>
+
+    <!-- Grille du Projet Personnel -->
+    <div class="projects-grid">
+        <div class="project-card personal-project" data-date="20250102" data-time="120">
+            <div class="project-header">
+                <span class="project-date">
+                    <i class="fas fa-calendar-alt"></i> 2 janvier 2025
+                </span>
+            </div>
+            <img src="projetperso.png" alt="Projet Personnel">
+            <h3>Calendrier partagé</h3>
+            <div class="project-info">
+                <span class="difficulty expert">
+                    <i class="fas fa-star"></i> Expert
+                </span>
+                <span class="duration">
+                    <i class="fas fa-clock"></i> +110h
+                </span>
+            </div>
+            <button class="project-btn" data-project="5">En savoir plus</button>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+    <!-- Script -->
+    <script src="projets.js"></script>
+    
+<!-- 🔍 POP-UP DE DÉTAILS PROJETS -->
+<div id="popup-container" class="popup-container">
+    <div class="popup-content">
+        <span class="popup-close">&times;</span>
+        <h2 id="popup-title">Titre du projet</h2>
+        <p id="popup-description">Description détaillée...</p>
+        
+        <!-- 🌟 Conteneur des images dynamiques -->
+        <div id="popup-images" class="popup-images"></div>
+    </div>
+</div>
+    
+</body>
+</html>

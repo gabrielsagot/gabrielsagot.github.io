@@ -1,0 +1,1039 @@
+html, body {
+    overscroll-behavior: none;
+}
+
+
+
+
+/* =========================== */
+/* 🌙 Mode Nuit (Dark Mode) */
+/* =========================== */
+
+body {
+    background-color: #0A192F; /* Bleu foncé par défaut en mode nuit */
+    color: white; /* Texte blanc pour la lisibilité */
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.light-mode {
+    background-color: #F5F5F5; /* Fond clair en mode jour */
+    color: #1E1E1E; /* Texte noir */
+}
+
+
+
+/* =========================== */
+/* 🌍 NAVBAR CENTRÉE */
+/* =========================== */
+
+
+
+
+
+/* Navbar - Optimisation du Hover avec transition fluide sans conflit GSAP */
+.navbar, .nav-links, .nav-links li, .nav-links li a {
+    will-change: transform, opacity;
+}
+
+.nav-links li a {
+    transition: transform 0.2s ease-out, background 0.2s ease-out, color 0.2s ease-out;
+    transform-origin: center;
+}
+
+.nav-links li a:hover {
+    transform: scale(1.05);
+    background: rgba(255, 127, 17, 0.1);
+}
+
+
+
+
+
+/* NAV BAR */
+
+.navbar .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 25, 47, 0.95);
+    padding: 15px 70px 15px 20px; /* +70px à droite compense la taille du bouton thème */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out, background 0.3s;
+    box-shadow: none !important;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: none !important;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    padding: 0 10%;
+}
+
+.nav-links li {
+    flex: none;
+    min-width: 120px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 14px 24px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out, color 0.3s, transform 0.2s;
+    display: inline-block;
+}
+
+.nav-links li a:hover {
+    background: rgba(255, 127, 17, 0.2);
+    color: #ff7f11;
+    transform: scale(1.1);
+}
+
+.nav-links li a.active {
+    background: #ff7f11;
+    color: #0A192F;
+    border-radius: 8px;
+    font-weight: bold;
+    padding: 14px 24px;
+    box-shadow: 0px 4px 15px rgba(255, 127, 17, 0.5);
+}
+
+.logo {
+    width: 110px;
+    height: auto;
+    position: absolute;
+    left: 20px;
+    top: 22px;
+    z-index: 1100;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.logo:hover {
+    filter: drop-shadow(0 0 10px rgba(255, 127, 17, 0.7));
+	transform : scale(1.09);
+}
+
+
+
+
+
+
+/* === BOUTON CHANGEMENT DE MODE === */
+/* Bouton thème (jour/nuit) très esthétique */
+#theme-toggle {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    color: #FF7F11;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.8rem;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+
+#theme-toggle:hover {
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0px 0px 30px rgba(255,127,17,0.6);
+    transform: scale(1.15);
+}
+
+#theme-toggle:hover::before {
+    transform: scale(3);
+    opacity: 0;
+}
+
+/* =========================== */
+/* ☀️ Mode Jour (Light Mode) */
+/* =========================== */
+
+.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode .nav-links li a {
+    color: #1E1E1E;
+}
+
+.light-mode .nav-links li a:hover {
+    background: rgba(124, 14, 133, 0.2);
+    color: #7C0E85;
+}
+
+.light-mode .nav-links li a.active {
+    background: #7C0E85;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(124, 14, 133, 0.5);
+}
+
+/* ✅ Logo en mode jour */
+.light-mode .logo {
+    content: url("logo_jour.png");
+}
+
+.light-mode .logo:hover {
+    filter: drop-shadow(0 0 10px rgba(124, 14, 133, 0.7));
+}
+
+/* =========================== */
+/* 🔘 Bouton de Changement de Mode */
+/* =========================== */
+
+#theme-toggle {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 2.5rem;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+
+#theme-toggle:hover {
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0px 0px 30px rgba(255,127,17,0.6);
+    transform: scale(1.15);
+}
+
+#theme-toggle:hover::before {
+    transform: scale(3);
+    opacity: 0;
+}
+
+/* ========================== */
+/* 🌟 STYLE DU TITRE PRINCIPAL */
+/* ========================== */
+
+header {
+    position: relative;
+    z-index: 10; /* Assure que le titre passe au-dessus de la navbar */
+    padding-top: 120px; /* Décale le titre vers le bas pour éviter le chevauchement */
+    text-align: center;
+}
+
+
+
+#page-title {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    margin-top: 50px;
+    overflow: hidden; /* Pour éviter les débordements d’animation */
+}
+
+#page-title .word {
+    display: inline-block;
+    position: relative;
+}
+
+/* Animation lettre par lettre */
+#page-title .word span {
+    display: inline-block;
+}
+
+/* Style spécifique pour "projets" */
+#projets-word {
+    color: #ff7f11; /* Orange par défaut */
+    font-weight: bold;
+}
+
+/* ========================== */
+/* 🎨 VERSION JOUR (Light Mode) */
+/* ========================== */
+body.light-mode #page-title {
+    color: #1E1E1E; /* Texte foncé en mode jour */
+}
+
+/* ========================== */
+/* 🎨 Correction pour "projets" en mode jour */
+/* ========================== */
+body.light-mode #projets-word {
+    color: #7C0E85 !important; /* Violet en mode jour */
+}
+
+/* ========================== */
+/* 🎨 STYLE DE LA SECTION PROJETS UNIVERSITAIRES */
+/* ========================== */
+
+.projects-section {
+    text-align: center;
+    margin-top: 80px; /* Abaisse toute la section */
+    padding: 50px 30px;
+    position: relative;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.section-title i {
+    font-size: 2.2rem;
+    color: #ff7f11;
+}
+
+.light-mode .section-title {
+    color: #1E1E1E;
+}
+
+.light-mode .section-title i {
+    color: #7C0E85;
+}
+
+
+/* ========================== */
+/* 🎨 MOTIF DE SÉPARATION */
+/* ========================== */
+
+.section-divider {
+    width: 350px;
+    height: 7px;
+    background: linear-gradient(90deg, #ff7f11, #ffcc33);
+    margin: 15px auto 30px auto;
+    border-radius: 5px;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.light-mode .section-divider {
+    background: linear-gradient(90deg, #7C0E85, #b65cff) !important;
+    animation: pulseGlowLight 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from {
+        box-shadow: 0 0 5px rgba(255, 127, 17, 0.6);
+    }
+    to {
+        box-shadow: 0 0 15px rgba(255, 127, 17, 0.9);
+    }
+}
+
+@keyframes pulseGlowLight {
+    from {
+        box-shadow: 0 0 5px rgba(124, 14, 133, 0.6);
+    }
+    to {
+        box-shadow: 0 0 15px rgba(124, 14, 133, 0.9);
+    }
+}
+
+/* ========================== */
+/* 🎨 STYLE DU BOUTON TRIER */
+/* ========================== */
+
+.filter-container {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+#filter-btn {
+    background: linear-gradient(135deg, #ff7f11, #e66a00);
+    color: white;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#filter-btn:hover {
+    background: linear-gradient(135deg, #e66a00, #d15a00);
+    transform: scale(1.05);
+}
+
+.light-mode #filter-btn {
+    background: linear-gradient(135deg, #7C0E85, #6a0077);
+}
+
+.light-mode #filter-btn:hover {
+    background: linear-gradient(135deg, #6a0077, #590065);
+}
+
+/* ========================== */
+/* 🎨 STYLE DES OPTIONS DE TRI */
+/* ========================== */
+
+
+#filter-options {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 250px;
+    text-align: left;
+    opacity: 0;
+    transform-origin: top;
+    z-index: 10; /* ASSURE QUE LE MENU PASSE DEVANT LES PROJETS */
+    top: 100%; /* PLACE LE MENU JUSTE SOUS LE BOUTON */
+    margin-top: 10px; /* ÉVITE QU'IL SE COLLE AU BOUTON */
+}
+
+.light-mode #filter-options {
+    background: rgba(10, 25, 47, 0.95);
+}
+
+.filter-option {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+    color: #333;
+    transition: background 0.2s ease-in-out;
+}
+
+.light-mode .filter-option {
+    color: white;
+}
+
+.filter-option:hover {
+    background: #ff7f11;
+    color: white;
+    border-radius: 5px;
+}
+
+.light-mode .filter-option:hover {
+    background: #7C0E85;
+}
+
+/* ========================== */
+/* 🎨 STYLE DE LA GRILLE DES PROJETS */
+/* ========================== */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px; /* AUGMENTATION DE L'ESPACEMENT ENTRE LES PROJETS */
+    max-width: 1100px;
+    margin: 80px auto; /* Abaisse encore plus la grille des projets */
+    padding: 40px;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap; /* ✅ Permet aux projets de passer à la ligne */
+    justify-content: center;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 18px; /* Arrondi les bords des projets */
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    width: 100%; /* PREND PLUS DE PLACE */
+    height: 550px; /* AUGMENTATION DE LA HAUTEUR GLOBALE */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* Assure que tout reste bien arrondi */
+}
+
+.project-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(255, 127, 17, 0.7);
+    border-radius: 22px; /* Légèrement plus arrondi au survol */
+}
+
+.light-mode .project-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 18px;
+}
+
+.project-card img {
+    width: 100%;
+    height: 300px; /* AUGMENTATION DE LA HAUTEUR DES IMAGES */
+    object-fit: cover;
+    border-radius: 12px; /* Assure un arrondi même sur l'image */
+}
+
+.project-card h3 {
+    margin-top: 2px;
+    font-size: 1.6rem;
+    color: white;
+}
+
+.light-mode .project-card h3 {
+    color: #1E1E1E;
+}
+
+.project-btn {
+    margin-top: -5px;
+    background: #ff7f11;
+    color: white;
+    padding: 14px 22px; /* BOUTON PLUS GRAND */
+    border: none;
+    cursor: pointer;
+    border-radius: 10px; /* Arrondi des boutons aussi */
+    font-size: 1.2rem; /* AUGMENTATION DE LA TAILLE DU TEXTE */
+    transition: background 0.3s ease-in-out;
+}
+
+.project-btn:hover {
+    background: #e66a00;
+}
+
+.light-mode .project-card:hover {
+    box-shadow: 0 8px 20px rgba(124, 14, 133, 0.7);
+    border-radius: 22px;
+}
+
+.light-mode .project-btn {
+    background: #7C0E85;
+}
+
+.light-mode .project-btn:hover {
+    background: #590065;
+}
+
+/* 📌 Style des infos projet */
+.project-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 1.7rem; /* 🔥 Augmentation de la taille du texte */
+    font-weight: bold;
+}
+
+/* 🎨 Style des icônes */
+.project-info i {
+    font-size: 1.7rem; /* 🔥 Icônes plus grandes */
+    margin-right: 5px;
+}
+
+/* 🌟 Couleurs pour la difficulté */
+.difficulty {
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Couleurs selon la difficulté */
+.easy { color: #0a5c0a; }      /* ✅ Vert Facile */
+.medium { color: #fdee00; }    /* ⚠️ Jaune Moyen */
+.hard { color: #CC6600; }      /* 🔥 Orange Difficile */
+.expert { color: #f00020; }    /* 🚀 Rouge Expert */
+
+/* 🕒 Style de la durée */
+.duration {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #ff7f11;
+}
+
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .project-card {
+        height: auto;
+    }
+
+    .project-card img {
+        height: 250px;
+    }
+}
+
+/* ========================== */
+/* 🔥 STYLE REFAIT DE LA POP-UP DES PROJETS */
+/* ========================== */
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0); /* Fond sombre semi-transparent */
+    backdrop-filter: blur(12px); /* Flou plus fort */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, background 0.4s ease-in-out;
+}
+
+/* Animation d’apparition */
+.popup-container.active {
+    display: flex;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.6); /* Assombrissement progressif */
+}
+
+/* ✅ Contenu ultra-travaillé */
+.popup-content {
+    background: rgba(30, 30, 30, 0.9);
+    border-radius: 18px;
+    padding: 35px;
+    width: 70%;
+    max-width: 800px;
+    max-height: 80vh; /* ✅ Empêche le débordement total */
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(255, 127, 17, 0.4);
+    position: relative;
+    transform: scale(0.8);
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    overflow-y: auto; /* ✅ Scroll interne si besoin */
+}
+
+/* ✅ Effet d’apparition amélioré */
+.popup-container.active .popup-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* 🌞 Adaptation mode jour */
+.light-mode .popup-content {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 40px rgba(124, 14, 133, 0.4);
+}
+
+/* ✅ Effet de glow sur le titre */
+.popup-content h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+}
+
+/* 🌞 Mode jour */
+.light-mode .popup-content h2 {
+    color: #1E1E1E;
+}
+
+/* ✅ Effet texte fluide */
+.popup-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ddd;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* 🌞 Mode jour */
+.light-mode .popup-content p {
+    color: #333;
+}
+
+/* ✅ Bouton de fermeture amélioré */
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, color 0.3s;
+}
+
+.popup-close:hover {
+    transform: rotate(90deg) scale(1.3);
+    color: #ff7f11;
+}
+
+/* 🌞 Mode jour */
+.light-mode .popup-close:hover {
+    color: #7C0E85;
+}
+.light-mode .popup-close {
+    color: #7C0E85; /* Violet pour être visible */
+}
+/* ✅ Bouton d’action dans la pop-up */
+.popup-btn {
+    display: inline-block;
+    background: #ff7f11;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.popup-btn:hover {
+    background: #e66a00;
+    transform: scale(1.05);
+}
+
+/* 🌞 Mode jour */
+.light-mode .popup-btn {
+    background: #7C0E85;
+}
+
+.light-mode .popup-btn:hover {
+    background: #590065;
+}
+
+/* ✅ Animation du bouton d’action */
+.popup-container.active .popup-btn {
+    animation: popButton 0.2s ease-in-out 0.1s both;
+}
+
+@keyframes popButton {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ✅ Responsive */
+@media (max-width: 768px) {
+    .popup-content {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .popup-close {
+        top: 5px;
+        right: 10px;
+        font-size: 1.8rem;
+    }
+
+    .popup-btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
+
+
+
+/* 🎨 Indication du tri actif avec effet progressif */
+.filter-option.active-filter {
+    color: black;
+    font-weight: bold;
+    border-left: 8px solid #ffcc33;
+    position: relative;
+    overflow: hidden;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 🌞 Mode Jour */
+.light-mode .filter-option.active-filter {
+    border-left: 6px solid #b65cff;
+    color: white;
+}
+
+/* 🌊 Animation progressive du fond */
+.filter-option.active-filter::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(135deg, #ff7f11, #ff5500);
+    transition: width 0.6s ease-in-out;
+    z-index: -1;
+}
+
+/* 🌞 Mode Jour - Dégradé violet */
+.light-mode .filter-option.active-filter::before {
+    background: linear-gradient(135deg, #7C0E85, #590065);
+}
+
+/* ✅ Effet de remplissage progressif */
+.filter-option.active-filter.animated::before {
+    width: 100%;
+}
+
+/* ✨ Effet au passage de la souris */
+.filter-option.active-filter:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+}
+
+
+/* 📅 Style du conteneur de la date */
+.project-header {
+    text-align: center;
+    padding: 8px 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* 🌙 Mode nuit */
+.dark-mode .project-header {
+    color: white;
+}
+
+.light-mode .project-header {
+	color: black;
+}
+
+
+/* 📅 Icône et texte de la date */
+.project-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1.4rem !important; /* 🔥 Plus grand */
+}
+
+/* 🔥 Ajout d'espace au-dessus de l'image */
+.project-card img {
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+/* ========================== */
+/* 🚀 SECTION PROJET PERSONNEL */
+/* ========================== */
+
+.personal-project-section .section-title {
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 2.2rem; /* Augmente la taille */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Espace entre l’icône et le texte */
+}
+
+.light-mode .personal-project-section .section-title {
+    color: black;
+}
+
+/* Icône spécifique pour le projet personnel */
+.personal-project-section .section-title i {
+    color: #ff5500;
+    margin-right: 6px;
+}
+
+.light-mode .personal-project-section .section-title i {
+    color: #b65cff;
+}
+
+/* 🔥 Style du projet personnel (légère différenciation) */
+.personal-project {
+    border: 3px solid #ff7f11;
+    box-shadow: 0px 0px 15px rgba(255, 127, 17, 0.6);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 80%; /* Augmente la largeur */
+    max-width: 900px; /* Évite qu'il devienne trop large sur grand écran */
+}
+
+/* Ajuste la largeur et centre le projet personnel */
+.personal-project-section .projects-grid {
+    display: flex;
+    justify-content: center;
+}
+
+.personal-project:hover {
+    transform: scale(1.10);
+    box-shadow: 0px 0px 25px rgba(255, 127, 17, 0.9);
+}
+
+.light-mode .personal-project {
+    border: 3px solid #7C0E85;
+    box-shadow: 0px 0px 15px rgba(124, 14, 133, 0.6);
+}
+
+.light-mode .personal-project:hover {
+    box-shadow: 0px 0px 25px rgba(124, 14, 133, 0.9);
+}
+
+/* Réduit l’espace entre les sections */
+.personal-project-section {
+    margin-top: -40px !important; /* Ajuste selon besoin */
+    padding-top: 0 !important;
+}
+
+
+/* 🌟 Styles pour la pop-up */
+.popup-images {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.popup-images img {
+    width: 45%;  /* Ajustable */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.popup-images img:hover {
+    transform: scale(1.05);
+}
+
+/* Style pour l'overlay du zoom */
+#image-zoom-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+/* Style pour l'image zoomée */
+.zoomed-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.zoomed-image:hover {
+    transform: scale(1.05);
+}
+
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 18px 20px;
+    font-size: 19px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: scale(0.8);
+    z-index: 1000;
+    box-shadow: 0px 4px 10px rgba(255, 127, 17, 0.3); /* 🟠 Mode Nuit */
+}
+
+/* 🎨 Mode Nuit (par défaut) */
+#back-to-top {
+    background: linear-gradient(135deg, #ff7f11, #e66a00);
+    color: white;
+}
+
+#back-to-top:hover {
+    background: linear-gradient(135deg, #e66a00, #d15a00);
+    transform: scale(1);
+    box-shadow: 0px 6px 12px rgba(255, 127, 17, 0.5);
+}
+
+/* ☀️ Mode Jour (Light Mode) */
+.light-mode #back-to-top {
+    background: linear-gradient(135deg, #7C0E85, #6a0077);
+    color: white;
+    box-shadow: 0px 4px 10px rgba(124, 14, 133, 0.3); /* 🟣 Violet */
+}
+
+.light-mode #back-to-top:hover {
+    background: linear-gradient(135deg, #6a0077, #590065);
+    transform: scale(1);
+    box-shadow: 0px 6px 12px rgba(124, 14, 133, 0.5); /* 🟣 Violet */
+}

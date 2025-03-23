@@ -1,0 +1,608 @@
+html, body {
+    overscroll-behavior: none;
+}
+
+
+/* =========================== */
+/* 🌍 NAVBAR CENTRÉE */
+/* =========================== */
+
+
+
+
+
+/* Navbar - Optimisation du Hover avec transition fluide sans conflit GSAP */
+.navbar, .nav-links, .nav-links li, .nav-links li a {
+    will-change: transform, opacity;
+}
+
+.nav-links li a {
+    transition: transform 0.2s ease-out, background 0.2s ease-out, color 0.2s ease-out;
+    transform-origin: center;
+}
+
+.nav-links li a:hover {
+    transform: scale(1.05);
+    background: rgba(255, 127, 17, 0.1);
+}
+
+
+
+
+
+/* NAV BAR */
+
+.navbar .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 25, 47, 0.95);
+    padding: 15px 70px 15px 20px; /* +70px à droite compense la taille du bouton thème */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out, background 0.3s;
+    box-shadow: none !important;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    transition: none !important;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    padding: 0 10%;
+}
+
+.nav-links li {
+    flex: none;
+    min-width: 120px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 14px 24px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out, color 0.3s, transform 0.2s;
+    display: inline-block;
+}
+
+.nav-links li a:hover {
+    background: rgba(255, 127, 17, 0.2);
+    color: #ff7f11;
+    transform: scale(1.1);
+}
+
+.nav-links li a.active {
+    background: #ff7f11;
+    color: #0A192F;
+    border-radius: 8px;
+    font-weight: bold;
+    padding: 14px 24px;
+    box-shadow: 0px 4px 15px rgba(255, 127, 17, 0.5);
+}
+
+.logo {
+    width: 80px;
+    height: auto;
+    position: absolute;
+    left: 20px;
+    top: 22px;
+    z-index: 1100;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.logo:hover {
+    filter: drop-shadow(0 0 10px rgba(255, 127, 17, 0.7));
+	transform : scale(1.09);
+}
+
+
+
+
+
+
+/* === BOUTON CHANGEMENT DE MODE === */
+/* Bouton thème (jour/nuit) très esthétique */
+#theme-toggle {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    color: #FF7F11;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.8rem;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+
+#theme-toggle:hover {
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0px 0px 30px rgba(255,127,17,0.6);
+    transform: scale(1.15);
+}
+
+#theme-toggle:hover::before {
+    transform: scale(3);
+    opacity: 0;
+}
+
+/* =========================== */
+/* ☀️ Mode Jour (Light Mode) */
+/* =========================== */
+
+.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode .nav-links li a {
+    color: #1E1E1E;
+}
+
+.light-mode .nav-links li a:hover {
+    background: rgba(124, 14, 133, 0.2);
+    color: #7C0E85;
+}
+
+.light-mode .nav-links li a.active {
+    background: #7C0E85;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(124, 14, 133, 0.5);
+}
+
+/* ✅ Logo en mode jour */
+.light-mode .logo {
+    content: url("logo_jour.png");
+}
+
+.light-mode .logo:hover {
+    filter: drop-shadow(0 0 10px rgba(124, 14, 133, 0.7));
+}
+
+/* =========================== */
+/* 🔘 Bouton de Changement de Mode */
+/* =========================== */
+
+#theme-toggle {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 2.5rem;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+
+#theme-toggle:hover {
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0px 0px 30px rgba(255,127,17,0.6);
+    transform: scale(1.15);
+}
+
+#theme-toggle:hover::before {
+    transform: scale(3);
+    opacity: 0;
+}
+
+
+/* 🔥 RESET DE BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* 🌙 Mode Nuit & ☀️ Mode Jour */
+body.night-mode {
+    background: #0A192F; /* ✅ Bleu marine foncé */
+    color: white;
+}
+
+body.light-mode {
+    background: #FAF3FF; /* ✅ Fond clair */
+    color: #1E1E1E;
+}
+
+/* 📌 SECTION GÉNÉRALE */
+.skills-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 80px 5%; /* ✅ Remonté */
+    margin-top: 80px; /* ✅ Ajusté pour être moins bas */
+}
+
+/* 🎯 STRUCTURE DES SECTIONS */
+.skill-category {
+    width: 100%;
+    margin-bottom: 40px; /* ✅ Réduction de l'espace entre les sections */
+    position: relative;
+    text-align: center;
+}
+
+/* ✅ TITRES AVEC ICÔNES */
+.skill-category h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.3rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    gap: 10px;
+}
+
+/* ✅ COULEUR DES ICÔNES SELON LE MODE */
+.skill-category h2 i {
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+}
+
+.night-mode .skill-category h2 i {
+    color: #FF7F11; /* Orange */
+}
+
+.light-mode .skill-category h2 i {
+    color: #7C0E85; /* Violet */
+}
+
+/* ✅ SÉPARATEURS ENTRE LES SECTIONS (VISIBLES MAINTENANT) */
+.section-divider {
+    width: 60%;
+    height: 5px;
+    background: linear-gradient(90deg, #ff7f11, #ffcc33);
+    margin: 20px auto 30px auto;
+    border-radius: 5px;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.light-mode .section-divider {
+    background: linear-gradient(90deg, #7C0E85, #b65cff) !important;
+    animation: pulseGlowLight 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    from {
+        box-shadow: 0 0 5px rgba(255, 127, 17, 0.6);
+    }
+    to {
+        box-shadow: 0 0 15px rgba(255, 127, 17, 0.9);
+    }
+}
+
+@keyframes pulseGlowLight {
+    from {
+        box-shadow: 0 0 5px rgba(124, 14, 133, 0.6);
+    }
+    to {
+        box-shadow: 0 0 15px rgba(124, 14, 133, 0.9);
+    }
+}
+
+/* 🌀 LIGNE UNIQUE POUR CHAQUE SECTION */
+.skill-list {
+    display: flex;
+    justify-content: space-evenly; /* ✅ Répartition améliorée */
+    align-items: center;
+    width: 100%;
+    flex-wrap: nowrap;
+    padding: 15px 0;
+}
+
+/* ✅ ESPACEMENT RÉDUIT POUR LES OUTILS */
+.skill-category:last-of-type .skill-list {
+    justify-content: center;
+    gap: 230important; /* ✅ Rapprochement des cercles */
+}
+
+/* 🔄 STYLE DES CERCLES */
+.skill {
+    position: relative;
+    width: 170px; /* ✅ Ajusté */
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+/* SVG (CERCLES) */
+.progress-circle {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+/* 🔵 Fond du cercle */
+.progress-circle .bg {
+    fill: none;
+    stroke: #ddd;
+    stroke-width: 10;
+}
+
+/* 🟢 Barre de progression */
+.progress-circle .progress {
+    fill: none;
+    stroke: #ff7f11; /* ✅ COULEUR TEMPORAIRE, À ADAPTER PLUS TARD */
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    transition: stroke-dashoffset 1.5s ease-in-out;
+}
+
+.light-mode .progress-circle .progress {
+    stroke: #7C0E85;
+}
+
+/* 🎯 TEXTE DU POURCENTAGE - BIEN CENTRÉ */
+.skill-value {
+	top : -7% !important;
+    position: absolute;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    height: 100%; /* ✅ Permet un bon centrage */
+    display: flex;
+    align-items: center; /* ✅ Centre verticalement */
+    justify-content: center; /* ✅ Centre horizontalement */
+    transition: color 0.3s ease;
+}
+
+/* ✅ TITRE & POURCENTAGE ADAPTÉS AU MODE JOUR/NUIT */
+.night-mode .skill-value {
+    color: white;
+}
+
+.light-mode .skill-value {
+    color: black;
+}
+
+
+/* 📌 NOM DES COMPÉTENCES - GESTION DU TEXTE */
+.skill p {
+    margin-top: 15px;  /* ✅ Augmenté pour descendre les textes */
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    max-width: 150px;  /* ✅ Ajusté pour bien contenir les textes */
+    white-space: normal;  /* ✅ Permet le retour à la ligne */
+    overflow: visible;  /* ✅ Assure que le texte ne soit pas caché */
+    text-overflow: clip;  /* ✅ Supprime les "..." si ça déborde */
+    line-height: 1.3;  /* ✅ Espacement équilibré */
+    word-wrap: break-word;  /* ✅ Coupe correctement les mots si besoin */
+}
+
+/* 🎭 SURVOL : SEULEMENT UN AGRANDISSEMENT */
+.skill:hover {
+    transform: scale(1.05);
+}
+
+/* 🔄 RESPONSIVE */
+@media (max-width: 1200px) {
+    .skill {
+        width: 140px;
+        height: 140px;
+    }
+
+    .skill-value {
+        font-size: 1.6rem;
+    }
+
+    .skill p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .skill-list {
+        flex-wrap: wrap;
+    }
+
+    .skill {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+
+
+/* 🌟 Style du titre principal */
+.skills-title {
+    text-align: center;
+    margin-top: 200px !important;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* 🎨 Apparence du texte */
+.skills-title h1 {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* 🎭 Couleurs dynamiques du mot "compétences" */
+.night-mode .competences {
+    color: #FF7F11; /* Orange */
+    text-shadow: 0px 0px 20px rgba(255, 127, 17, 0.8);
+}
+
+.light-mode .competences {
+    color: #7C0E85; /* Violet */
+    text-shadow: 0px 0px 20px rgba(124, 14, 133, 0.8);
+}
+
+/* 🌊 Effet de vague de couleur */
+.point {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff7f11, #ffcc33, #ff7f11);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* 🌊 Animation de la vague */
+@keyframes waveColor {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* 🌊 Activation de l'animation (ajoutée par le JS) */
+.wave-effect {
+    animation: waveColor 1.5s linear forwards;
+}
+
+/* 🌊 Mode nuit : Effet de vague orange */
+.wave-effect-night {
+    background: linear-gradient(90deg, #ff7f11, #ffcc33, #ff7f11);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: waveColorNight 1.5s linear forwards;
+}
+
+/* 🌊 Mode jour : Effet de vague violet */
+.wave-effect-day {
+    background: linear-gradient(90deg, #7C0E85, #b65cff, #7C0E85);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: waveColorDay 1.5s linear forwards;
+}
+
+/* 🎨 Animation de la vague pour le mode nuit */
+@keyframes waveColorNight {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* 🎨 Animation de la vague pour le mode jour */
+@keyframes waveColorDay {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+
+
+/* 🌊 Mode nuit : Effet de vague orange sur les chiffres */
+.percentage-effect-night {
+    background: linear-gradient(90deg, #ff7f11, #ffcc33, #ff7f11);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: waveColorNight 1.5s linear infinite alternate;
+}
+
+/* 🌊 Mode jour : Effet de vague violet sur les chiffres */
+.percentage-effect-day {
+    background: linear-gradient(90deg, #7C0E85, #b65cff, #7C0E85);
+    background-size: 200% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: waveColorDay 1.5s linear infinite alternate;
+}
+
+/* 🎨 Animation de la vague pour le mode nuit */
+@keyframes waveColorNight {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+/* 🎨 Animation de la vague pour le mode jour */
+@keyframes waveColorDay {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.percentage-effect-day {
+    background: linear-gradient(90deg, #7C0E85, #b65cff, #7C0E85);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background 0.6s ease-in-out;
+}
+
+.percentage-effect-night {
+    background: linear-gradient(90deg, #ff7f11, #ffcc33, #ff7f11);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background 0.6s ease-in-out;
+}
+

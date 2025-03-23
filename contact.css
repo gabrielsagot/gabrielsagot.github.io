@@ -1,0 +1,559 @@
+html, body {
+    overscroll-behavior: none;
+}
+
+
+/* =========================== */
+/* 🌍 NAVBAR CENTRÉE */
+/* =========================== */
+
+
+
+
+
+/* Navbar - Optimisation du Hover avec transition fluide sans conflit GSAP */
+.navbar, .nav-links, .nav-links li, .nav-links li a {
+    will-change: transform, opacity;
+}
+
+.nav-links li a {
+    transition: transform 0.2s ease-out, background 0.2s ease-out, color 0.2s ease-out;
+    transform-origin: center;
+}
+
+.nav-links li a:hover {
+    transform: scale(1.05);
+    background: rgba(255, 127, 17, 0.1);
+}
+
+
+
+
+
+/* NAV BAR */
+
+.navbar .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 25, 47, 0.95);
+    padding: 15px 70px 15px 20px; /* +70px à droite compense la taille du bouton thème */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out, background 0.3s;
+    box-shadow: none !important;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    padding: 0 10%;
+}
+
+.nav-links li {
+    flex: none;
+    min-width: 120px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 14px 24px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out, color 0.3s, transform 0.2s;
+    display: inline-block;
+}
+
+.nav-links li a:hover {
+    background: rgba(255, 127, 17, 0.2);
+    color: #ff7f11;
+    transform: scale(1.1);
+}
+
+.nav-links li a.active {
+    background: #ff7f11;
+    color: #0A192F;
+    border-radius: 8px;
+    font-weight: bold;
+    padding: 14px 24px;
+    box-shadow: 0px 4px 15px rgba(255, 127, 17, 0.5);
+}
+
+.logo {
+    width: 80px;
+    height: auto;
+    position: absolute;
+    left: 20px;
+    top: 22px;
+    z-index: 1100;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.logo:hover {
+    filter: drop-shadow(0 0 10px rgba(255, 127, 17, 0.7));
+	transform : scale(1.09);
+}
+
+
+
+
+
+
+/* === BOUTON CHANGEMENT DE MODE === */
+/* Bouton thème (jour/nuit) très esthétique */
+#theme-toggle {
+    position: fixed;
+    top: -10px !important;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    color: #FF7F11;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.8rem;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+
+#theme-toggle:hover {
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0px 0px 30px rgba(255,127,17,0.6);
+    transform: scale(1.15);
+}
+
+#theme-toggle:hover::before {
+    transform: scale(3);
+    opacity: 0;
+}
+
+/* =========================== */
+/* ☀️ Mode Jour (Light Mode) */
+/* =========================== */
+
+.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode .nav-links li a {
+    color: #1E1E1E;
+}
+
+.light-mode .nav-links li a:hover {
+    background: rgba(124, 14, 133, 0.2);
+    color: #7C0E85;
+}
+
+.light-mode .nav-links li a.active {
+    background: #7C0E85;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(124, 14, 133, 0.5);
+}
+
+/* ✅ Logo en mode jour */
+.light-mode .logo {
+    content: url("logo_jour.png");
+}
+
+.light-mode .logo:hover {
+    filter: drop-shadow(0 0 10px rgba(124, 14, 133, 0.7));
+}
+
+/* =========================== */
+/* 🔘 Bouton de Changement de Mode */
+/* =========================== */
+
+#theme-toggle {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 2.5rem;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+
+#theme-toggle:hover {
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0px 0px 30px rgba(255,127,17,0.6);
+    transform: scale(1.15);
+}
+
+#theme-toggle:hover::before {
+    transform: scale(3);
+    opacity: 0;
+}
+
+
+/* 🔥 RESET DE BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* 🌙 Mode Nuit & ☀️ Mode Jour */
+body.night-mode {
+    background: #0A192F; /* ✅ Bleu marine foncé */
+    color: white;
+}
+
+body.light-mode {
+    background: #FAF3FF; /* ✅ Fond clair */
+    color: #1E1E1E;
+}
+
+
+
+
+/* ========== 🌟 TITRE DÉFILANT CONTACT ========== */
+.contact-header {
+    width: 100%;
+    text-align: center;
+    margin-top: 150px; /* Pour laisser de la place à la navbar */
+    margin-bottom: 100px;
+    padding: 0 20px;
+}
+
+#contact-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+    will-change: opacity, transform;
+    display: inline-block;
+}
+
+/* 🌙 Mode Nuit */
+body.night-mode #contact-title {
+    color: white;
+
+}
+
+/* ☀️ Mode Jour */
+body.light-mode #contact-title {
+    color: #1E1E1E;
+
+}
+
+
+
+#contact-links {
+    align-items: center; /* Centrage horizontal du contenu */
+    text-align: center;
+}
+
+#contact-links .section-title {
+    font-size: 1.8rem;
+}
+
+.contact-item {
+    margin-bottom: 10px;
+}
+
+.contact-item p {
+    font-weight: bold;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+}
+
+.contact-item i {
+    color: white;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.contact-item i:hover {
+    transform: scale(1.1);
+    color: #ffcc33;
+}
+
+.light-mode .contact-item i {
+    color: #1E1E1E;
+}
+
+.light-mode .contact-item i:hover {
+    color: #7C0E85;
+}
+
+.cv-preview {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.cv-preview:hover {
+    transform: scale(1.05);
+}
+
+/* ============================== */
+/* 🌐 STRUCTURE DES BLOCS HORIZONTAUX */
+/* ============================== */
+.contact-sections {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    margin: 60px auto 100px auto;
+    padding: 0 40px;
+    max-width: 1600px;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* scroll horizontal si l'écran est petit */
+    scroll-behavior: smooth;
+}
+
+.contact-block {
+    flex: 1;
+    justify-content: center; /* 💡 Centrage vertical du contenu */
+    min-width: 400px;
+    max-width: 600px;
+    min-height: 510px;
+    max-height: 510px; /* 🆕 On fige les hauteurs */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 30px 25px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 50px 10px; /* plus d'espace interne */
+}
+
+
+
+/* 🧲 Effet de survol sur chaque bloc */
+.contact-block:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(255, 127, 17, 0.3);
+}
+
+.light-mode .contact-block {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .contact-block:hover {
+    box-shadow: 0 12px 30px rgba(124, 14, 133, 0.3);
+}
+
+/* 📝 Formulaire */
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.2s;
+}
+#contact-form textarea {
+    resize: none; /* évite que l'utilisateur l'agrandisse */
+    height: 48px; /* hauteur similaire aux <input> */
+    line-height: 1.2;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.02);
+}
+
+.light-mode #contact-form input,
+.light-mode #contact-form textarea {
+    background: rgba(0, 0, 0, 0.05);
+    color: black;
+}
+
+#contact-form button {
+    background-color: #ff7f11;
+    margin: 20px auto 0 auto !important; /* Centrage horizontal + marge top */
+    color: #0A192F;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+#contact-form button:hover {
+    transform: scale(1.05);
+    background-color: #ff9f33;
+}
+
+.light-mode #contact-form button {
+    background-color: #7C0E85;
+    color: white;
+}
+
+.light-mode #contact-form button:hover {
+    background-color: #b65cff;
+}
+
+/* 🔗 Liens sociaux / CV */
+.link-icons a {
+    display: block;
+    margin: 10px 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.link-icons a:hover {
+    transform: translateX(5px);
+    color: #ffcc33;
+}
+
+.light-mode .link-icons a {
+    color: #1E1E1E;
+}
+
+.light-mode .link-icons a:hover {
+    color: #7C0E85;
+}
+
+#contact-info {
+    align-items: center;
+    text-align: center;
+}
+
+#contact-info .contact-item {
+    margin: 35px 0;
+}
+
+#contact-info p {
+    margin: 35px 0;
+    font-size: 1.4rem;
+}
+
+.contact-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.contact-line i {
+    font-size: 1.2rem;
+    color: #ff7f11;
+    transition: color 0.3s ease;
+}
+
+.light-mode .contact-line i {
+    color: #7C0E85;
+}
+
+.contact-line:hover {
+    transform: scale(1.05);
+}
+
+/* ============================== */
+/* ✨ BARRES DE DÉLIMITATION ENTRE BLOCS */
+/* ============================== */
+
+/* === 🔸 Barre HORIZONTALE sous le titre === */
+.title-divider {
+    width: 50%;
+    height: 5px;
+    background: linear-gradient(90deg, #ff7f11, #ffcc33);
+    margin: 40px auto;
+    border-radius: 5px;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.light-mode .title-divider {
+    background: linear-gradient(90deg, #7C0E85, #b65cff) !important;
+    animation: pulseGlowLight 2s infinite alternate;
+}
+
+
+/* === 🔹 Barres VERTICALES entre les blocs === */
+.vertical-divider {
+    width: 5px; /* 🔼 légèrement plus large */
+    height: 400px;
+    background: linear-gradient(180deg, #ff7f11, #ffcc33);
+    border-radius: 4px;
+    margin: 50px 30px 0 30px; /* 🔽 descend un peu la barre */
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.light-mode .vertical-divider {
+    background: linear-gradient(180deg, #7C0E85, #b65cff) !important;
+    animation: pulseGlowLight 2s infinite alternate;
+}

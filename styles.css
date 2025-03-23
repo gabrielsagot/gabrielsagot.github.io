@@ -1,0 +1,1013 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+
+
+	/* Réinitialisation et style global */
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+
+	}
+
+	body {
+		background: linear-gradient(to bottom, #fba5c5, #fba5c5, #fba5c5);
+		color: #333;
+		text-align: center;
+		padding-top: 80px;
+	}
+
+@keyframes fadeOutDisappear {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8) rotate(-10deg);
+    }
+}
+
+.deleted {
+    animation: fadeOutDisappear 0.5s forwards !important;
+    transition: all 0.5s ease-in-out !important;
+}
+
+/*///////////////////////////////////////////////NAVBAR-Début/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/* 📌 NAVBAR - Design et Effets Fluides */
+	.navbar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		background: linear-gradient(to bottom, #ff4d6d, #ff7a7a);
+		padding: 15px 20px;
+		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: all 0.3s ease-in-out;
+		z-index: 1000;
+	}
+
+	/* Logo "Lovers ❤️" à gauche */
+	.navbar-left {
+		position: absolute;
+		left: 20px;
+	}
+
+	.logo {
+		font-size: 22px;
+		font-weight: bold;
+		color: white;
+		text-decoration: none;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	.logo:hover {
+		transform: scale(1.1);
+	}
+
+	/* 📌 Centrage des liens de navigation */
+	.navbar-center {
+		display: flex;
+		gap: 30px;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* 📌 Style des liens */
+	.navbar-center .nav-link {
+		color: white;
+		text-decoration: none;
+		font-size: 18px;
+		font-weight: bold;
+		transition: all 0.3s ease-in-out;
+		padding: 10px 15px;
+		border-radius: 8px;
+		position: relative;
+		overflow: hidden;
+	}
+
+	/* 📌 Effet de survol */
+	.navbar-center .nav-link:hover {
+		background: rgba(255, 255, 255, 0.2);
+		color: white;
+		transform: scale(1.1);
+	}
+
+	/* 📌 Style de l'onglet actif */
+	.navbar-center .active {
+		background: white;
+		color: #ff4d6d;
+		font-weight: bold;
+		box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
+		transform: scale(1.1);
+		transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+	}
+
+	/* 📌 Animation d’apparition de la Navbar */
+	@keyframes fadeInNav {
+		from {
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.navbar {
+		animation: fadeInNav 0.5s ease-in-out;
+	}
+
+	/* 📌 Effet dynamique au scroll */
+	.navbar.scrolled {
+		box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+	}
+
+	/* Effet d'animation d'apparition */
+	@keyframes fadeInNav {
+		from {
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+/*///////////////////////////////////////////////NAVBAR-FIN//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+.main-title {
+    font-size: 58px !important;
+    font-family: 'Poppins', sans-serif !important;
+    color: #ffffff !important; /* 🌸 Rose vif pour l’effet néon */
+    text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 40px rgba(255, 0, 127, 0.8) !important;
+    margin-top: 30px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 3px !important;
+    text-align: center !important;
+    animation: fadeInZoom 1.2s ease-in-out, neonGlow 1.5s infinite alternate !important;
+}
+
+/* ✅ Effet d’apparition fluide */
+@keyframes fadeInZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.88);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 🌟 Effet Néon Pulsé */
+@keyframes neonGlow {
+    0% { text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 40px rgba(255, 0, 127, 0.8); }
+    50% { text-shadow: 0 0 7px #ff1493, 0 0 15px #ff1493, 0 0 25px #ff1493, 0 0 50px rgba(255, 20, 147, 0.9); }
+    100% { text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 40px rgba(255, 0, 127, 0.8); }
+}
+
+}
+	/* SÉLECTEUR DE MOIS */
+	.month-selector {
+		margin: 25px auto;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 15px;
+		transform: scale(1.05); /* ✅ Agrandit tout le bloc */
+	}
+
+	.month-selector label {
+		font-size: 21px !important; /* ✅ Texte plus grand */
+		font-weight: bold !important;
+		color: white !important;
+		text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5) !important;
+	}
+
+	.month-selector select {
+		padding: 12px 20px !important;
+		font-size: 22px !important;
+		border: 3px solid #ff4d6d !important;
+		border-radius: 8px !important;
+		background: white !important;
+		color: #d63357 !important;
+		cursor: pointer !important;
+		transition: 0.3s !important;
+	}
+
+	.month-selector select:hover {
+		background: #ff4d6d !important;
+		color: white !important;
+		transform: scale(1.05) !important; /* ✅ Effet au survol */
+	}
+
+
+/* ✅ NOUVEAU STYLE DU CALENDRIER - PLUS GRAND ET PLUS ÉLÉGANT */
+.calendar {
+    width: 100% !important; /* ✅ Réduit la largeur */
+    max-width: 1400px !important; /* ✅ Moins imposant */
+    margin: 30px auto !important;
+    background: white;
+    padding: 20px !important;
+    border-radius: 20px;
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+}
+
+/* ✅ STYLE DES EN-TÊTES - BLANC AVEC TEXTE NOIR */
+.calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: bold;
+    background: white;
+    color: black;
+    font-size: 22px;
+    text-transform: uppercase;
+    padding: 18px;
+    text-align: center;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0px -3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ EFFET SURVOL SUR LES EN-TÊTES */
+.calendar-header div:hover {
+    background: rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+}
+
+/* ✅ GRILLE DU CALENDRIER - ÉQUILIBRÉE */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+/* ✅ STYLE DES CELLULES DU CALENDRIER */
+.calendar-cell {
+    background: #fff5f8;
+    border-radius: 8px;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    border: 2px solid rgba(255, 77, 109, 0.2);
+    box-shadow: inset 0px 0px 10px rgba(255, 0, 76, 0.1);
+}
+
+/* ✅ EFFET AU SURVOL DES CELLULES */
+.calendar-cell:hover {
+    background: linear-gradient(135deg, #ff99b9, #ff4d6d);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ STYLE DES JOURNÉES AVEC ÉVÉNEMENTS */
+.calendar-cell.has-event {
+    background: linear-gradient(135deg, #ff99b9, #ff4d6d) !important; /* ✅ Rose doux */
+    color: white;
+    font-weight: bold;
+    box-shadow: 0px 5px 15px rgba(255, 105, 135, 0.4) !important; /* ✅ Ombre plus douce */
+}
+
+/* ✅ TEXTE DES ÉVÉNEMENTS */
+.event-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    font-size: 16px;
+    color: #d60000;
+    word-wrap: break-word;
+    max-width: 100%;
+    text-align: left;
+}
+
+/* ✅ STYLE DU BOUTON DE SUPPRESSION (CROIX ROUGE) */
+.delete-event {
+    cursor: pointer;
+    font-size: 16px;
+    color: red;
+    margin-left: 5px;
+    transition: 0.2s;
+}
+
+.delete-event:hover {
+    color: darkred;
+}
+
+/* ✅ ANIMATION FLUIDE DES ÉVÉNEMENTS */
+@keyframes fadeInEvent {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.event-text {
+    animation: fadeInEvent 0.4s ease-in-out;
+}
+
+	/* Désactiver l'affichage des croix rouges quand la pop-up est ouverte */
+	.popup-overlay + .calendar .delete-event {
+		display: flex !important;
+	}
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+	/* 📊 TABLEAU DE BORD */
+	.dashboard-container {
+		display: flex;
+		justify-content: space-between;
+		width: 90%;
+		margin: 20px auto;
+		gap: 20px;
+	}
+
+	.dashboard-block {
+		flex: 1;
+		background-color: white;
+		padding: 20px;
+		border-radius: 10px;
+		box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+		text-align: center;
+	}
+
+	/* 📌 Sélecteur de mois */
+	#month-selector {
+		padding: 8px 15px;
+		font-size: 16px;
+		border: 2px solid #ff4d6d;
+		border-radius: 5px;
+		background: white;
+		color: #d63357;
+		cursor: pointer;
+	}
+
+	/* 📌 Statistiques */
+	.stats-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: stretch; /* ✅ Évite l’espace blanc */
+	}
+
+	.stats-row {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+	}
+
+	.stat-box {
+		flex: 1;
+		text-align: center;
+		padding: 15px;
+		margin: 5px;
+		background: #ff5a98;
+		color: white;
+		font-size: 1.2em;
+		font-weight: bold;
+		border-radius: 10px;
+		box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+	}
+
+
+
+
+	/* 📈 Évolution */
+	.evolution-box {
+		text-align: center;
+		font-size: 1.4em;
+		font-weight: bold;
+		margin-top: 10px;
+		width: 100%;
+	}
+	.evolution-box .positive {
+		color: green;
+	}
+
+	.evolution-box .negative {
+		color: red;
+	}
+
+	.evolution-box .neutral {
+		color: black;
+	}
+
+	#evolution-rate {
+		display: block;
+		text-align: center;
+		font-size: 1.5em;
+		margin-top: 5px;
+		width: 100%;
+	}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/* ✅ POPUP - Agrandie avec un design plus moderne */
+#popup {
+    display: flex; /* Plus de `display: none;` */
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+    will-change: opacity, transform;
+}
+/* ✅ Activation correcte */
+#popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ✅ Effet d'apparition */
+@keyframes fadeZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ✅ Effet d’apparition propre */
+#popup.active .popup {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* ✅ Champ de texte amélioré */
+.popup {
+    background: white !important;
+    padding: 50px !important;
+    border-radius: 12px !important;
+    text-align: center !important;
+    width: 650px !important;
+    max-width: 90% !important;
+    box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.4) !important;
+    transform: scale(1) !important;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out !important;
+    opacity: 1 !important;
+}
+/* ✅ Style du champ de texte */
+.popup textarea {
+    width: 100% !important;
+    height: 160px !important;
+    padding: 15px !important;
+    font-size: 20px !important;
+    border: 3px solid #ff4d6d !important;
+    border-radius: 10px !important;
+    background: #ffe6e9 !important;
+    transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out !important;
+}
+
+/* ✅ EFFET DE SURVOL SUR LA POPUP */
+.popup:hover {
+    transform: scale(1.02);
+}
+
+
+/* ✅ Effet au focus */
+.popup textarea:focus {
+    border-color: #d63357 !important;
+    box-shadow: 0px 0px 15px rgba(214, 51, 87, 0.5) !important;
+    outline: none !important;
+}
+
+/* ✅ Boutons agrandis */
+.popup button {
+    margin-top: 15px;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+}
+
+/* ✅ Bouton Sauvegarder */
+#save-btn {
+    background: #ff4d6d;
+    color: white;
+    padding: 12px 18px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 2px 12px rgba(255, 51, 102, 0.3);
+}
+
+#save-btn:hover {
+    background: #d63357;
+    transform: scale(1.05);
+}
+
+/* ✅ Bouton Fermer */
+#close-popup {
+    background: #ccc;
+    color: black;
+}
+
+#close-popup:hover {
+    background: #999;
+    transform: scale(1.05);
+}
+
+/* ✅ Ajout d’une icône de fermeture */
+.popup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #d63357;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.popup .close-btn:hover {
+    transform: rotate(90deg);
+    color: #ff4d6d;
+}
+
+.delete-event:hover {
+    color: darkred;
+}
+
+/* Suppression de la couleur après suppression */
+.calendar-cell.empty {
+    background-color: #ffe6e9 !important;
+}
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
+
+.neutral {
+    color: black;
+}
+@media (max-width: 768px) {
+    .calendar {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .calendar-cell {
+        min-height: 100px;
+        font-size: 14px;
+    }
+
+    .popup {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+
+/* 📌 Ajustement de l'alignement des statistiques annuelles */
+#yearly-stats .stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+#yearly-stats .stats-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#yearly-stats .stat-box {
+    flex: 1 1 30%;
+    min-width: 30%;
+    padding: 20px;
+    text-align: center;
+    margin: 5px;
+    background: #ff5a98;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+/* 🌟 Animation survol des blocs de stats */
+.dashboard-block:hover {
+    transform: scale(1.032);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.20);
+}
+/* 💎 Animation des cases de stats */
+.stat-box {
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+/* 💡 Effet visuel au survol */
+.stat-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(255, 0, 76, 0.7)!important; /* ✅ Contour lumineux */
+    background: linear-gradient(45deg, #ff4d6d, #ff7eb3)!important; /* ✅ Dégradé dynamique */
+}
+
+/* 🌟 Ajout d’un effet de pulsation subtile */
+@keyframes pulseEffect {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.01); }
+    80% { transform: scale(1); }
+}
+
+.stat-box:hover {
+    animation: pulseEffect 0.6s infinite alternate;
+}
+/* ✅ Ajout d'un contour pulsant */
+.stat-box::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: rgba(255, 0, 76, 0.3);
+    z-index: -1;
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+/* ✅ Lueur pulsante */
+.stat-box:hover::before {
+    opacity: 1;
+    transform: scale(1.1);
+    animation: pulseEffect 1.5s infinite alternate ease-in-out;
+}
+/* 📊 Taille uniforme des graphiques */
+.chart-container {
+    width: 100%;
+    height: 350px; /* Même hauteur pour tous les graphiques */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+canvas {
+    width: 100% !important; /* Forcer la largeur */
+    height: 100% !important; /* Forcer la hauteur */
+}
+/* 📊 Conteneur des statistiques */
+.dashboard-block {
+    flex: 1;
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-height: 750px; /* ✅ Ajuste la hauteur minimale */
+    max-height: 800px; /* ✅ Limite la hauteur pour éviter qu'ils s'étendent */
+    overflow: hidden; /* ✅ Empêche le débordement */
+}
+
+/* ✅ Conteneur des cœurs animés */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* ✅ Les cœurs n'interfèrent pas avec les clics */
+    overflow: hidden;
+    z-index: 999;
+}
+
+/* ✅ Style de base des cœurs */
+.heart {
+    position: absolute;
+    font-size: 25px; /* 🔹 Taille des cœurs */
+    color: rgba(255, 51, 102, 0.9); /* 🔹 Rouge/rose */
+    opacity: 1;
+    animation: floatHearts 2s ease-out forwards; /* 🔹 Animation de montée */
+}
+
+/* ✅ Animation des cœurs */
+@keyframes floatHearts {
+    0% {
+        transform: scale(0.8) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.2) translateY(-100px); /* 🔹 Monte vers le haut */
+        opacity: 0;
+    }
+}
+/* 💖 Animation des cœurs */
+.floating-heart {
+    position: fixed;
+    bottom: 0;
+    font-size: 24px;
+    opacity: 0.8;
+    animation: floatUp 5s ease-in-out forwards;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* 🔼 Animation pour faire monter les cœurs */
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-50vh) scale(1.5);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100vh) scale(2);
+        opacity: 0;
+    }
+}
+@keyframes eventGlow {
+    0% { box-shadow: 0px 0px 10px rgba(255, 0, 76, 0.3); transform: scale(1); }
+    50% { box-shadow: 0px 0px 20px rgba(255, 0, 76, 0.6); transform: scale(1.25); }
+    100% { box-shadow: 0px 0px 10px rgba(255, 0, 76, 0.3); transform: scale(1); }
+}
+
+.event-added-animation {
+    animation: eventGlow 1s ease-in-out;
+}
+@keyframes fadeOutEffect {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(20px); }
+}
+
+@keyframes fadeInEffect {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-out {
+    animation: fadeOutEffect 0.4s ease-in-out;
+}
+
+.fade-in {
+    animation: fadeInEffect 0.4s ease-in-out;
+}
+
+@keyframes deleteEffect {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+    100% { opacity: 0; transform: scale(0); }
+}
+
+@keyframes reappearEffect {
+    0% { opacity: 0; transform: scale(0); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.event-deleting-animation {
+    animation: deleteEffect 0.6s ease-in-out forwards;
+}
+
+.event-reappearing-animation {
+    animation: reappearEffect 0.6s ease-in-out forwards;
+}
+.exploding-heart {
+    position: absolute;
+    font-size: 40px;
+    opacity: 1;
+    animation: heart-explode 1s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes heart-explode {
+    0% {
+        transform: scale(0.8) translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2) translateY(-20px);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.5) translateY(-40px);
+        opacity: 0;
+    }
+}
+/* 🚀 CSS Responsive Mobile complet (navbar, calendrier, dashboard) */
+@media (max-width: 768px) {
+
+    /* 📌 Ajustements généraux pour mobile */
+    body {
+        padding-top: 60px;
+        font-size: 14px;
+    }
+
+    .main-title {
+        font-size: 32px !important;
+        margin-top: 15px !important;
+    }
+
+    /* 📌 Navbar mobile compacte */
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding-top: 20px;
+    }
+
+    .navbar-center {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .navbar-left {
+        position: static;
+        margin-bottom: 10px;
+    }
+
+    .navbar-center .nav-link {
+        width: 90%;
+        margin: 0 auto;
+        font-size: 16px;
+    }
+
+    /* 📌 Bouton Menu mobile */
+    .menu-btn {
+        display: block;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1100;
+        background: #fff;
+        color: #ff4d6d;
+        padding: 6px 10px;
+        border-radius: 8px;
+        border: none;
+        font-weight: bold;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    }
+
+    /* 📌 Sélecteur de mois simplifié sur mobile */
+    .month-selector {
+        flex-direction: column;
+        gap: 8px;
+        margin: 15px auto;
+    }
+
+    .month-selector label {
+        font-size: 16px !important;
+    }
+
+    .month-selector select {
+        font-size: 16px !important;
+        padding: 8px !important;
+    }
+
+    /* 📌 Calendrier adapté au mobile */
+    .calendar {
+        width: 100% !important;
+        margin: 15px auto !important;
+        padding: 10px !important;
+    }
+
+    .calendar-header {
+        font-size: 14px !important;
+        padding: 8px 4px !important;
+    }
+
+    .calendar-grid {
+        gap: 4px !important;
+    }
+
+    .calendar-cell {
+        min-height: 90px !important;
+        padding: 8px !important;
+        font-size: 14px !important;
+    }
+
+    .event-text {
+        font-size: 12px !important;
+        padding: 4px 6px !important;
+    }
+
+    .delete-event {
+        font-size: 12px !important;
+    }
+
+    /* 📌 Dashboard responsive */
+    .dashboard-container {
+        flex-direction: column !important;
+        gap: 10px !important;
+        width: 100% !important;
+        padding: 0 10px !important;
+    }
+
+    .dashboard-block {
+        width: 100% !important;
+        padding: 15px !important;
+        min-height: auto !important;
+    }
+
+    .stats-container, .stats-row {
+        flex-direction: column !important;
+    }
+
+    .stat-box {
+        font-size: 14px !important;
+        padding: 10px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .chart-container {
+        height: 200px !important;
+    }
+
+    #evolution-rate {
+        font-size: 16px !important;
+    }
+
+    /* 📌 Popup adaptée au mobile */
+    #popup .popup {
+        width: 90% !important;
+        padding: 15px !important;
+    }
+
+    #popup textarea {
+        height: 100px !important;
+        font-size: 14px !important;
+    }
+
+    #save-btn, #close-popup {
+        padding: 10px 15px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* 🖥️ Masque le bouton Menu en version PC */
+@media (min-width: 769px) {
+    .menu-btn {
+        display: none !important;
+    }
+}
+@media (max-width: 480px) {
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(40px, 1fr)) !important; /* Réduit la taille des cases */
+        gap: 2px !important; /* Moins d’espace entre les cases */
+    }
+
+    .calendar-cell {
+        min-height: 60px !important; /* Réduit la hauteur */
+        font-size: 12px !important; /* Texte plus petit */
+        padding: 5px !important;
+    }
+
+    .calendar-header {
+        font-size: 12px !important;
+        padding: 5px 2px !important;
+    }
+
+    .event-text {
+        font-size: 10px !important;
+        padding: 3px 5px !important;
+        word-wrap: break-word;
+    }
+
+    .delete-event {
+        font-size: 10px !important;
+    }
+}
