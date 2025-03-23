@@ -1,1 +1,526 @@
 
+/* Supprime complètement les outlines de sélection/focus sur tous les éléments */
+*:focus,
+*:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Navbar - Optimisation du Hover avec transition fluide sans conflit GSAP */
+.navbar, .nav-links, .nav-links li, .nav-links li a {
+    will-change: transform, opacity;
+}
+
+.nav-links li a {
+    transition: transform 0.2s ease-out, background 0.2s ease-out, color 0.2s ease-out;
+    transform-origin: center;
+}
+
+.nav-links li a:hover {
+    transform: scale(1.05);
+    background: rgba(255, 127, 17, 0.1);
+}
+
+
+
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+body {
+    background: linear-gradient(135deg, #, #001F3F);
+    color: white;
+    text-align: center;
+    background-size: 300% 300%;
+    animation: bgMove 6s infinite alternate ease-in-out;
+}
+
+/* Bouton thème (jour/nuit) très esthétique */
+#theme-toggle {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    color: #ff7f11;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.8rem;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2), transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+
+#theme-toggle:hover {
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0px 0px 30px rgba(255,127,17,0.6);
+    transform: scale(1.15);
+}
+
+#theme-toggle:hover::before {
+    transform: scale(3);
+    opacity: 0;
+}
+
+/* Styles spécifiques mode clair */
+.light-mode #theme-toggle:hover {
+    box-shadow: 0px 0px 30px rgba(124,14,133,0.6);
+    background: rgba(255,255,255,0.9);
+    color: #7C0E85;
+}
+
+
+/* Icône transition douce */
+.icon {
+    display: inline-block;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+
+/* NAV BAR */
+
+.navbar .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-right: 50px; /* espace fixe compensant le bouton thème */
+}
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 25, 47, 0.95);
+    padding: 15px 70px 15px 20px; /* +70px à droite compense la taille du bouton thème */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out, background 0.3s;
+    box-shadow: none !important;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    padding: 0 10%;
+}
+
+.nav-links li {
+    flex: none;
+    min-width: 120px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 14px 24px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out, color 0.3s, transform 0.2s;
+    display: inline-block;
+}
+
+.nav-links li a:hover {
+    background: rgba(255, 127, 17, 0.2);
+    color: #ff7f11;
+    transform: scale(1.1);
+}
+
+.nav-links li a.active {
+    background: #ff7f11;
+    color: #0A192F;
+    border-radius: 8px;
+    font-weight: bold;
+    padding: 14px 24px;
+    box-shadow: 0px 4px 15px rgba(255, 127, 17, 0.5);
+}
+
+
+
+
+
+
+
+/* EFFET GSAP */
+.letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.2;
+    background: linear-gradient(90deg, white, #ff7f11);
+    -webkit-background-clip: text;
+}
+
+/* BOUTON "DÉCOUVRIR" */
+.btn {
+    display: inline-block;
+    background: #ff7f11;
+    color: #0A192F;
+    padding: 14px 30px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    box-shadow: 0px 4px 15px rgba(255, 127, 17, 0.4);
+    animation: pulse 2s infinite alternate;
+}
+
+.btn:hover {
+    background: #f9a825;
+    transform: scale(1.1);
+    box-shadow: 0px 6px 20px rgba(255, 127, 17, 0.6);
+}
+
+.light-mode .btn:hover {
+    background: #4B365F; /* Violet clair élégant */
+    color: #ffffff;
+    transform: scale(1.1);
+    box-shadow: 0px 6px 20px rgba(124, 14, 133, 0.8) !important;
+}
+
+@keyframes pulse {
+    from { transform: scale(1); box-shadow: 0px 4px 15px rgba(255, 127, 17, 0.4); }
+    to { transform: scale(1.04); box-shadow: 0px 6px 20px rgba(255, 127, 17, 0.6); }
+}
+
+/* MODE JOUR */
+.light-mode .btn {
+    background: #7C0E85;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(124, 14, 133, 0.6) !important;
+}
+
+.light-mode .btn:hover {
+    box-shadow: 0px 6px 20px rgba(230, 114, 16, 0.6) !important;
+}
+
+/* CORRECTION LUEUR MODE JOUR */
+@keyframes glow-violet {
+    from { text-shadow: 0px 0px 10px rgba(124, 14, 133, 0.6); }
+    to { text-shadow: 0px 0px 20px rgba(124, 14, 133, 0.8); }
+}
+
+.light-mode .btn {
+    box-shadow: 0px 4px 15px rgba(124, 14, 133, 0.6) !important;
+}
+
+.light-mode .btn:hover {
+    box-shadow: 0px 6px 20px rgba(124, 14, 133, 0.8) !important;
+}
+
+/* ============================= */
+/* 🎨 MODE JOUR - AMÉLIORATIONS */
+/* ============================= */
+
+.light-mode {
+    background: linear-gradient(135deg, #FAF3FF, #F8F8F8); /* Dégradé plus doux */
+    color: #1E1E1E; /* Texte noir adouci */
+    transition: all 0.5s ease-in-out; /* Transition fluide */
+}
+
+/* 📌 NAVIGATION */
+.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.light-mode .nav-links li a {
+    color: #1E1E1E;
+}
+
+.light-mode .nav-links li a:hover {
+    background: rgba(124, 14, 133, 0.2);
+    color: #7C0E85;
+}
+
+.light-mode .nav-links li a.active {
+    background: #7C0E85;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(124, 14, 133, 0.5);
+}
+
+/* 🟣 BOUTONS */
+.light-mode .btn {
+    background: #7C0E85;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(124, 14, 133, 0.6);
+}
+
+.light-mode .btn:hover {
+    background: #4B365F; /* violet clair élégant */
+    color: #ffffff;
+    transform: scale(1.1);
+    box-shadow: 0px 6px 20px rgba(177, 133, 219, 0.6);
+}
+
+/* ✨ LUEUR DU BOUTON \"DÉCOUVRIR\" EN MODE JOUR */
+.light-mode .btn {
+    box-shadow: 0px 4px 15px rgba(124, 14, 133, 0.6) !important;
+}
+
+/* 🌟 TITRES & TEXTES */
+.light-mode h1, 
+.light-mode h2, 
+.light-mode h3, 
+.light-mode h4 {
+    color: #1E1E1E;
+}
+
+.light-mode p {
+    color: #33334D;
+}
+
+/* 🔥 ANIMATIONS & HIGHLIGHT */
+@keyframes glow-violet {
+    from { text-shadow: 0px 0px 10px rgba(124, 14, 133, 0.6); }
+    to { text-shadow: 0px 0px 20px rgba(124, 14, 133, 0.8); }
+}
+
+.light-mode .highlight {
+    color: #7C0E85;
+    text-shadow: 0px 0px 10px rgba(124, 14, 133, 0.6);
+    animation: glow-violet 1.5s infinite alternate;
+}
+
+/* ============================= */
+/* 🌙 MODE NUIT - AMÉLIORATIONS */
+/* ============================= */
+
+.dark-mode {
+    background: linear-gradient(135deg, #0A192F, #001F3F); /* Bleu nuit */
+    color: white;
+    transition: all 0.5s ease-in-out;
+}
+
+/* 🟠 BOUTONS */
+.dark-mode .btn {
+    background: #ff7f11;
+    color: #0A192F;
+    box-shadow: 0px 4px 15px rgba(255, 127, 17, 0.4);
+}
+
+.dark-mode .btn:hover {
+    background: #f9a825;
+    box-shadow: 0px 6px 20px rgba(255, 127, 17, 0.6);
+}
+
+/* 🔥 HIGHLIGHT EN MODE NUIT */
+.dark-mode .highlight {
+    color: #ff7f11;
+    text-shadow: 0px 0px 10px rgba(255, 127, 17, 0.6);
+    animation: glow-orange 1.5s infinite alternate;
+}
+
+/* EFFET D'OMBRE POUR PLUS D'IMMERSION */
+.dark-mode .container, 
+.dark-mode .box, 
+.dark-mode .card {
+    box-shadow: 0px 4px 20px rgba(255, 127, 17, 0.3);
+}
+
+/* LUEUR ORANGE AUTOUR DE "GABRIEL SAGOT" EN MODE NUIT */
+.dark-mode .highlight-name {
+    color: #ff7f11;
+    text-shadow: 0px 0px 15px rgba(255, 127, 17, 0.8), 0px 0px 25px rgba(255, 127, 17, 1);
+    animation: glow-orange 1.5s infinite alternate;
+}
+
+@keyframes glow-orange {
+    from { text-shadow: 0px 0px 10px rgba(255, 127, 17, 0.6); }
+    to { text-shadow: 0px 0px 20px rgba(255, 127, 17, 1); }
+}
+
+.navbar {
+    transform-origin: top center;
+    will-change: transform, opacity;
+}
+.dark-mode .navbar {
+    background: rgba(10, 25, 47, 0.95) !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Supprimer explicitement toutes les lueurs sauf celles autorisées */
+*:not(.highlight-name):not(.btn) {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    outline: none !important;
+}
+.logo {
+    width: 100px;
+    height: auto;
+    position: absolute;
+    left: 20px;
+    top: 8px;
+    z-index: 1100;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.logo:hover {
+    filter: drop-shadow(0 0 10px rgba(255, 127, 17, 0.7));
+	transform : scale(1.09);
+}
+
+/* Variation mode clair élégante */
+.light-mode .logo:hover {
+    filter: drop-shadow(0 0 10px rgba(124, 14, 133, 0.7));
+}
+
+
+/* 🌍 RESPONSIVE DESIGN */
+
+/* ✅ Pour MacBook 13" (1280px - 1440px) */
+@media (max-width: 1440px) {
+    .navbar {
+        padding: 15px 50px; /* Réduction de l'espace latéral */
+    }
+    .nav-links {
+        gap: 20px;
+    }
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .btn {
+        font-size: 1.1rem;
+        padding: 12px 26px;
+    }
+}
+
+/* ✅ Pour Tablettes (1024px - 1279px) */
+@media (max-width: 1279px) {
+    .navbar {
+        flex-direction: column;
+        padding: 15px 30px;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 0 5%;
+    }
+    .nav-links li {
+        min-width: auto;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .btn {
+        font-size: 1rem;
+        padding: 10px 24px;
+    }
+    .logo {
+        width: 80px;
+    }
+}
+
+/* ✅ Pour Smartphones (≤1024px) */
+@media (max-width: 1024px) {
+    .navbar {
+        flex-direction: column;
+        padding: 10px 20px;
+    }
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+    .nav-links li a {
+        display: block;
+        width: 100%;
+        padding: 12px;
+    }
+    .hero {
+        height: auto;
+        padding: 50px 0;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px 20px;
+    }
+}
+
+/* ✅ Pour Mobiles (≤768px) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+    .nav-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    .btn {
+        font-size: 0.85rem;
+        padding: 8px 18px;
+    }
+    .logo {
+        width: 70px;
+    }
+}
+
+
+
+
+
+
+
+
