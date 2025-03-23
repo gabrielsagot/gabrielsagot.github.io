@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { text: titles[0], duration: 2, ease: "power2.out" }
     );
 
-    // Changement de titre toutes les 7 secondes
+    // Changement de titre toutes les 4.5 secondes
     setInterval(changeTitle, 4500);
 
 /** ========================== **/
@@ -56,7 +56,7 @@ gsap.fromTo(".title-divider",
     {
         width: "30%",
         opacity: 1,
-        duration: 3.5,
+        duration: 4,
         ease: "power2.out",
         scrollTrigger: {
             trigger: ".title-divider",
@@ -76,7 +76,7 @@ gsap.utils.toArray(".vertical-divider").forEach((divider, index) => {
         {
             height: "450px",
             opacity: 1,
-            duration: 3.5,
+            duration: 4,
             ease: "power2.out",
             delay: index * 0.3,
             scrollTrigger: {
@@ -99,7 +99,7 @@ function animateBlock(blockSelector, contentSelector) {
         y: 100,
         opacity: 0,
         scale: 0.95,
-        duration: 1.4,
+        duration: 3,
         ease: "power2.out",
         scrollTrigger: {
             trigger: blockSelector,
@@ -116,7 +116,7 @@ function animateBlock(blockSelector, contentSelector) {
         filter: "blur(6px)",
         stagger: 0.3,
         delay: 0.3,
-        duration: 1.2,
+        duration: 3,
         ease: "power2.out",
         scrollTrigger: {
             trigger: blockSelector,
@@ -259,7 +259,7 @@ animateBlock("#contact-info", ".contact-item");
 
 
 
-/** ✉️ ENVOI DU FORMULAIRE AVEC ENVELOPPE ANIMÉE **/
+/** ✉️ ENVOI DU FORMULAIRE AVEC ENVELOPPE ANIMÉE & MESSAGE NOTIFICATION **/
 
 const form = document.getElementById("contact-form-el");
 const sendButton = document.getElementById("send-button");
@@ -268,12 +268,10 @@ const flyingEnvelope = document.getElementById("flying-envelope");
 const sendingFeedback = document.getElementById("sending-feedback");
 
 form.addEventListener("submit", function (e) {
-    e.preventDefault(); // Intercepte l'envoi
+    e.preventDefault();
 
-    // Affiche l’enveloppe et le message
-    sendingFeedback.style.display = "block";
+    sendingFeedback.style.display = "flex"; // Affiche la notif
 
-    // Animation GSAP
     gsap.timeline()
         .to(sendButton, {
             scale: 0.9,
@@ -291,16 +289,16 @@ form.addEventListener("submit", function (e) {
         .to(flyingEnvelope, {
             opacity: 1,
             y: -50,
+            rotation: -25,
             duration: 1,
             ease: "power2.out"
         }, "<")
         .to(sendingMsg, {
             opacity: 1,
-            duration: 0.5,
+            duration: 0.6,
             ease: "power1.out"
         }, "<");
 
-    // Envoi des données
     const formData = new FormData(form);
 
     fetch(form.action, {
@@ -310,40 +308,51 @@ form.addEventListener("submit", function (e) {
             Accept: "application/json"
         }
     }).then(response => {
-        // Reset + retour visuel
+        // ✅ Succès : feedback + reset
         setTimeout(() => {
             form.reset();
 
             gsap.to(flyingEnvelope, {
                 y: -150,
+                rotation: -45,
                 opacity: 0,
                 duration: 1,
                 ease: "power1.in"
             });
 
             gsap.to(sendingMsg, {
-                opacity: 0,
-                duration: 0.5
-            });
-
-            gsap.to(sendButton, {
-                backgroundColor: "#ff7f11",
-                color: "#0A192F",
-                boxShadow: "none",
-                duration: 0.3
+                text: "✅ Message envoyé !",
+                color: "#00c896",
+                duration: 0.6
             });
 
             setTimeout(() => {
-                sendingFeedback.style.display = "none";
-            }, 1000);
-        }, 3000);
+                gsap.to("#sending-feedback", {
+                    opacity: 0,
+                    duration: 0.5,
+                    onComplete: () => {
+                        sendingFeedback.style.display = "none";
+                        sendingFeedback.style.opacity = 1;
+                        flyingEnvelope.style.opacity = 0;
+                        flyingEnvelope.style.transform = "translateY(0) rotate(0deg)";
+                        sendingMsg.style.opacity = 0;
+                        sendingMsg.style.color = "";
+                    }
+                });
+
+                // Reset bouton
+                gsap.to(sendButton, {
+                    backgroundColor: "#ff7f11",
+                    color: "#0A192F",
+                    boxShadow: "none",
+                    duration: 0.3
+                });
+
+            }, 3000);
+        }, 2500);
     }).catch(error => {
         sendingMsg.textContent = "❌ Une erreur s’est produite.";
         sendingMsg.style.color = "red";
     });
 });
-
-
-
 });
-
