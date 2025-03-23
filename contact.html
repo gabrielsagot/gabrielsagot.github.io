@@ -46,7 +46,7 @@
 <div id="contact-form" class="contact-block">
   <h2><i class="fas fa-paper-plane"></i> Envoyez-moi un message</h2>
 
-  <form action="https://formsubmit.co/sagotgabrielpro@gmail.com" method="POST">
+  <form id="contact-form-el" action="https://formsubmit.co/sagotgabrielpro@gmail.com" method="POST">
     <!-- Champs du formulaire -->
     <input type="text" name="Prénom" placeholder="Votre prénom" required>
     <input type="text" name="Nom" placeholder="Votre nom" required>
@@ -57,10 +57,13 @@
     <!-- Champs cachés FormSubmit -->
     <input type="hidden" name="_captcha" value="false">
     <input type="hidden" name="_template" value="box">
-    <input type="hidden" name="_next" value="https://tonsite.com/merci.html">
 
     <!-- Bouton d'envoi -->
     <button type="submit">Envoyer</button>
+    <div id="sending-feedback">
+  <i class="fas fa-paper-plane" id="flying-envelope"></i>
+  <p id="sending-message">Votre message est en cours d'envoi...</p>
+</div>
   </form>
 </div>
 <div class="vertical-divider"></div>

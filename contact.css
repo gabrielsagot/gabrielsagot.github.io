@@ -1,7 +1,9 @@
 html, body {
     overscroll-behavior: none;
 }
-
+html, body {
+  overflow: hidden;
+}
 
 /* =========================== */
 /* 🌍 NAVBAR CENTRÉE */
@@ -556,4 +558,36 @@ body.light-mode #contact-title {
 .light-mode .vertical-divider {
     background: linear-gradient(180deg, #7C0E85, #b65cff) !important;
     animation: pulseGlowLight 2s infinite alternate;
+}
+
+
+
+
+
+#sending-feedback {
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
+}
+
+#sending-message {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #ff7f11;
+  margin-top: 10px;
+  opacity: 0;
+}
+
+#flying-envelope {
+  font-size: 2.5rem;
+  color: #ff7f11;
+  transform: translateY(0);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.light-mode #flying-envelope,
+.light-mode #sending-message {
+  color: #7C0E85;
 }

@@ -56,7 +56,7 @@ gsap.fromTo(".title-divider",
     {
         width: "30%",
         opacity: 1,
-        duration: 2.2,
+        duration: 3.5,
         ease: "power2.out",
         scrollTrigger: {
             trigger: ".title-divider",
@@ -76,7 +76,7 @@ gsap.utils.toArray(".vertical-divider").forEach((divider, index) => {
         {
             height: "450px",
             opacity: 1,
-            duration: 2.2,
+            duration: 3.5,
             ease: "power2.out",
             delay: index * 0.3,
             scrollTrigger: {
@@ -255,5 +255,95 @@ animateBlock("#contact-info", ".contact-item");
     /** 🚀 LOGO APPARITION **/
     /** ========================== **/
     gsap.from(".logo", { opacity: 0, y: -30, duration: 1, ease: "power3.out" });
+
+
+
+
+/** ✉️ ENVOI DU FORMULAIRE AVEC ENVELOPPE ANIMÉE **/
+
+const form = document.getElementById("contact-form-el");
+const sendButton = document.getElementById("send-button");
+const sendingMsg = document.getElementById("sending-message");
+const flyingEnvelope = document.getElementById("flying-envelope");
+const sendingFeedback = document.getElementById("sending-feedback");
+
+form.addEventListener("submit", function (e) {
+    e.preventDefault(); // Intercepte l'envoi
+
+    // Affiche l’enveloppe et le message
+    sendingFeedback.style.display = "block";
+
+    // Animation GSAP
+    gsap.timeline()
+        .to(sendButton, {
+            scale: 0.9,
+            duration: 0.2,
+            ease: "power1.inOut"
+        })
+        .to(sendButton, {
+            scale: 1.15,
+            backgroundColor: "#00c896",
+            color: "#fff",
+            boxShadow: "0 0 15px #00c896",
+            duration: 0.4,
+            ease: "elastic.out(1, 0.5)"
+        }, "<")
+        .to(flyingEnvelope, {
+            opacity: 1,
+            y: -50,
+            duration: 1,
+            ease: "power2.out"
+        }, "<")
+        .to(sendingMsg, {
+            opacity: 1,
+            duration: 0.5,
+            ease: "power1.out"
+        }, "<");
+
+    // Envoi des données
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+            Accept: "application/json"
+        }
+    }).then(response => {
+        // Reset + retour visuel
+        setTimeout(() => {
+            form.reset();
+
+            gsap.to(flyingEnvelope, {
+                y: -150,
+                opacity: 0,
+                duration: 1,
+                ease: "power1.in"
+            });
+
+            gsap.to(sendingMsg, {
+                opacity: 0,
+                duration: 0.5
+            });
+
+            gsap.to(sendButton, {
+                backgroundColor: "#ff7f11",
+                color: "#0A192F",
+                boxShadow: "none",
+                duration: 0.3
+            });
+
+            setTimeout(() => {
+                sendingFeedback.style.display = "none";
+            }, 1000);
+        }, 3000);
+    }).catch(error => {
+        sendingMsg.textContent = "❌ Une erreur s’est produite.";
+        sendingMsg.style.color = "red";
+    });
+});
+
+
+
 });
 
