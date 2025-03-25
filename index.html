@@ -6,10 +6,10 @@
     <meta name="description" content="Portfolio de Gabriel Sagot - Étudiant en BUT Science des Données">
     <title>Portfolio - Gabriel Sagot</title>
     <link rel="stylesheet" href="style.css">
-	<link id="favicon" rel="icon" type="image/png" href="favicon_nuit.png">
-	<!-- Import des icônes Font Awesome -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link id="favicon" rel="icon" type="image/png" href="favicon_nuit.png">
 
+    <!-- Import des icônes Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- Import GSAP et ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -20,8 +20,16 @@
 </head>
 <body>
 
+<!-- Bouton thème jour/nuit -->
 <button id="theme-toggle">
     <span class="icon">🌙</span>
+</button>
+
+<!-- ✅ Bouton burger pour mobile -->
+<button id="burger-toggle" aria-label="Menu mobile">
+    <span></span>
+    <span></span>
+    <span></span>
 </button>
 
 <!-- Navbar -->
@@ -37,7 +45,6 @@
         </ul>
     </div>
 </nav>
-
 
 <!-- Section Accueil -->
 <header class="hero">

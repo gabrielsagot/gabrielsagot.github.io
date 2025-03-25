@@ -201,6 +201,7 @@ body {
 }
 
 /* BOUTON "DÉCOUVRIR" */
+/* 🌙 MODE NUIT - BOUTON */
 .btn {
     display: inline-block;
     background: #ff7f11;
@@ -222,19 +223,7 @@ body {
     box-shadow: 0px 6px 20px rgba(255, 127, 17, 0.6);
 }
 
-.light-mode .btn:hover {
-    background: #4B365F; /* Violet clair élégant */
-    color: #ffffff;
-    transform: scale(1.1);
-    box-shadow: 0px 6px 20px rgba(124, 14, 133, 0.8) !important;
-}
-
-@keyframes pulse {
-    from { transform: scale(1); box-shadow: 0px 4px 15px rgba(255, 127, 17, 0.4); }
-    to { transform: scale(1.04); box-shadow: 0px 6px 20px rgba(255, 127, 17, 0.6); }
-}
-
-/* MODE JOUR */
+/* 🌞 MODE JOUR */
 .light-mode .btn {
     background: #7C0E85;
     color: white;
@@ -242,7 +231,38 @@ body {
 }
 
 .light-mode .btn:hover {
-    box-shadow: 0px 6px 20px rgba(230, 114, 16, 0.6) !important;
+    background: #4B365F;
+    transform: scale(1.1);
+    box-shadow: 0px 6px 20px rgba(124, 14, 133, 0.8) !important;
+    color: #ffffff;
+}
+
+/* 🔄 Animation Pulse */
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        box-shadow: 0px 4px 15px rgba(255, 127, 17, 0.4);
+    }
+    to {
+        transform: scale(1.04);
+        box-shadow: 0px 6px 20px rgba(255, 127, 17, 0.6);
+    }
+}
+
+/* Adaptation du pulse pour le mode jour */
+.light-mode .btn {
+    animation: pulse-violet 2s infinite alternate;
+}
+
+@keyframes pulse-violet {
+    from {
+        transform: scale(1);
+        box-shadow: 0px 4px 15px rgba(124, 14, 133, 0.4);
+    }
+    to {
+        transform: scale(1.04);
+        box-shadow: 0px 6px 20px rgba(124, 14, 133, 0.6);
+    }
 }
 
 /* CORRECTION LUEUR MODE JOUR */
@@ -417,109 +437,159 @@ body {
     filter: drop-shadow(0 0 10px rgba(124, 14, 133, 0.7));
 }
 
-
-/* 🌍 RESPONSIVE DESIGN */
-
-/* ✅ Pour MacBook 13" (1280px - 1440px) */
-@media (max-width: 1440px) {
-    .navbar {
-        padding: 15px 50px; /* Réduction de l'espace latéral */
-    }
-    .nav-links {
-        gap: 20px;
-    }
-    .hero h1 {
-        font-size: 3rem;
-    }
-    .btn {
-        font-size: 1.1rem;
-        padding: 12px 26px;
-    }
+/* 🍔 BURGER MENU STYLES POUR MOBILE */
+#burger-toggle {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
-/* ✅ Pour Tablettes (1024px - 1279px) */
-@media (max-width: 1279px) {
-    .navbar {
-        flex-direction: column;
-        padding: 15px 30px;
-    }
-    .nav-links {
-        flex-wrap: wrap;
-        gap: 15px;
-        padding: 0 5%;
-    }
-    .nav-links li {
-        min-width: auto;
-    }
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    .btn {
-        font-size: 1rem;
-        padding: 10px 24px;
-    }
-    .logo {
-        width: 80px;
-    }
+#burger-toggle span {
+    display: block;
+    width: 30px;
+    height: 4px;
+    margin: 5px auto;
+    background-color: #ff7f11;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
 }
 
-/* ✅ Pour Smartphones (≤1024px) */
+#burger-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+#burger-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+#burger-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Masquer les liens nav sur mobile */
 @media (max-width: 1024px) {
-    .navbar {
-        flex-direction: column;
-        padding: 10px 20px;
-    }
     .nav-links {
+        display: none;
         flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    .nav-links li {
+        position: absolute;
+        top: 70px;
+        right: 0;
         width: 100%;
-        text-align: center;
+        background: rgba(10, 25, 47, 0.95);
+        padding: 20px 0;
+        gap: 20px;
+        z-index: 1000;
     }
-    .nav-links li a {
+
+    .nav-links.show {
+        display: flex;
+        animation: slideDown 0.4s ease-out forwards;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    #burger-toggle {
         display: block;
-        width: 100%;
-        padding: 12px;
     }
-    .hero {
-        height: auto;
-        padding: 50px 0;
-    }
-    .hero h1 {
-        font-size: 2rem;
-    }
-    .btn {
-        font-size: 0.9rem;
-        padding: 8px 20px;
-    }
-}
 
-/* ✅ Pour Mobiles (≤768px) */
-@media (max-width: 768px) {
     .navbar {
-        padding: 10px 15px;
-    }
-    .nav-links {
-        flex-direction: column;
-        gap: 8px;
-    }
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-    .btn {
-        font-size: 0.85rem;
-        padding: 8px 18px;
-    }
-    .logo {
-        width: 70px;
+        justify-content: space-between;
     }
 }
+@media (max-width: 768px) {
+
+    /* Bouton thème repositionné à gauche du burger */
+    #theme-toggle {
+        top: 15px;
+        right: 70px; /* éloigné du menu burger */
+        z-index: 1101;
+    }
+
+    /* Bouton burger toujours au-dessus */
+    #burger-toggle {
+        z-index: 1102;
+    }
+
+    /* Logo + boutons mieux alignés */
+    .logo {
+        position: absolute;
+        left: 15px;
+        top: 12px;
+        width: 60px;
+    }
 
 
+}
 
+/* 🌞 MODE JOUR - Menu burger & liens (responsive) */
+@media (max-width: 1024px) {
+  /* Fond clair pour le menu déroulant */
+  .light-mode .nav-links {
+    background: rgba(255, 255, 255, 0.97);
+  }
 
+  /* Liens du menu */
+  .light-mode .nav-links li a {
+    color: #1E1E1E;
+    background: transparent;
+  }
+
+  /* Hover des liens en violet clair */
+  .light-mode .nav-links li a:hover {
+    background: rgba(124, 14, 133, 0.1);
+    color: #7C0E85;
+  }
+
+  /* Liens actifs (page courante) */
+  .light-mode .nav-links li a.active {
+    background: #7C0E85;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(124, 14, 133, 0.4);
+    border-radius: 8px;
+  }
+
+  /* Barres du burger : violettes */
+  .light-mode #burger-toggle span {
+    background-color: #7C0E85;
+  }
+
+  /* Bouton de thème : ajusté si besoin */
+  .light-mode #theme-toggle {
+    color: #7C0E85;
+    background: rgba(255,255,255,0.9);
+  }
+
+  /* Logo + burger toujours bien visibles */
+  .light-mode .logo:hover {
+    filter: drop-shadow(0 0 10px rgba(124, 14, 133, 0.7));
+  }
+}
+
+.hero h1 {
+    word-break: keep-all;
+    overflow-wrap: normal;
+    white-space: normal;
+    line-break: strict;
+    hyphens: none;
+    width: 100%;
+    max-width: 90vw;
+    margin: 0 auto;
+    text-align: center;
+}
 
 
 

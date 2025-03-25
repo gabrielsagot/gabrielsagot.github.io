@@ -118,4 +118,24 @@ document.addEventListener("DOMContentLoaded", function () {
             { scale: 1.2, duration: 0.3, ease: "elastic.out(1, 0.3)", yoyo: true, repeat: 1 }
         );
     });
+
+	    /** ========================== **/
+    /** 🍔 BURGER MENU MOBILE     **/
+    /** ========================== **/
+    const burgerToggle = document.getElementById("burger-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    burgerToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+        burgerToggle.classList.toggle("open");
+    });
+
+    // Fermer le menu après clic sur un lien
+    document.querySelectorAll(".nav-links a").forEach(link => {
+        link.addEventListener("click", () => {
+            navLinks.classList.remove("show");
+            burgerToggle.classList.remove("open");
+        });
+    });
+
 });
