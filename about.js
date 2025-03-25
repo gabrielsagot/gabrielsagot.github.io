@@ -322,18 +322,6 @@ themeToggle.addEventListener("click", () => {
     /** ========================== **/
     gsap.from(".logo", { opacity: 0, y: -30, duration: 1, ease: "power3.out" });
 
-	/** ========================== **/
-	/** 🖋️ MISE EN GRAS DES MOTS CLÉS **/
-	/** ========================== **/
-
-	document.querySelectorAll("h1, h2, p").forEach(element => {
-		element.innerHTML = element.innerHTML.replace(
-			/\b(Me|moi|Mien)\b/g, 
-			'<span style="font-weight: bold;">$1</span>'
-		);
-	});
-});
-
 
 /** ========================== **/
 /** ☁️ ANIMATION NUAGE DE MOTS (Apparition uniquement quand visible) **/
@@ -378,3 +366,78 @@ gsap.utils.toArray(".keyword").forEach((word, index) => {
         });
     });
 });
+
+/** ========================== **/
+/** 🍔 BURGER MENU MOBILE     **/
+/** ========================== **/
+const burgerToggle = document.getElementById("burger-toggle");
+const navLinks = document.querySelector(".nav-links");
+
+// ✅ Ferme le menu quand on clique sur un lien
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("show");
+    burgerToggle.classList.remove("open");
+  });
+});
+
+/** ========================== **/
+/** 📱 ANIMATIONS GSAP MOBILE  **/
+/** ========================== **/
+if (window.innerWidth <= 768) {
+  const warning = document.getElementById("mobile-warning");
+  const closeBtn = document.getElementById("close-warning");
+
+  // ✅ Affichage du message mobile
+  if (warning && closeBtn) {
+    gsap.fromTo(warning,
+      { y: -100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.3 }
+    );
+    warning.style.display = "block";
+
+    gsap.fromTo(closeBtn,
+      { scale: 0, rotate: -90 },
+      { scale: 1, rotate: 0, duration: 0.5, ease: "back.out(1.7)", delay: 0.6 }
+    );
+
+    closeBtn.addEventListener("click", () => {
+      gsap.to(warning, {
+        y: -100,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power3.in",
+        onComplete: () => warning.style.display = "none"
+      });
+    });
+  }
+
+  // ✅ Toggle du menu burger avec animation
+  if (burgerToggle && navLinks) {
+    burgerToggle.addEventListener("click", () => {
+      if (navLinks.classList.contains("show")) {
+        gsap.to(navLinks, {
+          y: -20,
+          opacity: 0,
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete: () => {
+            navLinks.classList.remove("show");
+            burgerToggle.classList.remove("open");
+          }
+        });
+      } else {
+        navLinks.classList.add("show");
+        burgerToggle.classList.add("open");
+        gsap.fromTo(navLinks,
+          { y: -20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+        );
+      }
+    });
+  }
+}
+
+});
+
+

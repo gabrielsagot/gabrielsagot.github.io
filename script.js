@@ -125,10 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const burgerToggle = document.getElementById("burger-toggle");
     const navLinks = document.querySelector(".nav-links");
 
-    burgerToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
-        burgerToggle.classList.toggle("open");
-    });
+
 
     // Fermer le menu après clic sur un lien
     document.querySelectorAll(".nav-links a").forEach(link => {
@@ -137,5 +134,155 @@ document.addEventListener("DOMContentLoaded", function () {
             burgerToggle.classList.remove("open");
         });
     });
+
+if (window.innerWidth <= 768) {
+  const warning = document.getElementById("mobile-warning");
+  const closeBtn = document.getElementById("close-warning");
+
+  if (warning && closeBtn) {
+    warning.style.display = "block";
+
+    closeBtn.addEventListener("click", () => {
+      warning.style.display = "none";
+    });
+  }
+}
+/** ========================== **/
+/** 📱 ANIMATIONS GSAP MOBILE  **/
+/** ========================== **/
+
+// Si l'écran est mobile
+if (window.innerWidth <= 768) {
+  // Bannière mobile - slide down + fade
+  const warning = document.getElementById("mobile-warning");
+  const closeBtn = document.getElementById("close-warning");
+
+  if (warning && closeBtn) {
+    gsap.fromTo(warning,
+      { y: -100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1, ease: "power3.out", delay: 0.3 }
+    );
+    warning.style.display = "block";
+
+    // Apparition stylée de la croix
+    gsap.fromTo(closeBtn,
+      { scale: 0, rotate: -90 },
+      { scale: 1, rotate: 0, duration: 0.5, ease: "back.out(1.7)", delay: 0.6 }
+    );
+
+    // Fermeture de la bannière
+    closeBtn.addEventListener("click", () => {
+      gsap.to(warning, {
+        y: -100,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power3.in",
+        onComplete: () => warning.style.display = "none"
+      });
+    });
+  }
+
+  // Animation du menu burger quand il s’ouvre
+  const burgerToggle = document.getElementById("burger-toggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  if (burgerToggle && navLinks) {
+    burgerToggle.addEventListener("click", () => {
+      if (navLinks.classList.contains("show")) {
+        // Fermeture animée
+        gsap.to(navLinks, {
+          y: -20,
+          opacity: 0,
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete: () => navLinks.classList.remove("show")
+        });
+      } else {
+        navLinks.classList.add("show");
+        gsap.fromTo(navLinks,
+          { y: -20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }
+        );
+      }
+    });
+  }
+
+
+
+
+  // Apparition du texte principal (stagger des lettres)
+  gsap.to(".letter", {
+    opacity: 1,
+    y: 0,
+    stagger: 0.05,
+    duration: 0.8,
+    ease: "power2.out",
+    delay: 0.5
+  });
+}
+
+
+const discoverBtn = document.querySelector(".btn");
+
+if (discoverBtn) {
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    // Mobile → animation plus simple mais classe
+    gsap.fromTo(discoverBtn,
+      { y: 40, opacity: 0, scale: 0.85 },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        ease: "power3.out",
+        delay: 1
+      }
+    );
+  } else {
+    // GRAND ÉCRAN → ANIMATION CINÉMATIQUE 😎
+    const tl = gsap.timeline({ delay: 1.5 });
+
+    // 1. Arrivée dynamique (rotation + scale + perspective)
+    tl.fromTo(discoverBtn,
+      {
+        y: 100,
+        opacity: 0,
+        scale: 0,
+        rotate: -30,
+        filter: "blur(10px)",
+        transformOrigin: "center center"
+      },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        rotate: 0,
+        filter: "blur(0px)",
+        duration: 2,
+        ease: "back.out(1.8)"
+      }
+    );
+
+    // 2. Explosion de glow
+    tl.to(discoverBtn, {
+      boxShadow: "0 0 30px 10px rgba(255,127,17,0.7)",
+      duration: 0.8,
+      ease: "power1.out"
+    });
+
+    // 3. Respiration lente (loop)
+    tl.to(discoverBtn, {
+      scale: 1.04,
+      boxShadow: "0 0 15px 4px rgba(255,127,17,0.4)",
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    }, "+=0.3");
+  }
+}
+
 
 });
