@@ -911,6 +911,10 @@ body.light-mode #contact-title {
 }
 
 
+.swipe-indicator {
+  display: none;
+}
+
 /* 💡 Indication de swipe visible uniquement sur mobile */
 @media screen and (max-width: 768px) {
   .swipe-indicator {

@@ -285,4 +285,18 @@ if (discoverBtn) {
 }
 
 
-});
+  function updateDiscoverLink() {
+    const discoverBtn = document.getElementById("discover-btn");
+    if (!discoverBtn) return;
+
+    if (window.innerWidth <= 768) {
+      discoverBtn.setAttribute("href", "about.html");
+    } else {
+      discoverBtn.setAttribute("href", "exploration.html");
+    }
+  }
+
+  updateDiscoverLink(); // appel initial
+  window.addEventListener("resize", updateDiscoverLink); // mise à jour dynamique
+
+}); // FIN de DOMContentLoaded

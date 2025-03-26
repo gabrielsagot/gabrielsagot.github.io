@@ -1,5 +1,5 @@
 
-@media screen and (max-width: 480px) {
+@media (max-width: 1024px) {
   /* 🔠 Titre principal plus petit */
   .exploration-title {
     font-size: 1.7rem;
