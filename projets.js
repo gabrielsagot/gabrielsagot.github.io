@@ -646,5 +646,36 @@ if (window.innerWidth <= 768) {
   }
 }
 
+// 📱✨ Apparition des projets mobile + détection du mode
+if (window.innerWidth <= 768) {
+  const isLight = document.body.classList.contains("light-mode");
+
+  gsap.set(".project-card", {
+    opacity: 0,
+    scale: 0.8,
+    rotationZ: -10,
+    y: 60,
+    boxShadow: "0 0 0 rgba(0,0,0,0)"
+  });
+
+  gsap.to(".project-card", {
+    scrollTrigger: {
+      trigger: ".projects-grid",
+      start: "top 90%", // dès que le haut de la grille entre dans la fenêtre
+      toggleActions: "play none none none",
+      once: true // ✅ une seule fois
+    },
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    rotationZ: 0,
+    boxShadow: isLight
+      ? "0px 8px 25px rgba(124, 14, 133, 0.25)"   // violet clair en mode jour
+      : "0px 8px 25px rgba(255, 127, 17, 0.25)", // orange doux en mode nuit
+    duration: 1.3,
+    ease: "back.out(1.7)",
+    stagger: 0.25
+  });
+}
 
 });
