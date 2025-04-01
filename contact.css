@@ -639,6 +639,28 @@ body.light-mode #contact-title {
 
 
 
+@media screen and (max-width: 768px) {
+  .contact-sections {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 0 20px;
+  }
+
+  .contact-block {
+    width: 100%;
+    max-width: 95%;
+    min-width: unset;
+    min-height: auto;
+    max-height: none;
+    height: auto;
+  }
+
+  .vertical-divider {
+    display: none; /* 🔒 On cache les barres entre les blocs en mode mobile */
+  }
+}
+
 
 @media (max-width: 768px) {
     .logo {
@@ -911,54 +933,6 @@ body.light-mode #contact-title {
 }
 
 
-.swipe-indicator {
-  display: none;
-}
-
-/* 💡 Indication de swipe visible uniquement sur mobile */
-@media screen and (max-width: 768px) {
-  .swipe-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 1rem;
-    color: #ffcc33;
-    font-weight: bold;
-    margin-top: -40px;
-    margin-bottom: 30px;
-    animation: fadeSlide 2s infinite;
-  }
-
-  .swipe-indicator .arrow-left {
-    animation: moveLeft 1.2s infinite;
-  }
-
-  .swipe-indicator .arrow-right {
-    animation: moveRight 1.2s infinite;
-  }
-
-  @keyframes moveLeft {
-    0% { transform: translateX(0); opacity: 0.6; }
-    50% { transform: translateX(-8px); opacity: 1; }
-    100% { transform: translateX(0); opacity: 0.6; }
-  }
-
-  @keyframes moveRight {
-    0% { transform: translateX(0); opacity: 0.6; }
-    50% { transform: translateX(8px); opacity: 1; }
-    100% { transform: translateX(0); opacity: 0.6; }
-  }
-
-  @keyframes fadeSlide {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 1; }
-  }
-
-  .light-mode .swipe-indicator {
-    color: #7C0E85;
-  }
-}
 
 @media screen and (max-width: 480px) {
   #contact-title {
