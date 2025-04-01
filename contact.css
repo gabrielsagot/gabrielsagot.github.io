@@ -372,10 +372,11 @@ body.light-mode #contact-title {
 .contact-block {
     flex: 1;
     justify-content: center; /* 💡 Centrage vertical du contenu */
-    min-width: 400px;
-    max-width: 600px;
+	width: 100%;
+    max-width: 480px;
+    padding: 30px 20px;
     min-height: 510px;
-    max-height: 510px; /* 🆕 On fige les hauteurs */
+    max-height: 510px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 20px;
     padding: 30px 25px;
@@ -383,9 +384,10 @@ body.light-mode #contact-title {
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 50px 10px; /* plus d'espace interne */
+    align-items: stretch;
 }
 
-
+    max-height: 510px; /* 🆕 On fige les hauteurs */
 
 /* 🧲 Effet de survol sur chaque bloc */
 .contact-block:hover {
@@ -966,8 +968,9 @@ body.light-mode #contact-title {
   }
 }
 
-
-
+.vertical-divider {
+  min-width: 10px;
+}
 
 
 
