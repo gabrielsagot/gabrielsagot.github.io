@@ -12,7 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 </head>
 <body>
@@ -95,7 +94,7 @@
     <div class="project-card" data-date="20241216" data-time="33">
         <div class="project-header">
             <span class="project-date">
-                <i class="fas fa-calendar-alt"></i> 16 décembre 2024
+                <i class="fas fa-calendar-alt"></i> Début le 16 décembre 2024
             </span>
         </div>
         <img src="projet2.png" alt="Projet 2">
@@ -149,6 +148,71 @@
         <button class="project-btn" data-project="4">En savoir plus</button>
     </div>
 </div>
+
+
+    <div class="project-card" data-date="20250520" data-time="8">
+        <div class="project-header">
+            <span class="project-date">
+                <i class="fas fa-calendar-alt"></i> Début 20 mai 2025
+            </span>
+        </div>
+        <img src="projet5.png" alt="Projet 5">
+        <h3>Analyse de l'activité économique des régions françaises en 2023</h3>
+        <div class="project-info">
+            <span class="difficulty easy">
+                <i class="fas fa-star"></i> Facile
+            </span>
+            <span class="duration">
+                <i class="fas fa-clock"></i> 8h
+            </span>
+        </div>
+        <button class="project-btn" data-project="5">En savoir plus</button>
+    </div>
+    
+    
+    
+        <div class="project-card" data-date="20250401" data-time="10">
+            <div class="project-header">
+                <span class="project-date">
+                    <i class="fas fa-calendar-alt"></i> Début 1er avril 2025
+                </span>
+            </div>
+            <img src="projet6.png" alt="Projet 6">
+            <h3>Régression linéaire sur des données réelles</h3>
+            <div class="project-info">
+                <span class="difficulty hard">
+                    <i class="fas fa-star"></i> Difficile
+                </span>
+                <span class="duration">
+                    <i class="fas fa-clock"></i> 10h
+                </span>
+            </div>
+            <button class="project-btn" data-project="6">En savoir plus</button>
+        </div>
+
+
+
+            <div class="project-card" data-date="20250601" data-time="32">
+                <div class="project-header">
+                    <span class="project-date">
+                        <i class="fas fa-calendar-alt"></i> Début 1er juin 2025
+                    </span>
+                </div>
+                <img src="projet7.png" alt="Projet 7">
+                <h3>Analyse de données, reporting et datavisualisation</h3>
+                <div class="project-info">
+                    <span class="difficulty hard">
+                        <i class="fas fa-star"></i> Difficile
+                    </span>
+                    <span class="duration">
+                        <i class="fas fa-clock"></i> 32h
+                    </span>
+                </div>
+                <button class="project-btn" data-project="7">En savoir plus</button>
+            </div>
+    
+
+
     </section>
 
 
@@ -164,33 +228,27 @@
 
     <!-- Grille du Projet Personnel -->
     <div class="projects-grid">
-        <div class="project-card personal-project" data-date="20250102" data-time="120">
+        <div class="project-card personal-project" data-date="20250407" data-time="120">
             <div class="project-header">
                 <span class="project-date">
                     <i class="fas fa-calendar-alt"></i> 2 janvier 2025
                 </span>
             </div>
             <img src="projetperso.png" alt="Projet Personnel">
-            <h3>Calendrier partagé</h3>
+            <h3>Conception de sites web pour particuliers</h3>
             <div class="project-info">
-                <span class="difficulty expert">
-                    <i class="fas fa-star"></i> Expert
+                <span class="ddifficulty hard">
+                    <i class="fas fa-star"></i> Très difficile
                 </span>
                 <span class="duration">
                     <i class="fas fa-clock"></i> +110h
                 </span>
             </div>
-            <button class="project-btn" data-project="5">En savoir plus</button>
+            <button class="project-btn" data-project="8">En savoir plus</button>
         </div>
     </div>
 </section>
 
-
-
-
-
-    <!-- Script -->
-    <script src="projets.js"></script>
     
 <!-- 🔍 POP-UP DE DÉTAILS PROJETS -->
 <div id="popup-container" class="popup-container">
@@ -203,6 +261,67 @@
         <div id="popup-images" class="popup-images"></div>
     </div>
 </div>
-    
+   
+   
+   
+<!-- 🧾 SECTION BILAN ANNUEL -->
+<section class="bilan-annuel-section">
+    <!-- 🎯 Titre principal -->
+    <h2 class="section-title bilan-title">
+        <i class="fas fa-scroll"></i> Mon Bilan Annuel
+    </h2>
+
+    <!-- Motif de séparation -->
+    <div class="section-divider"></div>
+
+    <!-- 🌈 Barre de sélection d’année -->
+    <div class="year-selector">
+        <button class="year-btn active" data-year="2024">2024</button>
+        <button class="year-btn disabled" data-year="2025" disabled>2025</button>
+        <button class="year-btn disabled" data-year="2023" disabled>2023</button>
+    </div>
+
+    <!-- 📝 Contenu des bilans -->
+    <div class="bilan-container">
+        <!-- 🔹 Bilan 2024 -->
+        <div class="bilan-item" data-year="2024">
+            <h3 class="bilan-subtitle">Un premier pas dans le monde de la Data</h3>
+            <img src="bilan1.png" alt="Bilan 2024" class="bilan-image">
+            <p class="bilan-text">
+                Cette première année en BUT Science des Données a marqué un tournant. J’ai découvert un domaine qui me passionne, j’ai appris à manier Python, SQL, R et SAS...
+            </p>
+            <button class="bilan-btn" data-year="2024">Voir plus</button>
+        </div>
+
+        <!-- 🔹 Bilan 2025 -->
+        <div class="bilan-item" data-year="2025" style="display: none;">
+            <!-- À remplir -->
+        </div>
+
+        <!-- 🔹 Bilan 2023 -->
+        <div class="bilan-item" data-year="2023" style="display: none;">
+            <!-- À remplir -->
+        </div>
+    </div>
+</section>
+
+<!-- 💬 POP-UP DÉTAIL BILAN -->
+<div id="bilan-popup" class="bilan-popup-container">
+    <div class="bilan-popup-content">
+        <span class="bilan-popup-close">&times;</span>
+        <h2 id="bilan-popup-title">Bilan Annuel 2024/2025 Gabriel Sagot</h2>
+
+        <p id="bilan-popup-text">
+            
+        </p>
+
+        <button id="download-bilan" class="bilan-download-btn">
+            <i class="fas fa-download"></i> Télécharger en PDF
+        </button>
+    </div>
+</div>
+    <!-- Script -->
+    <script src="projets.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>

@@ -1310,11 +1310,283 @@ body.light-mode #projets-word {
   color: #4B365F;
 }
 
+.project-card {
+  transition: box-shadow 0.4s ease;
+}
 
+/* =========================== */
+/* 📘 SECTION BILAN ANNUEL     */
+/* =========================== */
 
+.bilan-annuel-section {
+    margin-top: 100px;
+    padding: 50px 30px;
+    text-align: center;
+}
 
+.bilan-title i {
+    color: #ff7f11;
+}
+.light-mode .bilan-title i {
+    color: #7C0E85;
+}
 
+.year-selector {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
 
+.year-btn {
+    background: linear-gradient(135deg, #ff7f11, #e66a00);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(255, 127, 17, 0.3);
+}
+
+.year-btn:hover:not(.disabled) {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #e66a00, #cc5000);
+}
+
+.year-btn.active {
+    box-shadow: 0 0 15px rgba(255, 127, 17, 0.6);
+}
+
+.year-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.light-mode .year-btn {
+    background: linear-gradient(135deg, #7C0E85, #b65cff);
+    box-shadow: 0 4px 10px rgba(124, 14, 133, 0.3);
+}
+
+.light-mode .year-btn:hover:not(.disabled) {
+    background: linear-gradient(135deg, #590065, #7C0E85);
+}
+
+.bilan-container {
+    margin-top: 40px;
+}
+
+.bilan-item {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0px 8px 18px rgba(255, 127, 17, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.bilan-item:hover {
+    transform: scale(1.02);
+}
+
+.light-mode .bilan-item {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0px 8px 18px rgba(124, 14, 133, 0.2);
+}
+
+.bilan-subtitle {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: white;
+}
+.light-mode .bilan-subtitle {
+    color: #1E1E1E;
+}
+
+.bilan-image {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.bilan-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ddd;
+}
+.light-mode .bilan-text {
+    color: #333;
+}
+
+.bilan-btn {
+    margin-top: 20px;
+    padding: 12px 28px;
+    font-size: 1rem;
+    background: #ff7f11;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.bilan-btn:hover {
+    background: #e66a00;
+    transform: scale(1.05);
+}
+
+.light-mode .bilan-btn {
+    background: #7C0E85;
+}
+
+.light-mode .bilan-btn:hover {
+    background: #590065;
+}
+
+/* =========================== */
+/* 💬 POP-UP BILAN ANNUEL      */
+/* =========================== */
+
+.bilan-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+}
+
+.bilan-popup-container.active {
+    display: flex;
+}
+
+.bilan-popup-content {
+    background: #1e1e1e;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 900px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    color: white;
+    box-shadow: 0 0 30px rgba(255, 127, 17, 0.5);
+    position: relative;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.4s ease-out;
+}
+
+.bilan-popup-container.active .bilan-popup-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.bilan-popup-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.bilan-popup-close:hover {
+    transform: rotate(90deg) scale(1.2);
+    color: #ff7f11;
+}
+
+.bilan-popup-content h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.bilan-popup-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #eee;
+}
+
+/* 🌞 Mode jour */
+.light-mode .bilan-popup-content {
+    background: white;
+    color: #1E1E1E;
+    box-shadow: 0 0 30px rgba(124, 14, 133, 0.4);
+}
+
+.light-mode .bilan-popup-content p {
+    color: #333;
+}
+
+.light-mode .bilan-popup-close {
+    color: #7C0E85;
+}
+.light-mode .bilan-popup-close:hover {
+    color: #b65cff;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+    .bilan-popup-content {
+        padding: 25px;
+        max-height: 90vh;
+    }
+
+    .year-selector {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .bilan-image {
+        max-height: 250px;
+    }
+
+    .bilan-subtitle {
+        font-size: 1.4rem;
+    }
+
+    .bilan-text {
+        font-size: 1rem;
+    }
+}
+
+.bilan-download-btn {
+    margin-top: 20px;
+    background: #ff7f11;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.bilan-download-btn:hover {
+    background: #e06600;
+    transform: scale(1.05);
+}
+
+/* 🌞 Mode jour */
+.light-mode .bilan-download-btn {
+    background: #7C0E85;
+}
+
+.light-mode .bilan-download-btn:hover {
+    background: #b65cff;
+}
 
 
 
