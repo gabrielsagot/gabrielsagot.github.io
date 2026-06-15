@@ -3110,6 +3110,56 @@
                 opacity: 0.8;
             }
         }
+
+        /* ==========================================================
+       RESPONSIVE — TÉLÉPHONE
+       Ajouts uniquement : ces règles ne s'appliquent qu'en dessous
+       des seuils mobiles et ne modifient en rien le rendu bureau.
+    ========================================================== */
+        @media (max-width: 600px) {
+
+            /* Hero : titre réduit pour respirer et éviter tout débordement
+               horizontal sur les petits écrans (≤ 360 px notamment). */
+            .hero-name {
+                font-size: clamp(2.5rem, 13vw, 4rem);
+            }
+
+            /* Logos partenaires (À propos & Contact) : le logo Thales, très
+               horizontal, élargissait la page et provoquait un défilement
+               latéral → on autorise le retour à la ligne et on réduit la taille. */
+            .about-logos {
+                flex-wrap: wrap;
+                gap: 1.4rem;
+            }
+
+            .about-logos .alogo {
+                height: 26px;
+            }
+
+            .about-logos .alogo:nth-child(2) {
+                height: 42px;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            /* Sélecteur d'année des projets : compacté pour tenir sur les
+               téléphones les plus étroits. */
+            .year-tabs {
+                gap: 0.1rem;
+                padding: 0.25rem;
+            }
+
+            .year-tab {
+                padding: 0.5rem 0.55rem;
+                font-size: 0.72rem;
+                gap: 0.3rem;
+            }
+
+            .year-tab span {
+                font-size: 0.48rem;
+            }
+        }
     </style>
 </head>
 
