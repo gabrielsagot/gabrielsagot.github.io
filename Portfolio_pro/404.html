@@ -1133,6 +1133,13 @@
             color: rgba(255, 255, 255, 0.65);
         }
 
+        /* Pendant la saisie des initiales, la barre espace VALIDE les initiales
+           (et non « rejouer ») : on masque l'indice clavier pour éviter la confusion.
+           Le bouton reste cliquable/tactile pour rejouer. */
+        #gameover:has(.arcade-input.show) .go-replay span {
+            display: none;
+        }
+
         .go-quit {
             font-family: var(--f-mono);
             font-size: 0.62rem;
@@ -1703,6 +1710,432 @@
                 transition: none !important;
             }
         }
+
+        /* ════════════════ Boutique de cosmétiques ════════════════ */
+        /* bouton d'ouverture (écran d'accueil, sous le bouton de lancement) */
+        .shop-open-btn {
+            margin-top: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 0.95rem 0.5rem 0.8rem;
+            font-family: var(--f-sans);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--tx);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--ln);
+            border-radius: 100px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.35s var(--ease), border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .shop-open-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(192, 132, 252, 0.6);
+            background: rgba(124, 58, 237, 0.12);
+        }
+
+        .shop-open-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .shop-open-btn .so-ico {
+            font-size: 1rem;
+        }
+
+        .shop-open-btn .so-coins {
+            font-family: var(--f-mono);
+            font-size: 0.74rem;
+            color: #fbbf24;
+            padding-left: 0.6rem;
+            border-left: 1px solid var(--ln);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* icônes SVG (boutique / pièce) — héritent de la taille et de la couleur du texte */
+        .ic-coin,
+        .ic-bag {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.14em;
+            flex-shrink: 0;
+        }
+
+        .ic-coin {
+            color: #fbbf24;
+        }
+
+        .so-ico .ic-bag {
+            width: 1.05em;
+            height: 1.05em;
+        }
+
+        /* pièces gagnées (game over) */
+        .go-coins {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            font-family: var(--f-mono);
+            font-size: 0.72rem;
+        }
+
+        .go-coins .gc-earn {
+            color: #fbbf24;
+        }
+
+        .go-coins .gc-bal {
+            color: var(--dim);
+        }
+
+        .go-shop {
+            font-family: var(--f-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--acc-bright);
+            background: rgba(124, 58, 237, 0.14);
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            border-radius: 100px;
+            padding: 0.75rem 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        .go-shop:hover {
+            background: rgba(124, 58, 237, 0.28);
+            border-color: rgba(192, 132, 252, 0.7);
+            color: #fff;
+        }
+
+        .go-actions {
+            flex-wrap: wrap;
+        }
+
+        /* modale */
+        .shop {
+            position: fixed;
+            inset: 0;
+            z-index: 250;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2rem;
+        }
+
+        .shop.show {
+            display: flex;
+        }
+
+        .shop-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(4, 2, 10, 0.72);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .shop-card {
+            position: relative;
+            width: min(720px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: linear-gradient(180deg, rgba(22, 17, 33, 0.97), rgba(10, 8, 16, 0.98));
+            border: 1px solid rgba(192, 132, 252, 0.18);
+            border-radius: 22px;
+            padding: 1.6rem 1.6rem 1.2rem;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            animation: shopIn 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @keyframes shopIn {
+            from {
+                opacity: 0;
+                transform: translateY(22px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .shop-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--ln);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--mut);
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 2;
+            transition: color 0.3s, border-color 0.3s, background 0.3s;
+        }
+
+        .shop-close:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .shop-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            padding-right: 2.6rem;
+        }
+
+        .shop-kicker {
+            font-family: var(--f-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--acc-bright);
+            margin: 0 0 0.35rem;
+        }
+
+        .shop-title {
+            font-family: var(--f-sans);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin: 0;
+            color: #fff;
+        }
+
+        .shop-balance {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-family: var(--f-mono);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 100px;
+            padding: 0.4rem 0.85rem;
+            white-space: nowrap;
+        }
+
+        .shop-tabs {
+            display: flex;
+            gap: 0.3rem;
+            padding: 0.3rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--ln);
+            border-radius: 12px;
+            margin-bottom: 0.7rem;
+        }
+
+        .shop-tab {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.12rem;
+            padding: 0.55rem 0.4rem;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            color: var(--mut);
+            font-family: var(--f-sans);
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .shop-tab small {
+            font-family: var(--f-mono);
+            font-size: 0.52rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .shop-tab:hover {
+            color: var(--tx);
+        }
+
+        .shop-tab.active {
+            background: rgba(124, 58, 237, 0.25);
+            color: #fff;
+            box-shadow: inset 0 0 0 1px rgba(192, 132, 252, 0.3);
+        }
+
+        .shop-tab.active small {
+            color: var(--acc-bright);
+        }
+
+        .shop-cat-hint {
+            font-family: var(--f-mono);
+            font-size: 0.62rem;
+            color: var(--dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 0 0 1rem;
+            text-align: center;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.7rem;
+        }
+
+        .shop-item {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid var(--ln);
+            border-radius: 14px;
+            padding: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            transition: border-color 0.25s, transform 0.25s, background 0.25s;
+        }
+
+        .shop-item:hover {
+            border-color: rgba(192, 132, 252, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .shop-item.is-equipped {
+            border-color: rgba(52, 211, 153, 0.5);
+            background: rgba(52, 211, 153, 0.05);
+        }
+
+        .si-prev {
+            position: relative;
+            height: 72px;
+            border-radius: 10px;
+            background: radial-gradient(circle at 50% 62%, rgba(124, 58, 237, 0.13), rgba(0, 0, 0, 0.28));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .si-name {
+            font-family: var(--f-sans);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--tx);
+            text-align: center;
+            line-height: 1.1;
+        }
+
+        .si-btn {
+            font-family: var(--f-mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--ln);
+            background: transparent;
+            color: var(--mut);
+            cursor: pointer;
+            transition: background 0.25s, color 0.25s, border-color 0.25s;
+            text-align: center;
+        }
+
+        .si-btn.buy {
+            color: #fbbf24;
+            border-color: rgba(251, 191, 36, 0.35);
+        }
+
+        .si-btn.buy:hover {
+            background: rgba(251, 191, 36, 0.15);
+        }
+
+        .si-btn.buy.locked {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .si-btn.buy.locked:hover {
+            background: transparent;
+        }
+
+        .si-btn.equip {
+            color: var(--acc-bright);
+            border-color: rgba(192, 132, 252, 0.4);
+        }
+
+        .si-btn.equip:hover {
+            background: rgba(124, 58, 237, 0.2);
+            color: #fff;
+        }
+
+        .si-btn.on {
+            color: #34d399;
+            border-color: rgba(52, 211, 153, 0.5);
+            background: rgba(52, 211, 153, 0.08);
+            cursor: default;
+        }
+
+        /* aperçus visuels des items */
+        .prev-orb {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+        }
+
+        .prev-bars {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+        }
+
+        .prev-bar {
+            border-radius: 1px;
+        }
+
+        .prev-dots {
+            position: relative;
+            width: 52px;
+            height: 52px;
+        }
+
+        .prev-dot {
+            position: absolute;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .shop-foot {
+            font-family: var(--f-mono);
+            font-size: 0.58rem;
+            color: var(--dim);
+            text-align: center;
+            margin: 1.1rem 0 0.2rem;
+            letter-spacing: 0.04em;
+        }
+
+        @media (max-width: 560px) {
+            .shop-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .shop-card {
+                padding: 1.2rem 1rem 1rem;
+            }
+
+            .shop-tab {
+                font-size: 0.74rem;
+            }
+        }
     </style>
 </head>
 
@@ -1762,6 +2195,7 @@
                 <div class="go-score" id="go-score">0000</div>
                 <div><span class="go-badge plain" id="go-badge"></span></div>
                 <div class="go-stats" id="go-stats"></div>
+                <div class="go-coins" id="go-coins" aria-hidden="true"></div>
                 <div class="go-podium" id="go-podium"></div>
                 <div class="go-hist" id="go-hist-wrap">
                     <p class="go-hist-title">dernières courses</p>
@@ -1778,6 +2212,7 @@
 
                 <div class="go-actions" id="go-actions">
                     <button class="go-replay" id="go-replay" type="button">↺ Rejouer <span>espace</span></button>
+                    <button class="go-shop" id="go-shop" type="button"><svg class="ic-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h11l-1 10.7a1.8 1.8 0 0 1-1.8 1.6H9.3a1.8 1.8 0 0 1-1.8-1.6z"/><path d="M9 8.5V6.4a3 3 0 0 1 6 0v2.1"/></svg> Boutique</button>
                     <a href="index.html" class="go-quit" id="go-quit"
                         style="text-decoration: none; display: flex; align-items: center; justify-content: center; text-align: center;">Retour
                         au portfolio</a>
@@ -1918,6 +2353,11 @@
                     baisser</span></span>
         </button>
         <div class="pb-stats" id="pb-stats"></div>
+        <button class="shop-open-btn" id="shop-open" type="button" aria-label="Ouvrir la boutique de cosmétiques">
+            <span class="so-ico"><svg class="ic-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h11l-1 10.7a1.8 1.8 0 0 1-1.8 1.6H9.3a1.8 1.8 0 0 1-1.8-1.6z"/><path d="M9 8.5V6.4a3 3 0 0 1 6 0v2.1"/></svg></span>
+            <span class="so-tx">Boutique</span>
+            <span class="so-coins"><b id="shop-open-coins">0</b><svg class="ic-coin" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.8l3 4.2-3 4.2-3-4.2z" fill="currentColor"/></svg></span>
+        </button>
     </div>
 
     <!-- texte -->
@@ -1944,6 +2384,25 @@
         <span>valeur manquante&nbsp;: NaN</span>
         <span>© 2026 — Gabriel Sagot</span>
     </footer>
+
+    <!-- boutique de cosmétiques -->
+    <div class="shop" id="shop" aria-hidden="true">
+        <div class="shop-overlay" id="shop-overlay"></div>
+        <div class="shop-card" role="dialog" aria-modal="true" aria-label="Boutique de cosmétiques">
+            <button class="shop-close" id="shop-close" type="button" aria-label="Fermer la boutique">✕</button>
+            <div class="shop-head">
+                <div class="shop-head-tx">
+                    <p class="shop-kicker">— boutique —</p>
+                    <h2 class="shop-title">Cosmétiques</h2>
+                </div>
+                <div class="shop-balance" title="Tes pièces"><b id="shop-coins">0</b><svg class="ic-coin" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.8l3 4.2-3 4.2-3-4.2z" fill="currentColor"/></svg></div>
+            </div>
+            <div class="shop-tabs" id="shop-tabs" role="tablist"></div>
+            <p class="shop-cat-hint" id="shop-cat-hint"></p>
+            <div class="shop-grid" id="shop-grid"></div>
+            <p class="shop-foot">Ramasse des fragments ◆ en courant pour gagner des pièces.</p>
+        </div>
+    </div>
 
     <div class="dmg" id="dmg" aria-hidden="true"></div>
 
@@ -2345,6 +2804,75 @@
                 achievements = JSON.parse(localStorage.getItem('gs404achieve') || '{}');
             } catch (e) { }
 
+            /* ════════════════ Boutique : pièces & cosmétiques ════════════════
+               Chaque item ne stocke que des paramètres de rendu (couleurs, formes).
+               Les items à 0 pièce sont toujours possédés et reproduisent
+               exactement l'apparence d'origine du jeu. */
+            const COSMETICS = {
+                skin: [
+                    { id: 'skin_amethyst', name: 'Améthyste', price: 0, body: '#7c3aed', glow: '124,58,237' },
+                    { id: 'skin_emerald', name: 'Émeraude', price: 50, body: '#34d399', glow: '52,211,153' },
+                    { id: 'skin_ruby', name: 'Rubis', price: 50, body: '#f43f5e', glow: '244,63,94' },
+                    { id: 'skin_cyan', name: 'Cyan', price: 80, body: '#22d3ee', glow: '34,211,238' },
+                    { id: 'skin_rose', name: 'Néon Rose', price: 80, body: '#ec4899', glow: '236,72,153' },
+                    { id: 'skin_gold', name: 'Or massif', price: 140, body: '#fbbf24', glow: '251,191,36' },
+                    { id: 'skin_ghost', name: 'Fantôme', price: 160, body: 'rgba(226,232,255,0.5)', glow: '226,232,255', eye: '#0b0b14' },
+                    { id: 'skin_void', name: 'Void', price: 220, body: '#0b0b14', glow: '168,85,247', stroke: 'rgba(192,132,252,0.95)', eye: '#c084fc' },
+                    { id: 'skin_spectre', name: 'Spectre', price: 400, rainbow: true, body: '#7c3aed', glow: '124,58,237' },
+                ],
+                trail: [
+                    { id: 'trail_zone', name: 'Sillage', price: 0, mode: 'zone', w: 8, h: 2 },
+                    { id: 'trail_comet', name: 'Comète', price: 60, color: '#fde68a', w: 13, h: 2 },
+                    { id: 'trail_fire', name: 'Flammes', price: 90, palette: ['#f87171', '#fb923c', '#fbbf24'], w: 7, h: 3 },
+                    { id: 'trail_frost', name: 'Givre', price: 90, color: '#a5f3fc', w: 9, h: 3 },
+                    { id: 'trail_pixel', name: 'Pixels', price: 130, color: '#c084fc', w: 4, h: 4 },
+                    { id: 'trail_rainbow', name: 'Arc-en-ciel', price: 260, rainbow: true, w: 9, h: 3 },
+                ],
+                jump: [
+                    { id: 'jump_dust', name: 'Poussière', price: 0, color: '255,255,255', count: 12 },
+                    { id: 'jump_spark', name: 'Étincelles', price: 50, color: '251,191,36', count: 12 },
+                    { id: 'jump_petal', name: 'Pétales', price: 70, color: '244,114,182', count: 10 },
+                    { id: 'jump_jet', name: 'Propulsion', price: 80, color: '96,165,250', count: 14 },
+                    { id: 'jump_ring', name: 'Onde de choc', price: 130, color: '192,132,252', count: 10, ring: true },
+                ],
+                death: [
+                    { id: 'death_shard', name: 'Éclats', price: 0, colors: ['#f87171', '#ffffff'], count: 60 },
+                    { id: 'death_emerald', name: 'Émeraude', price: 70, colors: ['#34d399', '#ffffff'], count: 50 },
+                    { id: 'death_gold', name: 'Supernova', price: 70, colors: ['#fbbf24', '#fde68a', '#ffffff'], count: 60 },
+                    { id: 'death_glitch', name: 'Glitch', price: 90, colors: ['#22d3ee', '#c084fc', '#ffffff'], count: 56 },
+                    { id: 'death_void', name: 'Singularité', price: 180, colors: ['#a855f7', '#7c3aed', '#ffffff'], count: 72 },
+                ],
+            };
+
+            const SHOP_CATS = [
+                { key: 'skin', label: 'Skins', hint: 'Apparence de l’orbe' },
+                { key: 'trail', label: 'Course', hint: 'Sillage en courant' },
+                { key: 'jump', label: 'Saut', hint: 'Effet au décollage' },
+                { key: 'death', label: 'Mort', hint: 'Explosion finale' },
+            ];
+
+            const DEFAULT_EQUIP = { skin: 'skin_amethyst', trail: 'trail_zone', jump: 'jump_dust', death: 'death_shard' };
+
+            let shop = { coins: 0, owned: {}, equipped: { ...DEFAULT_EQUIP } };
+            try {
+                const saved = JSON.parse(localStorage.getItem('gs404shop') || '{}');
+                if (saved && typeof saved === 'object') {
+                    shop.coins = Math.max(0, parseInt(saved.coins, 10) || 0);
+                    if (saved.owned && typeof saved.owned === 'object') shop.owned = saved.owned;
+                    if (saved.equipped && typeof saved.equipped === 'object') shop.equipped = { ...DEFAULT_EQUIP, ...saved.equipped };
+                }
+            } catch (e) { }
+            // les cosmétiques gratuits sont toujours possédés
+            for (const cat of Object.keys(COSMETICS)) for (const it of COSMETICS[cat]) if (it.price === 0) shop.owned[it.id] = true;
+
+            function saveShop() { try { localStorage.setItem('gs404shop', JSON.stringify(shop)); } catch (e) { } }
+            function cosmItem(cat, id) { return COSMETICS[cat].find(i => i.id === id) || COSMETICS[cat][0]; }
+            function equippedCosm(cat) { return cosmItem(cat, shop.equipped[cat]); }
+
+            // icônes SVG (style trait, comme le reste du jeu) — la pièce reprend le losange des fragments ◆
+            const COIN_SVG = '<svg class="ic-coin" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.8l3 4.2-3 4.2-3-4.2z" fill="currentColor"/></svg>';
+            const BAG_SVG = '<svg class="ic-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h11l-1 10.7a1.8 1.8 0 0 1-1.8 1.6H9.3a1.8 1.8 0 0 1-1.8-1.6z"/><path d="M9 8.5V6.4a3 3 0 0 1 6 0v2.1"/></svg>';
+
             const game = {
                 state: 'idle',          // idle | count | play | over
                 score: 0, speed: 0, level: 1,
@@ -2564,7 +3092,7 @@
                 if (!el) return;
                 const total = document.querySelectorAll('.achieve').length;
                 const got = Object.values(achievements).filter(Boolean).length;
-                el.innerHTML = `<span>record <b>${pad4(best)}</b></span><span><b>${got}</b>/${total} succès</span>`;
+                el.innerHTML = `<span>record <b>${pad4(best)}</b></span><span><b>${got}</b>/${total} succès</span><span>${COIN_SVG} <b>${shop.coins}</b></span>`;
             }
             updateLogbook();
             refreshMenu();
@@ -2607,6 +3135,10 @@
                     `zone ${game.zone + 1}`
                 ].filter(Boolean).map(s => `<span>${s}</span>`).join('');
 
+                // pièces gagnées cette course + solde total
+                const coinsEl = document.getElementById('go-coins');
+                if (coinsEl) coinsEl.innerHTML = `<span class="gc-earn">+${game.coinsEarned || 0}&nbsp;${COIN_SVG}</span><span class="gc-bal">solde&nbsp;: ${shop.coins}</span>`;
+
                 renderPodium(finalScore, rank);
 
                 // historique (4 dernières courses, la plus récente en premier)
@@ -2633,10 +3165,11 @@
                     game.chars = [65, 65, 65];
                     updateArcadeUI();
                     document.getElementById('arcade-input').classList.add('show');
-                    document.getElementById('go-actions').style.display = 'none';
-                } else {
-                    document.getElementById('go-actions').style.display = '';
                 }
+                // Boutons « Rejouer / Retour au portfolio » toujours visibles, y
+                // compris pendant la saisie des initiales — indispensable au tactile
+                // (sans clavier, impossible de valider pour faire apparaître les boutons).
+                document.getElementById('go-actions').style.display = '';
 
                 // score en count-up
                 const target = Math.floor(finalScore);
@@ -2700,6 +3233,11 @@
                     initialsTop = initialsTop.slice(0, 3);
                     try { localStorage.setItem('gs404inits', JSON.stringify(initialsTop)); } catch (e) { }
                 }
+
+                // ── pièces gagnées : fragments ramassés (×3) + bonus de score ──
+                game.coinsEarned = game.shardsTaken * 3 + Math.floor(finalScore / 20);
+                shop.coins += game.coinsEarned;
+                saveShop();
 
                 return isRecord;
             }
@@ -2765,8 +3303,10 @@
                 dmgEl.classList.remove('hit', 'shieldhit');
                 void dmgEl.offsetWidth;
                 dmgEl.classList.add('hit');
-                burst(PX, groundY() + game.py - PR, '#f87171', 46);
-                burst(PX, groundY() + game.py - PR, '#ffffff', 14);
+                // ── effet de mort équipé (boutique) ──
+                const de = equippedCosm('death');
+                const dcols = de.colors, dtot = de.count || 60;
+                dcols.forEach((col, i) => burst(PX, groundY() + game.py - PR, col, i === 0 ? Math.round(dtot * 0.767) : Math.round(dtot * 0.233 / (dcols.length - 1))));
                 shockwave(PX, groundY() - PR, 300, 17);
                 stage.classList.add('shake');
                 setTimeout(() => stage.classList.remove('shake'), 400);
@@ -2795,8 +3335,18 @@
                     game.duck = false;
                     game.squash = 1;
                     game.jumpsLeft = 1;
-                    for (let i = 0; i < 12; i++) {
-                        dusts.push({ x: PX + (Math.random() - 0.5) * 18, y: groundY(), vx: (Math.random() - 0.5) * 50, vy: -15 - Math.random() * 25, life: 1 });
+                    // ── effet de saut équipé (boutique) ──
+                    const jp = equippedCosm('jump');
+                    const jn = jp.count || 12;
+                    if (jp.ring) {
+                        for (let i = 0; i < jn; i++) {
+                            const a = (i / jn) * 6.2832;
+                            dusts.push({ x: PX + Math.cos(a) * 9, y: groundY(), vx: Math.cos(a) * 95, vy: Math.sin(a) * 46 - 18, life: 0.9, c: jp.color, r: 2 });
+                        }
+                    } else {
+                        for (let i = 0; i < jn; i++) {
+                            dusts.push({ x: PX + (Math.random() - 0.5) * 18, y: groundY(), vx: (Math.random() - 0.5) * 50, vy: -15 - Math.random() * 25, life: 1, c: jp.color, r: jp.id === 'jump_jet' ? 2.2 : 1.5 });
+                        }
                     }
                 } else if (game.jumpsLeft > 0) {
                     game.jumpsLeft--;
@@ -3109,7 +3659,11 @@
                     // Trails
                     if (Math.random() < 0.6) {
                         const ty = gy + game.py - (game.duck ? 9 : PR) + (Math.random() - 0.5) * 12;
-                        trails.push({ x: PX - 12, y: ty, vx: -eSpeed * 0.5, life: 1, c: ZONES[game.zone].t });
+                        const trCos = equippedCosm('trail');
+                        let trC = trCos.mode === 'zone' ? ZONES[game.zone].t : trCos.color;
+                        if (trCos.rainbow) trC = `hsl(${(now * 0.12) % 360},90%,62%)`;
+                        else if (trCos.palette) trC = trCos.palette[(Math.random() * trCos.palette.length) | 0];
+                        trails.push({ x: PX - 12, y: ty, vx: -eSpeed * 0.5, life: 1, c: trC, w: trCos.w || 8, h: trCos.h || 2 });
                     }
 
                     // obstacles
@@ -3268,8 +3822,8 @@
                         d.x += d.vx * dt; d.y += d.vy * dt;
                         d.life -= dt * 2.5;
                         if (d.life <= 0) { dusts.splice(i, 1); continue; }
-                        ctx.fillStyle = `rgba(255,255,255,${d.life * 0.6})`;
-                        ctx.beginPath(); ctx.arc(d.x, d.y, 1.5, 0, 6.28); ctx.fill();
+                        ctx.fillStyle = `rgba(${d.c || equippedCosm('jump').color},${d.life * 0.6})`;
+                        ctx.beginPath(); ctx.arc(d.x, d.y, d.r || 1.5, 0, 6.28); ctx.fill();
                     }
 
                     // Trails
@@ -3280,7 +3834,7 @@
                         if (t.life <= 0) { trails.splice(i, 1); continue; }
                         ctx.fillStyle = t.c;
                         ctx.globalAlpha = t.life * 0.7;
-                        ctx.fillRect(t.x, t.y, 8, 2);
+                        ctx.fillRect(t.x, t.y, t.w || 8, t.h || 2);
                     }
                     ctx.globalAlpha = 1;
 
@@ -3431,11 +3985,20 @@
                         ctx.shadowBlur = 0;
                     }
 
+                    // ── skin équipé (boutique) : couleur du corps / glow / œil ──
+                    const skin = equippedCosm('skin');
+                    let bodyCol = skin.body;
+                    let glowCol = `rgba(${skin.glow},0.8)`;
+                    if (skin.rainbow) {
+                        const hue = (now * 0.06) % 360;
+                        bodyCol = `hsl(${hue},85%,62%)`;
+                        glowCol = `hsla(${hue},90%,60%,0.85)`;
+                    }
                     if (game.inv > 0) ctx.globalAlpha = 0.55 + 0.35 * Math.sin(game.bobPhase * 9);
-                    ctx.fillStyle = '#7c3aed';
-                    ctx.strokeStyle = 'rgba(255,255,255,0.45)';
+                    ctx.fillStyle = bodyCol;
+                    ctx.strokeStyle = skin.stroke || 'rgba(255,255,255,0.45)';
                     ctx.lineWidth = 2;
-                    ctx.shadowColor = 'rgba(124,58,237,0.8)';
+                    ctx.shadowColor = glowCol;
                     ctx.shadowBlur = 15;
                     ctx.beginPath();
                     ctx.ellipse(PX, cy, rx, ry, 0, 0, 6.2832);
@@ -3450,7 +4013,7 @@
                     // oeil dynamique
                     const ey = cy - (game.onGround ? 2 : 5) - (game.duck ? 0 : 2);
                     const ex = PX + 5;
-                    ctx.fillStyle = '#fff';
+                    ctx.fillStyle = skin.eye || '#fff';
                     ctx.beginPath();
                     const eyeH = game.duck ? 1.5 : Math.max(2, 4.5 - (game.speed / 850) * 2);
                     ctx.ellipse(ex, ey, 3.5, eyeH, 0, 0, 6.2832);
@@ -3795,6 +4358,133 @@
                     else if (game.state === 'play') SFX.musicStart(BPM_FN);
                 });
             }
+
+            /* ════════════════ Boutique : logique (achat / équipement / aperçus) ════════════════ */
+            const shopEl = document.getElementById('shop');
+            const shopGrid = document.getElementById('shop-grid');
+            const shopTabsEl = document.getElementById('shop-tabs');
+            const shopCoinsEl = document.getElementById('shop-coins');
+            const shopHintEl = document.getElementById('shop-cat-hint');
+            const shopOpenCoins = document.getElementById('shop-open-coins');
+            let shopCat = 'skin';
+
+            function syncCoins() {
+                if (shopCoinsEl) shopCoinsEl.textContent = shop.coins;
+                if (shopOpenCoins) shopOpenCoins.textContent = shop.coins;
+                refreshMenu();
+            }
+
+            // aperçu visuel (HTML) d'un item — déterministe pour rester stable au re-rendu
+            function cosmPreview(cat, it) {
+                if (cat === 'skin') {
+                    const bg = it.rainbow
+                        ? 'conic-gradient(from 0deg,#f87171,#fbbf24,#34d399,#22d3ee,#7c3aed,#ec4899,#f87171)'
+                        : it.body;
+                    const glow = it.rainbow ? 'rgba(192,132,252,0.75)' : `rgba(${it.glow},0.75)`;
+                    const inset = it.stroke ? `, inset 0 0 0 2px ${it.stroke}` : '';
+                    return `<div class="prev-orb" style="background:${bg};box-shadow:0 0 18px ${glow}${inset}"></div>`;
+                }
+                if (cat === 'trail') {
+                    const cols = it.palette || (it.rainbow ? ['#f87171', '#fbbf24', '#34d399', '#22d3ee', '#c084fc'] : [it.color || ZONES[0].t]);
+                    const w = it.w || 8, h = it.h || 2;
+                    let bars = '';
+                    for (let i = 0; i < 5; i++) bars += `<span class="prev-bar" style="width:${w}px;height:${h}px;background:${cols[i % cols.length]};opacity:${(0.3 + i * 0.16).toFixed(2)}"></span>`;
+                    return `<div class="prev-bars">${bars}</div>`;
+                }
+                if (cat === 'jump') {
+                    const c = `rgb(${it.color})`;
+                    let dots = '';
+                    const n = 7;
+                    for (let i = 0; i < n; i++) {
+                        let x, y;
+                        if (it.ring) { const a = (i / n) * 6.283; x = 50 + Math.cos(a) * 40; y = 55 + Math.sin(a) * 26; }
+                        else { x = 22 + i * 9; y = 78 - ((i * 37) % 50); }
+                        const r = 3 + (i % 2) * 1.5;
+                        dots += `<span class="prev-dot" style="left:${x}%;top:${y}%;width:${r}px;height:${r}px;background:${c};opacity:${(0.55 + (i % 3) * 0.15).toFixed(2)}"></span>`;
+                    }
+                    return `<div class="prev-dots">${dots}</div>`;
+                }
+                const cols = it.colors;
+                let dots = '';
+                const n = 12;
+                for (let i = 0; i < n; i++) {
+                    const a = (i / n) * 6.283;
+                    const rad = 30 + (i % 3) * 9;
+                    const x = 50 + Math.cos(a) * rad * 0.95;
+                    const y = 50 + Math.sin(a) * rad;
+                    const r = 2.5 + (i % 3);
+                    dots += `<span class="prev-dot" style="left:${x}%;top:${y}%;width:${r}px;height:${r}px;background:${cols[i % cols.length]}"></span>`;
+                }
+                return `<div class="prev-dots">${dots}</div>`;
+            }
+
+            function renderShop() {
+                shopTabsEl.innerHTML = SHOP_CATS.map(c =>
+                    `<button class="shop-tab${c.key === shopCat ? ' active' : ''}" data-cat="${c.key}" type="button" role="tab">${c.label}<small>${COSMETICS[c.key].filter(i => shop.owned[i.id]).length}/${COSMETICS[c.key].length}</small></button>`
+                ).join('');
+                const cat = SHOP_CATS.find(c => c.key === shopCat);
+                if (shopHintEl) shopHintEl.textContent = cat ? cat.hint : '';
+                shopGrid.innerHTML = COSMETICS[shopCat].map(it => {
+                    const owned = !!shop.owned[it.id];
+                    const equipped = shop.equipped[shopCat] === it.id;
+                    let btn;
+                    if (equipped) btn = `<div class="si-btn on">✓ Équipé</div>`;
+                    else if (owned) btn = `<button class="si-btn equip" type="button" data-equip="${it.id}">Équiper</button>`;
+                    else {
+                        const can = shop.coins >= it.price;
+                        btn = `<button class="si-btn buy${can ? '' : ' locked'}" type="button" data-buy="${it.id}"${can ? '' : ' disabled'}>${it.price} ${COIN_SVG}</button>`;
+                    }
+                    return `<div class="shop-item${equipped ? ' is-equipped' : ''}"><div class="si-prev">${cosmPreview(shopCat, it)}</div><div class="si-name">${it.name}</div>${btn}</div>`;
+                }).join('');
+                syncCoins();
+            }
+
+            function openShop() { renderShop(); shopEl.classList.add('show'); shopEl.setAttribute('aria-hidden', 'false'); }
+            function closeShop() { shopEl.classList.remove('show'); shopEl.setAttribute('aria-hidden', 'true'); }
+
+            function buyItem(id) {
+                for (const cat of Object.keys(COSMETICS)) {
+                    const it = COSMETICS[cat].find(i => i.id === id);
+                    if (!it) continue;
+                    if (shop.owned[id] || shop.coins < it.price) return;
+                    shop.coins -= it.price;
+                    shop.owned[id] = true;
+                    shop.equipped[cat] = id;   // équipé automatiquement à l'achat
+                    saveShop();
+                    if (typeof SFX !== 'undefined' && SFX.coin) SFX.coin(2);
+                    renderShop();
+                    return;
+                }
+            }
+
+            function equipItem(id) {
+                for (const cat of Object.keys(COSMETICS)) {
+                    if (COSMETICS[cat].some(i => i.id === id) && shop.owned[id]) {
+                        shop.equipped[cat] = id;
+                        saveShop();
+                        if (typeof SFX !== 'undefined' && SFX.click) SFX.click();
+                        renderShop();
+                        return;
+                    }
+                }
+            }
+
+            shopTabsEl.addEventListener('click', e => {
+                const t = e.target.closest('.shop-tab'); if (!t) return;
+                shopCat = t.dataset.cat; renderShop();
+            });
+            shopGrid.addEventListener('click', e => {
+                const buy = e.target.closest('[data-buy]'); if (buy) { buyItem(buy.dataset.buy); return; }
+                const eq = e.target.closest('[data-equip]'); if (eq) { equipItem(eq.dataset.equip); }
+            });
+            document.getElementById('shop-open').addEventListener('click', openShop);
+            document.getElementById('go-shop').addEventListener('click', openShop);
+            document.getElementById('shop-close').addEventListener('click', closeShop);
+            document.getElementById('shop-overlay').addEventListener('click', closeShop);
+            document.addEventListener('keydown', e => {
+                if (e.code === 'Escape' && shopEl.classList.contains('show')) { e.preventDefault(); closeShop(); }
+            });
+            syncCoins();
 
             let resizeT;
             window.addEventListener('resize', () => {

@@ -7,6 +7,13 @@
       "runtimeArgs": ["/Users/gabrielsagot/Documents/portfolio 2026/server.py"],
       "port": 8080,
       "autoPort": true
+    },
+    {
+      "name": "portfolio-preview",
+      "runtimeExecutable": "/usr/bin/python3",
+      "runtimeArgs": ["/tmp/portfolio_preview/serve.py"],
+      "port": 8091,
+      "autoPort": true
     }
   ]
 }
