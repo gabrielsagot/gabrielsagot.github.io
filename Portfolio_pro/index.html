@@ -2294,6 +2294,25 @@
             white-space: nowrap;
         }
 
+        .ft-game-link {
+            text-decoration: none;
+            color: #c084fc;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(192, 132, 252, 0.4);
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            padding: 4px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: -4px; /* align visually */
+        }
+        .ft-game-link:hover {
+            background: rgba(192, 132, 252, 0.1);
+            border-color: #c084fc;
+            text-shadow: 0 0 12px rgba(192, 132, 252, 0.8);
+            transform: translateY(-2px);
+        }
+
         /* scan vertical : flourish unique à la révélation */
         .ft-scan {
             position: absolute;
@@ -2712,6 +2731,38 @@
         .ck-item.sel .ck-go {
             opacity: 1;
             color: #c084fc;
+        }
+
+        .ck-item.hl-game {
+            background: rgba(192, 132, 252, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .ck-item.hl-game .ck-t {
+            color: #d8b4fe;
+            letter-spacing: 0.05em;
+        }
+
+        .ck-item.hl-game:hover, .ck-item.hl-game.sel {
+            background: rgba(192, 132, 252, 0.2);
+            transform: scale(1.01) translateX(4px);
+            border-left: 2px solid #d8b4fe;
+        }
+
+        .ck-item.hl-game:hover .ck-t, .ck-item.hl-game.sel .ck-t {
+            color: #fff;
+            animation: glitch-text 0.3s ease-in-out;
+        }
+
+        @keyframes glitch-text {
+            0% { transform: translateX(0); color: #fff; }
+            25% { transform: translateX(-2px); color: #ff00ff; }
+            50% { transform: translateX(2px); color: #00ffff; }
+            100% { transform: translateX(0); color: #fff; }
+        }
+
+        .ck-item.hl-game.sel .ck-go {
+            color: #d8b4fe;
         }
 
         .ck-empty {
@@ -3641,6 +3692,7 @@
                     <span class="ft-item">© 2026 — Gabriel Sagot</span>
                     <span class="ft-item">46.32° N · 0.46° O — Niort, FR</span>
                     <span class="ft-item">conçu &amp; codé à la main</span>
+                    <a href="404.html" class="ft-item ft-game-link">Mini-jeu 🎮</a>
                 </div>
             </div>
             <div class="ft-line" aria-hidden="true"><span class="ft-dot"></span></div>
@@ -4639,7 +4691,7 @@
                 { t: 'Copier mon email', d: 'sagotgabrielpro@gmail.com', k: 'copier email mail adresse', g: 'actions', run: () => navigator.clipboard.writeText('sagotgabrielpro@gmail.com') },
                 { t: 'Télécharger le CV', d: 'télécharge le fichier PDF', k: 'cv resume pdf telecharger', g: 'actions', run: () => { const a = document.createElement('a'); a.href = 'assets/SAGOT GABRIEL CV.pdf'; a.download = 'SAGOT GABRIEL CV.pdf'; document.body.appendChild(a); a.click(); document.body.removeChild(a); } },
                 { t: 'Ouvrir LinkedIn', d: 'mon profil professionnel', k: 'linkedin reseau profil', g: 'actions', run: () => window.open('https://www.linkedin.com/in/gabriel-sagot-04a991346/', '_blank') },
-                { t: 'Jouer au mini-jeu', d: 'la course du point de donnée (page 404)', k: 'jeu game 404 runner course jouer', g: 'actions', run: () => { location.href = '404.html'; } },
+                { t: 'Jouer au mini-jeu', d: 'la course du point de donnée (page 404)', k: 'jeu game 404 runner course jouer', g: 'actions', hl: 'hl-game', run: () => { location.href = '404.html'; } },
                 { t: 'Pluie de données', d: 'mode laboratoire — easter egg', k: 'pluie matrix easter egg laboratoire', g: 'actions', run: () => dataRain() }
             ];
 
@@ -4651,7 +4703,8 @@
                 cmdkList.innerHTML = cmdkItems.length ? cmdkItems.map((c, i) => {
                     const g = c.g !== lastG ? `<div class="ck-group">${c.g}</div>` : '';
                     lastG = c.g;
-                    return `${g}<button class="ck-item${i === cmdkSel ? ' sel' : ''}" data-i="${i}" type="button">
+                    const extraCls = c.hl ? ' ' + c.hl : '';
+                    return `${g}<button class="ck-item${i === cmdkSel ? ' sel' : ''}${extraCls}" data-i="${i}" type="button">
                     <span class="ck-t">${c.t}</span><span class="ck-d">${c.d}</span><span class="ck-go">↵</span>
                 </button>`;
                 }).join('') : '<div class="ck-empty">aucun résultat — essayez « projets », « cv », « email »…</div>';
