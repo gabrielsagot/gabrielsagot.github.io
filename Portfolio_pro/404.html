@@ -2537,14 +2537,14 @@
                     if (mTimer) { clearInterval(mTimer); mTimer = null; }
                 }
 
-                /* ── musique de menu : nappe ambiante lente (Am – F – C – G) ──
-                   jouée hors-jeu (accueil, écran de fin, boutique). Plus douce
-                   et plus lente que la musique de course. */
+                /* ── musique de menu : nappe ambiante (Am – F – C – G) ──
+                   jouée hors-jeu (accueil, écran de fin, boutique). Voisée dans le
+                   médium pour rester clairement audible sur petits haut-parleurs. */
                 const MENU_CHORDS = [
-                    { bass: 110.00, notes: [220.00, 261.63, 329.63] },  // Am
-                    { bass: 87.31, notes: [174.61, 220.00, 261.63] },  // F
-                    { bass: 130.81, notes: [261.63, 329.63, 392.00] },  // C
-                    { bass: 98.00, notes: [196.00, 246.94, 293.66] },  // G
+                    { bass: 220.00, notes: [329.63, 440.00, 523.25] },  // Am : A3 · E4 A4 C5
+                    { bass: 174.61, notes: [261.63, 349.23, 440.00] },  // F  : F3 · C4 F4 A4
+                    { bass: 261.63, notes: [392.00, 523.25, 659.25] },  // C  : C4 · G4 C5 E5
+                    { bass: 196.00, notes: [293.66, 392.00, 493.88] },  // G  : G3 · D4 G4 B4
                 ];
                 let mmTimer = null, mmStep = 0, mmNext = 0;
 
@@ -2552,25 +2552,23 @@
                     if (!ctx || muted) { mmNext = ctx ? Math.max(mmNext, ctx.currentTime) : 0; return; }
                     const ahead = ctx.currentTime + 0.45;
                     if (mmNext < ctx.currentTime - 0.7) mmNext = ctx.currentTime + 0.05;   // resync onglet arrière-plan
-                    const stepDur = 0.36;
+                    const stepDur = 0.34;
                     let guard = 0;
                     while (mmNext < ahead && guard++ < 32) {
                         const at = mmNext - ctx.currentTime;
                         const ch = MENU_CHORDS[(mmStep >> 2) % 4];
                         if (mmStep % 4 === 0) {
-                            // nappe : fondamentale + octave, attaque lente (effet pad)
-                            tone({ freq: ch.bass, type: 'triangle', dur: stepDur * 4.4, vol: 0.06, lp: 520, atk: 0.28, at, music: true });
-                            tone({ freq: ch.bass * 2.003, type: 'sine', dur: stepDur * 4, vol: 0.04, atk: 0.34, at, music: true });
+                            // nappe : basse + accord médium (pad, attaque douce)
+                            tone({ freq: ch.bass, type: 'triangle', dur: stepDur * 4.2, vol: 0.11, lp: 1100, atk: 0.16, at, music: true });
+                            tone({ freq: ch.notes[0], type: 'triangle', dur: stepDur * 3.9, vol: 0.07, lp: 1800, atk: 0.2, at: at + 0.03, music: true });
+                            tone({ freq: ch.notes[1], type: 'sine', dur: stepDur * 3.6, vol: 0.055, atk: 0.24, at: at + 0.06, music: true });
                         }
-                        // arpège doux
-                        if (mmStep % 2 === 0) {
-                            const n = ch.notes[(mmStep >> 1) % 3];
-                            tone({ freq: n, type: 'triangle', dur: stepDur * 1.7, vol: 0.038, atk: 0.02, at, music: true });
-                        }
-                        // scintillement aigu occasionnel
-                        if (Math.random() < 0.16) {
-                            const n = ch.notes[(Math.random() * 3) | 0] * 2;
-                            tone({ freq: n, type: 'sine', dur: stepDur * 1.3, vol: 0.016, at: at + stepDur * 0.5, music: true });
+                        // arpège clair (porte la mélodie, sur chaque pas)
+                        const n = ch.notes[mmStep % 3];
+                        tone({ freq: n, type: 'triangle', dur: stepDur * 1.25, vol: 0.075, atk: 0.012, at, music: true });
+                        // contre-chant aigu une note sur deux
+                        if (mmStep % 2 === 1) {
+                            tone({ freq: ch.notes[(mmStep >> 1) % 3] * 2, type: 'sine', dur: stepDur * 0.85, vol: 0.03, atk: 0.01, at: at + stepDur * 0.5, music: true });
                         }
                         mmNext += stepDur;
                         mmStep++;
@@ -4400,7 +4398,11 @@
                     SFX.ensure();
                     SFX.toggleMute();
                     syncSnd();
-                    if (!SFX.muted) SFX.click();
+                    if (!SFX.muted) {
+                        SFX.click();
+                        // (ré)activer le son hors-jeu relance la musique de menu
+                        if (game.state !== 'play' && game.state !== 'count') SFX.menuMusicStart();
+                    }
                 });
 
                 // tick discret au survol du bouton de lancement (souris uniquement)

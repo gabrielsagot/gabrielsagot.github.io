@@ -1368,6 +1368,311 @@
             gap: 1.5rem;
         }
 
+        /* ── Bilan de l'année : bouton d'accès (sobre) ── */
+        .bilan-cta {
+            margin-top: 5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bilan-btn {
+            --mx: 50%;
+            --my: 50%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 1.1rem 2rem 1.1rem 1.4rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--ln-ink);
+            border-radius: 20px;
+            color: var(--tx-ink);
+            font-family: var(--f-sans);
+            text-align: left;
+            cursor: pointer;
+            transition: 
+                background 0.4s var(--ease),
+                border-color 0.4s var(--ease),
+                transform 0.4s var(--ease),
+                box-shadow 0.4s var(--ease);
+            max-width: 480px;
+            overflow: hidden;
+        }
+
+        .bilan-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(130px circle at var(--mx) var(--my), rgba(192, 132, 252, 0.12), transparent 80%);
+            opacity: 0;
+            transition: opacity 0.4s var(--ease);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bilan-btn:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(192, 132, 252, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 
+                0 20px 40px -15px rgba(124, 58, 237, 0.25),
+                0 0 0 1px rgba(192, 132, 252, 0.2);
+        }
+
+        .bilan-btn:hover::before {
+            opacity: 1;
+        }
+
+        .bilan-btn-ic {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            flex-shrink: 0;
+            border: 1px solid var(--ln-ink);
+            border-radius: 10px;
+            color: var(--mut-ink);
+            background: rgba(255, 255, 255, 0.01);
+            transition: 
+                background 0.4s var(--ease),
+                border-color 0.4s var(--ease),
+                color 0.4s var(--ease),
+                transform 0.4s var(--ease),
+                box-shadow 0.4s var(--ease);
+        }
+
+        .bilan-btn-ic svg {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .bilan-btn:hover .bilan-btn-ic {
+            background: rgba(124, 58, 237, 0.12);
+            border-color: rgba(192, 132, 252, 0.35);
+            color: var(--acc-bright);
+            transform: scale(1.06) rotate(-2deg);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+        }
+
+        .bilan-btn-tx {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            flex-grow: 1;
+        }
+
+        .bilan-btn-kicker {
+            font-family: var(--f-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--dim-ink);
+            transition: color 0.4s var(--ease);
+        }
+
+        .bilan-btn:hover .bilan-btn-kicker {
+            color: var(--acc-bright);
+        }
+
+        .bilan-btn-label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--tx-ink);
+            transition: color 0.4s var(--ease), text-shadow 0.4s var(--ease);
+        }
+
+        .bilan-btn:hover .bilan-btn-label {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+        }
+
+        .bilan-btn-arrow {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            margin-left: 0.5rem;
+            color: var(--mut-ink);
+            transition: transform 0.4s var(--ease), color 0.4s var(--ease);
+        }
+
+        .bilan-btn-arrow svg {
+            width: 1.05rem;
+            height: 1.05rem;
+        }
+
+        .bilan-btn:hover .bilan-btn-arrow {
+            transform: translateX(6px) scale(1.1);
+            color: var(--acc-bright);
+        }
+
+        /* ── Bilan : modale éditoriale (surface papier, lecture longue) ── */
+        .bmodal {
+            position: fixed;
+            inset: 0;
+            z-index: 245;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5vh 1.2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .bmodal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .bmodal-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(4, 2, 10, 0.82);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .bmodal-box {
+            position: relative;
+            width: min(1600px, 95vw);
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--paper);
+            color: var(--tx-paper);
+            border-radius: 18px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+            transform: translateY(26px) scale(0.985);
+            transition: transform 0.5s var(--ease);
+            overflow: hidden;
+        }
+
+        .bmodal.open .bmodal-box {
+            transform: none;
+        }
+
+        .bmodal-close {
+            position: absolute;
+            top: 1.1rem;
+            right: 1.1rem;
+            z-index: 3;
+            width: 2.4rem;
+            height: 2.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--ln-paper);
+            background: rgba(255, 255, 255, 0.55);
+            color: var(--tx-paper);
+            font-size: 1.35rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.45s var(--ease);
+        }
+
+        .bmodal-close:hover {
+            background: rgba(23, 20, 29, 0.08);
+            transform: rotate(90deg);
+        }
+
+        .bmodal-scroll {
+            overflow-y: auto;
+            padding: clamp(2.4rem, 5vw, 4rem) clamp(1.6rem, 5vw, 4rem) clamp(2.4rem, 5vw, 3.6rem);
+        }
+
+        .bmodal-scroll::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        .bmodal-scroll::-webkit-scrollbar-thumb {
+            background: var(--ln-paper);
+            border-radius: 8px;
+        }
+
+        .bm-head {
+            margin-bottom: 2.4rem;
+            padding-bottom: 1.6rem;
+            border-bottom: 1px solid var(--ln-paper);
+        }
+
+        .bm-eyebrow {
+            font-family: var(--f-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--mut-paper);
+            margin-bottom: 0.9rem;
+        }
+
+        .bm-title {
+            font-family: var(--f-sans);
+            font-size: clamp(1.9rem, 4.2vw, 2.9rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.04;
+            color: var(--tx-paper);
+            margin: 0 0 0.7rem;
+        }
+
+        .bm-period {
+            font-family: var(--f-mono);
+            font-size: 0.74rem;
+            color: var(--mut-paper);
+        }
+
+        .bm-content {
+            max-width: none;
+        }
+
+        .bm-lead {
+            font-family: var(--f-serif);
+            font-size: clamp(1.18rem, 2.4vw, 1.42rem);
+            line-height: 1.55;
+            color: var(--tx-paper);
+            margin: 0 0 2rem;
+        }
+
+        .bm-content p {
+            font-family: var(--f-body);
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(23, 20, 29, 0.74);
+            margin: 0 0 1.25rem;
+        }
+
+        .bm-content p strong {
+            color: var(--tx-paper);
+            font-weight: 600;
+        }
+
+        .bm-h {
+            font-family: var(--f-sans);
+            font-size: 1.12rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--tx-paper);
+            margin: 2.6rem 0 1rem;
+            padding-top: 1.6rem;
+            border-top: 1px solid var(--ln-paper);
+        }
+
+        .bm-quote {
+            font-family: var(--f-serif);
+            font-style: italic;
+            font-size: 1.18rem;
+            line-height: 1.5;
+            color: var(--tx-paper);
+            margin: 2rem 0;
+            padding-left: 1.3rem;
+            border-left: 2px solid rgba(23, 20, 29, 0.25);
+        }
+
         .pcard {
             display: flex;
             flex-direction: column;
@@ -3410,6 +3715,18 @@
 
             <div class="proj-grid reveal" id="proj-grid"></div>
 
+            <!-- accès au bilan de l'année : ouvre la modale (libellé/visibilité gérés par renderYear) -->
+            <div class="bilan-cta" id="bilan-cta" hidden>
+                <button class="bilan-btn" id="bilan-open" type="button" aria-haspopup="dialog" aria-controls="bmodal">
+                    <span class="bilan-btn-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H17a1 1 0 0 1 1 1v13.5H5.5A1.5 1.5 0 0 0 4 20z"/><path d="M18 18.5H5.5A1.5 1.5 0 0 0 4 20"/><path d="M8 8.5h6M8 11.5h6"/></svg></span>
+                    <span class="bilan-btn-tx">
+                        <span class="bilan-btn-kicker">Bilan de l’année</span>
+                        <span class="bilan-btn-label" id="bilan-btn-label">Lire mon bilan</span>
+                    </span>
+                    <span class="bilan-btn-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                </button>
+            </div>
+
             <div class="featured-sites reveal reveal-delay-2">
                 <h3 class="featured-title">Visiter mes principales réalisations</h3>
                 <div class="featured-links">
@@ -3461,6 +3778,15 @@
         <div class="amodal-box" role="dialog" aria-modal="true" aria-labelledby="am-title">
             <button class="amodal-close" data-aclose aria-label="Fermer">&times;</button>
             <div class="amodal-scroll" id="amodal-scroll"></div>
+        </div>
+    </div>
+
+    <!-- modale bilan de l'année -->
+    <div class="bmodal" id="bmodal" aria-hidden="true">
+        <div class="bmodal-overlay" data-bclose></div>
+        <div class="bmodal-box" role="dialog" aria-modal="true" aria-labelledby="bm-title">
+            <button class="bmodal-close" data-bclose aria-label="Fermer le bilan">&times;</button>
+            <div class="bmodal-scroll" id="bmodal-scroll"></div>
         </div>
     </div>
 
@@ -4282,9 +4608,85 @@
                 3: '3ᵉ année — à venir'
             };
 
+            // Bilan (synthèse) par année — 1 = BUT 1, 2 = BUT 2, 3 = BUT 3 (null si vide).
+            // Format léger : ligne vide = nouveau paragraphe · « ## » = titre de section ·
+            // « > » = citation · « **gras** » = mise en valeur. bilanToHtml() met en forme.
+            const BILANS = {
+                1: {
+                    title: 'Poser les fondations',
+                    period: '2024 – 2025 · IUT de Niort',
+                    text: `Mon entrée en BUT Science des Données à Niort en septembre dernier a marqué le début d’un nouveau cycle, à la fois stimulant, exigeant et profondément formateur. Issu d’un baccalauréat général, j'avais un profil résolument scientifique qui m’a apporté des **fondations solides** pour aborder cette formation orientée vers l’analyse, les statistiques et la modélisation. La rigueur mathématique acquise au lycée m’a permis d’appréhender plus sereinement des enseignements comme les probabilités, les statistiques inférentielles, l’algèbre ou encore les bases de l’analyse de données.
+
+## Apprendre à coder : de la crainte à la passion
+
+L’un des plus grands défis de cette année a été l’apprentissage de la programmation. À mon arrivée, de nombreux camarades avaient déjà une certaine expérience en **Python**, en **R** ou en **SQL**. Cette différence de niveau initial m’a d’abord fait douter, mais j’ai fait le choix de transformer cette crainte en moteur. À force de persévérance et de travail personnel, j’ai réussi à combler une grande partie de mon retard initial, au point de me sentir beaucoup plus à l’aise dans l’utilisation de bibliothèques comme **pandas**, **seaborn** ou **ggplot2**.
+
+## Donner du sens par la pratique
+
+Au-delà des enseignements théoriques, ce que j’ai particulièrement apprécié cette année, ce sont les projets menés dans le cadre des **SAÉ** (Situations d’Apprentissage et d’Évaluation). Ces projets m’ont permis de passer du concept abstrait à une application concrète, en travaillant sur des cas réalistes (analyse de données, visualisations, création de dashboards…). Ces moments m’ont également appris à **gérer un projet dans le temps**, à répartir les tâches et à collaborer efficacement en équipe.
+
+## Premiers pas vers le monde professionnel
+
+La recherche d’alternance a aussi été une dimension importante de mon année. Cette démarche m’a permis de mieux cerner les attentes du marché de l’emploi et de mieux définir mon propre projet professionnel. Cette période m’a permis de développer ma communication et ma capacité à valoriser mes compétences. À défaut d’alternance pour la deuxième année, le stage de fin d’année s'annonçait comme une opportunité intéressante pour découvrir un environnement professionnel concret.
+
+## Évolution personnelle et transversale
+
+Sur le plan personnel, cette année de transition a demandé une véritable réorganisation de mes méthodes de travail. J’ai dû apprendre à gérer mon temps et à travailler de manière plus **autonome**. Par ailleurs, cette formation m’a permis de développer des compétences transversales : j’ai appris à mieux **communiquer mes résultats** à travers des visualisations, et je me suis initié aux enjeux éthiques liés à la data.
+
+## Confirmer ma voie
+
+Cette première année a confirmé mon choix de formation. Je ressors de ce BUT 1 avec une vision plus claire de mes compétences et de mon projet professionnel à long terme, avec déjà l'ambition de poursuivre vers un master dans le domaine de la data.`
+                },
+                2: {
+                    title: 'Construire et me spécialiser',
+                    period: '2025 – 2026 · IUT de Niort',
+                    text: `Si ma première année a posé les fondations, la deuxième a été celle de la construction. Entre des projets plus ambitieux, une palette technique nettement élargie et mes premiers pas en entreprise, le BUT 2 a transformé des connaissances encore théoriques en véritables réflexes de **data analyst** et de **développeur**.
+
+## Une année rythmée par les projets
+
+Là où le BUT 1 m’avait fait découvrir les outils, le BUT 2 m’a appris à les **assembler** au service de problématiques concrètes. Chaque SAÉ est devenue un projet complet — de la donnée brute jusqu’au livrable défendu en soutenance — mené le plus souvent en équipe, parfois en autonomie totale. J’y ai gagné une vraie méthode de travail : cadrer un besoin, répartir les tâches, tenir des délais et présenter des résultats clairs sont devenus des automatismes.
+
+## Les bases de données, mon fil rouge
+
+C’est sans doute le domaine où j’ai le plus progressé. Avec le projet **DENTISSIMO**, j’ai conçu et déployé une base **Oracle** complète pour la gestion d’une clinique dentaire : modélisation (MCD/MLD), règles de gestion complexes (schéma dentaire FDI, suivi des actes médicaux) et automatisation du déploiement via **Docker**. En parallèle, l’application web **PHP / MySQL** d’analyse d’OpenData m’a fait manipuler une base relationnelle de bout en bout, du CRUD jusqu’aux statistiques bivariées. Cette rigueur acquise sur les systèmes d’information relationnels a directement nourri mon stage de fin d’année.
+
+## Le développement web, ma vraie force
+
+Au fil des projets, un rôle s’est imposé naturellement : je suis devenu le **développeur web** de mes groupes. J’ai réalisé **entièrement** les sites de **Hexa-Duo** (comparaison de villes avec D3.js et Plotly), de **Géo-McDo** (restitution d’une analyse spatiale) ainsi que la version cloud du **Portail de gestion IUT** sous Google App Script. Au-delà du code, j’ai souvent pris en charge l’**univers visuel** des applications. Concevoir des interfaces claires, réactives et agréables est devenu ce qui me distingue — et, surtout, ce que je préfère faire.
+
+> Une analyse juste ne sert à rien si personne ne peut la lire : le design m’importe autant que le code.
+
+## Collecter, cartographier, prédire
+
+Le BUT 2 a aussi élargi ma vision de la donnée. Avec le projet **Scraping & API**, j’ai appris à la **collecter** moi-même : web scraping vers des DataFrames **Pandas**, exploitation de l’API météo **SYNOP**, cartes interactives **Folium**. Le projet **Géo-McDo** m’a ouvert au monde des **SIG** sous **QGIS**, où j’ai compris que la donnée géolocalisée demande des traitements bien à part. Enfin, la **prédiction du cours de l’or** m’a initié aux **séries temporelles** : décomposer une série, la stationnariser, choisir un modèle — et, surtout, savoir communiquer les incertitudes d’une prévision.
+
+## Comparer pour mieux décider
+
+Plusieurs projets m’ont appris à **choisir** une technologie plutôt qu’à la subir. La comparaison entre une solution **VBA locale** et une web-app **Google App Script** a bien montré qu’il n’existe pas de « meilleur » outil dans l’absolu, mais un outil adapté à un contexte. Savoir prendre du recul, peser réactivité, collaboration et maintenabilité, est sans doute l’une des compétences les plus précieuses que je retiens de cette année.
+
+## Le tournant professionnel
+
+La grande satisfaction de l’année est venue de ma recherche d’alternance. Après une première année de candidatures restées sans réponse, mes efforts ont fini par payer : j’ai **signé une alternance en data à la MAIF**, à Niort, pour ma troisième année. J’ai également décroché un **stage de technicien base de données chez Thales**, à Cholet — ma première véritable expérience en entreprise, autour de la gestion, du nettoyage et de l’optimisation de bases liées à des composants critiques. Découvrir la donnée en environnement industriel a confirmé tout ce que les projets m’avaient laissé entrevoir.
+
+## M’investir au-delà des cours
+
+Cette année ne s’est pas limitée aux salles de TP. Élu **représentant étudiant au conseil d’institut** et impliqué dans le **graphisme et l’événementiel du BDE**, j’ai appris à prendre part à la vie de l’IUT : écouter, organiser, fédérer. Ces engagements, en marge de la technique, m’ont énormément apporté sur le plan humain.
+
+## Vers la troisième année
+
+Je termine ce BUT 2 avec une certitude : j’ai trouvé ma voie, à la croisée de la **donnée** et du **développement**. J’aborde la troisième année en alternance, avec l’envie de monter en compétence en conditions réelles — et, déjà, l’idée de poursuivre ensuite vers un **master** en statistiques, science des données ou intelligence artificielle.`
+                },
+                3: null
+            };
+
             const projGrid = document.getElementById('proj-grid');
             const yearTabs = document.querySelectorAll('.year-tab');
             const yearContextEl = document.getElementById('year-context');
+            const bilanCta = document.getElementById('bilan-cta');
+            const bilanOpenBtn = document.getElementById('bilan-open');
+            const bilanBtnLabel = document.getElementById('bilan-btn-label');
+            const bmodal = document.getElementById('bmodal');
+            const bmodalScroll = document.getElementById('bmodal-scroll');
 
             /* ── couvertures : illustrations SVG par projet (traits blancs, accents violets) ── */
             let currentYear = 1, modalId = null;
@@ -4453,9 +4855,58 @@
             </svg>`
             };
 
+            // Met en forme un bilan (format léger : ## titre · > citation · **gras**) en HTML éditorial.
+            function bilanToHtml(text) {
+                const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                const inline = s => esc(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+                let leadDone = false;
+                return text.trim().split(/\n\s*\n/).map(raw => {
+                    const b = raw.trim();
+                    if (!b) return '';
+                    if (b.startsWith('## ')) return `<h3 class="bm-h">${inline(b.slice(3).trim())}</h3>`;
+                    if (b.startsWith('> ')) return `<blockquote class="bm-quote">${inline(b.slice(2).trim())}</blockquote>`;
+                    if (!leadDone) { leadDone = true; return `<p class="bm-lead">${inline(b)}</p>`; }
+                    return `<p>${inline(b)}</p>`;
+                }).join('');
+            }
+
+            // Bouton d'accès au bilan : affiché/masqué et libellé selon l'année sélectionnée.
+            function renderBilanCta(year) {
+                if (!bilanCta) return;
+                if (!BILANS[year]) { bilanCta.hidden = true; return; }
+                const label = (YEAR_LABEL[year] || '').split(' · ')[0] || 'l’année';
+                if (bilanBtnLabel) bilanBtnLabel.textContent = `Lire mon bilan de ${label}`;
+                bilanCta.hidden = false;
+            }
+
+            function openBilan() {
+                const b = BILANS[currentYear];
+                if (!b || !bmodal) return;
+                const label = (YEAR_LABEL[currentYear] || '').split(' · ')[0] || 'l’année';
+                bmodalScroll.innerHTML =
+                    `<header class="bm-head">` +
+                    `<p class="bm-eyebrow">Bilan · ${label}</p>` +
+                    `<h2 class="bm-title" id="bm-title">${b.title}</h2>` +
+                    `<p class="bm-period">${b.period}</p>` +
+                    `</header>` +
+                    `<div class="bm-content">${bilanToHtml(b.text)}</div>`;
+                bmodalScroll.scrollTop = 0;
+                bmodal.classList.add('open');
+                bmodal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeBilan() {
+                if (!bmodal) return;
+                bmodal.classList.remove('open');
+                bmodal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
             function renderYear(year) {
                 currentYear = year;
                 yearContextEl.textContent = YEAR_CONTEXT[year] || '';
+                renderBilanCta(year);
                 const list = PROJETS.filter(p => p.year === year);
                 if (!list.length) {
                     projGrid.innerHTML = `
@@ -4491,6 +4942,24 @@
                     renderYear(Number(tab.dataset.year));
                 });
             });
+
+            // Bilan : ouverture/fermeture de la modale
+            if (bilanOpenBtn) {
+                bilanOpenBtn.addEventListener('click', openBilan);
+                bilanOpenBtn.addEventListener('mousemove', (e) => {
+                    const rect = bilanOpenBtn.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    bilanOpenBtn.style.setProperty('--mx', `${x}px`);
+                    bilanOpenBtn.style.setProperty('--my', `${y}px`);
+                });
+            }
+            if (bmodal) {
+                bmodal.querySelectorAll('[data-bclose]').forEach(el => el.addEventListener('click', closeBilan));
+                document.addEventListener('keydown', e => {
+                    if (e.key === 'Escape' && bmodal.classList.contains('open')) closeBilan();
+                });
+            }
 
             renderYear(2);
 
