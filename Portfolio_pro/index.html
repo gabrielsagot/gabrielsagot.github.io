@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Quicksand:wght@700&family=Source+Serif+4:opsz,wght@8..60,600&family=Instrument+Serif:ital@0;1&display=swap"
         rel="stylesheet">
     <style>
         *,
@@ -3156,14 +3156,18 @@
         }
 
         .sr-stop:nth-of-type(2) {
-            top: 36%;
+            top: 29%;
         }
 
         .sr-stop:nth-of-type(3) {
-            top: 64%;
+            top: 50%;
         }
 
         .sr-stop:nth-of-type(4) {
+            top: 71%;
+        }
+
+        .sr-stop:nth-of-type(5) {
             top: 92%;
         }
 
@@ -3189,6 +3193,366 @@
 
         .sr-stop.act i {
             background: var(--acc);
+        }
+
+        /* ==========================================================
+       03 — AUTO-ENTREPRENEURIAT  (atelier : papier ligné, chaque appli dans son univers)
+    ========================================================== */
+        .sec--studio {
+            background-color: #ebe6dc;
+            background-image:
+                linear-gradient(rgba(23, 20, 29, 0.05) 1px, transparent 1px);
+            background-size: 100% 34px;
+            color: var(--tx-paper);
+            border-top: 1px solid var(--ln-paper);
+        }
+
+        .sec--studio .lede strong {
+            color: var(--tx-paper);
+            font-weight: 500;
+        }
+
+        .headline:hover .title-icon--auto {
+            transform: scale(1.12) rotate(-18deg);
+            filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.25));
+        }
+
+        .auto-top {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 4rem;
+            align-items: end;
+            margin-bottom: 5rem;
+        }
+
+        .auto-points {
+            list-style: none;
+            display: grid;
+            gap: 1.1rem;
+        }
+
+        .auto-points li {
+            display: grid;
+            grid-template-columns: 5.2rem 1fr;
+            align-items: baseline;
+            gap: 1rem;
+            padding-bottom: 1.1rem;
+            border-bottom: 1px solid var(--ln-paper);
+        }
+
+        .auto-points b {
+            font-family: var(--f-serif);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.9rem;
+            line-height: 1;
+            color: var(--acc);
+        }
+
+        .auto-points span {
+            font-family: var(--f-body);
+            font-weight: 300;
+            font-size: 0.95rem;
+            line-height: 1.55;
+            color: var(--mut-paper);
+        }
+
+        .auto-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.6rem;
+            align-items: stretch;
+        }
+
+        /* Une carte = l'univers de son application (couleurs, typo du titre) */
+        .app-card {
+            --app-bg: #fff;
+            --app-stage: #eee;
+            --app-ink: #17141d;
+            --app-muted: rgba(23, 20, 29, 0.6);
+            --app-acc: #17141d;
+            --app-on-acc: #fff;
+            --app-chip: rgba(23, 20, 29, 0.06);
+            --app-title: var(--f-sans);
+            display: flex;
+            flex-direction: column;
+            border-radius: 28px;
+            overflow: hidden;
+            background: var(--app-bg);
+            color: var(--app-ink);
+            box-shadow: 0 1px 2px rgba(23, 20, 29, 0.06), 0 30px 60px -36px rgba(23, 20, 29, 0.45);
+            transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+        }
+
+        .app-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 2px 4px rgba(23, 20, 29, 0.08), 0 40px 80px -36px rgba(23, 20, 29, 0.55);
+        }
+
+        .app-card--equicare {
+            --app-bg: #fbf8f1;
+            --app-stage: radial-gradient(120% 90% at 30% 10%, #e3ecdf 0%, #cfdccb 55%, #b9cbb5 100%);
+            --app-ink: #26332a;
+            --app-muted: #5f6b62;
+            --app-acc: #4e6e58;
+            --app-on-acc: #fbf8f1;
+            --app-chip: #e6ede3;
+            --app-title: 'Quicksand', var(--f-sans);
+        }
+
+        .app-card--dram {
+            --app-bg: #fdfaf3;
+            --app-stage: radial-gradient(120% 90% at 70% 10%, #f3ead6 0%, #e4d3ae 55%, #cdb27a 100%);
+            --app-ink: #1c2b25;
+            --app-muted: #5c665f;
+            --app-acc: #1f4d3f;
+            --app-on-acc: #fdfaf3;
+            --app-chip: #f3ead6;
+            --app-title: 'Source Serif 4', Georgia, serif;
+        }
+
+        .app-card--vitrine {
+            --app-bg: #f7f6f2;
+            --app-stage: radial-gradient(120% 90% at 50% 0%, #26365f 0%, #1d2a4c 50%, #16213e 100%);
+            --app-ink: #16213e;
+            --app-muted: #5b6b8c;
+            --app-acc: #e0a54a;
+            --app-on-acc: #16213e;
+            --app-chip: rgba(22, 33, 62, 0.07);
+            --app-title: 'Instrument Serif', Georgia, serif;
+        }
+
+        .app-stage {
+            position: relative;
+            height: 380px;
+            background: var(--app-stage);
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .app-fig {
+            position: absolute;
+            top: 1rem;
+            left: 1.2rem;
+            z-index: 3;
+            font-family: var(--f-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            color: var(--app-ink);
+            opacity: 0.55;
+        }
+
+        .app-card--vitrine .app-fig {
+            color: #eef0f5;
+        }
+
+        .app-phone {
+            position: absolute;
+            width: 46%;
+            height: auto;
+            border-radius: 22px;
+            border: 5px solid #121214;
+            background: #121214;
+            box-shadow: 0 24px 50px -20px rgba(0, 0, 0, 0.55);
+            transition: transform 0.7s var(--ease);
+        }
+
+        .app-phone--front {
+            left: 44%;
+            top: 15%;
+            transform: rotate(4deg);
+            z-index: 2;
+        }
+
+        .app-phone--back {
+            left: 10%;
+            top: 24%;
+            transform: rotate(-6deg);
+            z-index: 1;
+            filter: saturate(0.92);
+        }
+
+        .app-phone--solo {
+            left: 50%;
+            top: 12%;
+            width: 52%;
+            transform: translateX(-50%) rotate(-2deg);
+        }
+
+        .app-card:hover .app-phone--front {
+            transform: rotate(1deg) translateY(-12px);
+        }
+
+        .app-card:hover .app-phone--back {
+            transform: rotate(-9deg) translate(-8px, 4px);
+        }
+
+        .app-card:hover .app-phone--solo {
+            transform: translateX(-50%) rotate(0deg) translateY(-12px);
+        }
+
+        .app-body {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            gap: 0.9rem;
+            padding: 1.8rem 1.8rem 2rem;
+        }
+
+        .app-kicker {
+            font-family: var(--f-mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--app-muted);
+        }
+
+        .app-title {
+            font-family: var(--app-title);
+            font-weight: 700;
+            font-size: 2.1rem;
+            line-height: 1.05;
+            letter-spacing: -0.01em;
+            color: var(--app-ink);
+        }
+
+        .app-card--dram .app-title {
+            font-weight: 600;
+        }
+
+        .app-card--vitrine .app-title {
+            font-weight: 400;
+            font-size: 2.3rem;
+        }
+
+        .app-card--vitrine .app-title em {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+        }
+
+        .app-desc {
+            font-family: var(--f-body);
+            font-weight: 300;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--app-muted);
+        }
+
+        .app-chips {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+        }
+
+        .app-chips li {
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            background: var(--app-chip);
+            font-family: var(--f-body);
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--app-ink);
+        }
+
+        .app-stats {
+            margin-top: auto;
+            padding-top: 0.4rem;
+            font-family: var(--f-mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.04em;
+            color: var(--app-muted);
+        }
+
+        .app-stats b {
+            font-weight: 500;
+            color: var(--app-ink);
+        }
+
+        .app-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            min-height: 52px;
+            padding: 0 1.4rem;
+            border-radius: 999px;
+            background: var(--app-acc);
+            color: var(--app-on-acc);
+            font-family: var(--f-sans);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+        }
+
+        .app-cta svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s var(--ease);
+        }
+
+        .app-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px -14px var(--app-acc);
+        }
+
+        .app-cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .app-cta:focus-visible {
+            outline: 2px solid var(--acc);
+            outline-offset: 3px;
+        }
+
+        .auto-note {
+            margin-top: 2.4rem;
+            text-align: center;
+        }
+
+        @media (max-width: 1020px) {
+            .auto-top {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .auto-grid {
+                grid-template-columns: 1fr;
+                max-width: 560px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .auto-top {
+                margin-bottom: 3rem;
+            }
+
+            .app-stage {
+                height: 300px;
+            }
+
+            .app-body {
+                padding: 1.4rem 1.3rem 1.6rem;
+            }
+
+            .app-title {
+                font-size: 1.85rem;
+            }
+
+            .app-cta {
+                width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .app-card,
+            .app-phone,
+            .app-cta,
+            .app-cta svg {
+                transition: none;
+            }
         }
 
         /* ==========================================================
@@ -3517,6 +3881,8 @@
             }
         }
     </style>
+    <!-- Compteur de visites (sans cookie) : https://gabrielsagot.vercel.app/visites.js -->
+    <script async src="https://gabrielsagot.vercel.app/visites.js" data-site="portfolio"></script>
 </head>
 
 <body>
@@ -3530,6 +3896,7 @@
                 <li><a href="#hero">Accueil</a></li>
                 <li><a href="#about">À propos</a></li>
                 <li><a href="#projects">Projets</a></li>
+                <li><a href="#auto">Activité</a></li>
                 <li><a href="#skills">Compétences</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -3543,8 +3910,9 @@
         <span class="sr-marker" id="sr-marker"></span>
         <a class="sr-stop" data-rail="about" href="#about">01<i></i></a>
         <a class="sr-stop" data-rail="projects" href="#projects">02<i></i></a>
-        <a class="sr-stop" data-rail="skills" href="#skills">03<i></i></a>
-        <a class="sr-stop" data-rail="contact" href="#contact">04<i></i></a>
+        <a class="sr-stop" data-rail="auto" href="#auto">03<i></i></a>
+        <a class="sr-stop" data-rail="skills" href="#skills">04<i></i></a>
+        <a class="sr-stop" data-rail="contact" href="#contact">05<i></i></a>
     </div>
 
     <!-- Bouton retour -->
@@ -3747,6 +4115,150 @@
         </div>
     </section>
 
+    <!-- ── 03 · Auto-entrepreneuriat ── -->
+    <section class="sec sec--studio" id="auto">
+        <div class="sec-inner">
+
+            <div class="sec-head reveal">
+                <span class="idx">03</span>
+                <span class="rule"></span>
+                <span class="name">Auto-entrepreneuriat</span>
+            </div>
+
+            <div class="auto-top">
+                <div>
+                    <h2 class="headline reveal reveal-delay-1">Des applis<br><em><svg class="title-icon title-icon--auto"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="6" cy="6" r="3" />
+                                <circle cx="6" cy="18" r="3" />
+                                <path d="M20 4 8.12 15.88M14.47 14.48 20 20M8.12 8.12 12 12" />
+                            </svg>sur mesure.</em></h2>
+                    <p class="lede reveal reveal-delay-2">À côté de mes études, je lance mon activité&nbsp;: je conçois
+                        des applications pensées pour <strong>un métier</strong>, et pour <strong>une seule
+                        personne</strong>. Deux sont déjà utilisées chaque jour. Essayez-les avec des données
+                        d’exemple&nbsp;: rien à installer, rien n’est envoyé.</p>
+                </div>
+                <ul class="auto-points reveal reveal-delay-2">
+                    <li><b>100&nbsp;%</b><span>sur mesure&nbsp;: chaque écran part de votre façon de travailler</span></li>
+                    <li><b>0&nbsp;€</b><span>pour le devis, sans aucune obligation</span></li>
+                    <li><b>1</b><span>client par application : elle n’est faite que pour vous</span></li>
+                </ul>
+            </div>
+
+            <div class="auto-grid">
+
+                <!-- EquiCare -->
+                <article class="app-card app-card--equicare reveal reveal-delay-1">
+                    <div class="app-stage">
+                        <span class="app-fig">fig. 03a — EquiCare</span>
+                        <img class="app-phone app-phone--back" src="assets/auto/equicare-planning.webp" width="520"
+                            height="1125" alt="EquiCare : le planning du mois, une couleur par tournée" loading="lazy"
+                            decoding="async">
+                        <img class="app-phone app-phone--front" src="assets/auto/equicare-today.webp" width="520"
+                            height="1125" alt="EquiCare : la journée en cours, avec l’itinéraire et le prochain rendez-vous"
+                            loading="lazy" decoding="async">
+                    </div>
+                    <div class="app-body">
+                        <p class="app-kicker">Soins équins · application mobile</p>
+                        <h3 class="app-title">EquiCare</h3>
+                        <p class="app-desc">Pour une praticienne en shiatsu qui se déplace de pré en pré&nbsp;: ses
+                            tournées du mois proposées en un geste, au meilleur trajet, ses clients, ses chevaux et toute
+                            sa compta. Même sans réseau.</p>
+                        <ul class="app-chips">
+                            <li>Tournées optimisées</li>
+                            <li>Hors connexion</li>
+                            <li>Factures &amp; URSSAF</li>
+                            <li>Carte des clients</li>
+                        </ul>
+                        <p class="app-stats"><b>57 000</b> lignes de code · <b>100+</b> versions livrées</p>
+                        <a class="app-cta"
+                            href="https://equi-care-app.vercel.app/?visiteur=1&amp;utm_source=portfolio&amp;utm_medium=section-auto&amp;utm_campaign=auto-entrepreneuriat"
+                            target="_blank" rel="noopener" data-track="Essayer EquiCare">
+                            <span>Essayer en mode visiteur</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Dram -->
+                <article class="app-card app-card--dram reveal reveal-delay-2">
+                    <div class="app-stage">
+                        <span class="app-fig">fig. 03b — Dram</span>
+                        <img class="app-phone app-phone--back" src="assets/auto/dram-sommelier.webp" width="520"
+                            height="1125" alt="Dram : le guide sommelier pour les invités" loading="lazy"
+                            decoding="async">
+                        <img class="app-phone app-phone--front" src="assets/auto/dram-cave.webp" width="520"
+                            height="1125" alt="Dram : la cave en vitrine, avec le niveau de chaque bouteille"
+                            loading="lazy" decoding="async">
+                    </div>
+                    <div class="app-body">
+                        <p class="app-kicker">Collection de whiskies · application mobile</p>
+                        <h3 class="app-title">Dram</h3>
+                        <p class="app-desc">Pour un collectionneur de 250 bouteilles&nbsp;: sa cave scannée au code-barres,
+                            ce qu’il reste dans chaque bouteille, et un sommelier qui choisit pour ses invités quand ils
+                            disent «&nbsp;trop de choix, choisis pour moi&nbsp;».</p>
+                        <ul class="app-chips">
+                            <li>Scan du code-barres</li>
+                            <li>Guide sommelier</li>
+                            <li>Soirées &amp; invités</li>
+                            <li>Roue des arômes</li>
+                        </ul>
+                        <p class="app-stats"><b>19 000</b> lignes de code · <b>15</b> versions livrées</p>
+                        <a class="app-cta"
+                            href="https://dram-one.vercel.app/?visiteur=1&amp;utm_source=portfolio&amp;utm_medium=section-auto&amp;utm_campaign=auto-entrepreneuriat"
+                            target="_blank" rel="noopener" data-track="Essayer Dram">
+                            <span>Essayer en mode visiteur</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Site vitrine -->
+                <article class="app-card app-card--vitrine reveal reveal-delay-3">
+                    <div class="app-stage">
+                        <span class="app-fig">fig. 03c — l’atelier</span>
+                        <img class="app-phone app-phone--front app-phone--solo" src="assets/auto/vitrine-hero.webp"
+                            width="520" height="1125"
+                            alt="Mon site d’applications sur mesure : « Votre quotidien, sur mesure. »" loading="lazy"
+                            decoding="async">
+                    </div>
+                    <div class="app-body">
+                        <p class="app-kicker">Mon activité · site vitrine</p>
+                        <h3 class="app-title">Votre quotidien, <em>sur mesure.</em></h3>
+                        <p class="app-desc">Mon site pour les indépendants, artisans et particuliers&nbsp;: une tournée
+                            qui se démêle sous vos yeux, un atelier où composer votre future application, et une
+                            conversation pour en parler.</p>
+                        <ul class="app-chips">
+                            <li>Devis offert</li>
+                            <li>Démos interactives</li>
+                            <li>Partout en France</li>
+                        </ul>
+                        <p class="app-stats">Pensé d’abord pour le téléphone, léger même sur un vieil appareil</p>
+                        <a class="app-cta"
+                            href="https://gabrielsagot.vercel.app/?utm_source=portfolio&amp;utm_medium=section-auto&amp;utm_campaign=auto-entrepreneuriat"
+                            target="_blank" rel="noopener" data-track="Découvrir le site vitrine">
+                            <span>Découvrir mon offre</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14M13 6l6 6-6 6" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <p class="note auto-note reveal">Captures réelles des applications, avec des données inventées. Les
+                personnes, les clients et les adresses n’existent pas.</p>
+        </div>
+    </section>
+
     <!-- modale projet -->
     <div class="pmodal" id="pmodal" aria-hidden="true">
         <div class="pmodal-overlay" data-close></div>
@@ -3812,7 +4324,7 @@
         <div class="sec-inner">
 
             <div class="sec-head reveal">
-                <span class="idx">03</span>
+                <span class="idx">04</span>
                 <span class="rule"></span>
                 <span class="name">Compétences</span>
             </div>
@@ -3965,7 +4477,7 @@
 
 
             <div class="sec-head reveal">
-                <span class="idx">04</span>
+                <span class="idx">05</span>
                 <span class="rule"></span>
                 <span class="name">Contact</span>
             </div>
@@ -5155,6 +5667,10 @@ Je termine ce BUT 2 avec une certitude : j’ai trouvé ma voie, à la croisée 
                 { t: 'Accueil', d: 'remonter en haut de page', k: 'accueil hero haut top home', g: 'aller à', run: () => scrollSec('#hero') },
                 { t: 'À propos', d: 'parcours, bio, journal de bord', k: 'a propos bio parcours journal', g: 'aller à', run: () => scrollSec('#about') },
                 { t: 'Projets', d: 'mes travaux par année de BUT', k: 'projets travaux but realisations', g: 'aller à', run: () => scrollSec('#projects') },
+                { t: 'Auto-entrepreneuriat', d: 'mes applications sur mesure', k: 'auto entrepreneuriat entreprise activite applications sur mesure freelance', g: 'aller à', run: () => scrollSec('#auto') },
+                { t: 'Essayer EquiCare', d: 'application de tournées, en mode visiteur', k: 'equicare chevaux tournees demo essayer visiteur', g: 'actions', run: () => window.open('https://equi-care-app.vercel.app/?visiteur=1&utm_source=portfolio&utm_medium=cmdk', '_blank') },
+                { t: 'Essayer Dram', d: 'cave à whisky et sommelier, en mode visiteur', k: 'dram whisky cave sommelier demo essayer visiteur', g: 'actions', run: () => window.open('https://dram-one.vercel.app/?visiteur=1&utm_source=portfolio&utm_medium=cmdk', '_blank') },
+                { t: 'Mon site d’applications sur mesure', d: 'devis offert, sans engagement', k: 'site vitrine offre devis applications sur mesure', g: 'actions', run: () => window.open('https://gabrielsagot.vercel.app/?utm_source=portfolio&utm_medium=cmdk', '_blank') },
                 { t: 'Compétences', d: 'langages, outils, certifications', k: 'competences skills outils certifs', g: 'aller à', run: () => scrollSec('#skills') },
                 { t: 'Contact', d: 'email, LinkedIn, CV', k: 'contact email mail', g: 'aller à', run: () => scrollSec('#contact') },
                 { t: 'Copier mon email', d: 'sagotgabrielpro@gmail.com', k: 'copier email mail adresse', g: 'actions', run: () => navigator.clipboard.writeText('sagotgabrielpro@gmail.com') },

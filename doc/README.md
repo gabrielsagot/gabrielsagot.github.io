@@ -109,3 +109,23 @@ Lien discret en haut à gauche, visible uniquement après la fin du loader :
 - Bordure subtile, texte en blanc à 40 % d'opacité
 - Apparaît via classe `.visible` (transition `opacity`)
 - Pointe vers `../redirigeur/index.html`
+
+---
+
+## Portfolio_pro — section « 03 · Auto-entrepreneuriat » (2026-11-01)
+
+**Rôle :** présenter l'activité d'applications sur mesure et renvoyer vers les trois sites liés. Placée entre « Projets » et « Compétences » (Compétences devient 04, Contact 05 ; un arrêt de plus sur le rail, lien « Activité » dans la barre, commandes ⌘K « Auto-entrepreneuriat », « Essayer EquiCare », « Essayer Dram », « Mon site d'applications sur mesure »).
+
+**Contenu :**
+- En-tête « Des applis *sur mesure.* » et trois points (100 % sur mesure, devis à 0 €, un client par application).
+- Trois cartes, **chacune dans l'univers visuel de son site** (couleurs et police du titre de l'application) :
+  - **EquiCare** (sauge, Quicksand) → `https://equi-care-app.vercel.app/?visiteur=1&utm_source=portfolio…` : mode visiteur, données d'exemple.
+  - **Dram** (vert bouteille et laiton, Source Serif 4) → `https://dram-one.vercel.app/?visiteur=1&utm_source=portfolio…` : mode visiteur, cave d'exemple.
+  - **Site vitrine** (bleu nuit et ambre, Instrument Serif) → `https://gabrielsagot.vercel.app/?utm_source=portfolio…`.
+- Captures réelles prises dans les modes visiteur (données inventées), en WebP 520 px dans `Portfolio_pro/assets/auto/` (30 à 50 Ko chacune, chargées à la demande).
+
+**Style :** classe `sec--studio` (papier ligné, entre l'encre de « Projets » et le papier de « Compétences »), cartes `.app-card--equicare / --dram / --vitrine` qui ne changent que des variables CSS. « Réduire les animations » coupe les transitions.
+
+## Suivi des visites (2026-11-01)
+
+`index.html`, `404.html` et `redirigeur/index.html` chargent `https://gabrielsagot.vercel.app/visites.js` avec `data-site="portfolio"` (script commun aux quatre sites, sans cookie, dépôt `vitrine_services`). Il compte pages vues, temps passé, défilement, clics (les liens vers EquiCare, Dram et le site vitrine emportent l'identifiant de session pour suivre le parcours), provenance, appareil et lieu approximatif. Lecture : espace admin du site vitrine, onglet « Visites ». Pour ne pas se compter soi-même : ouvrir une fois le portfolio avec `?visites=off`.
